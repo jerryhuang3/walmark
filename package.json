@@ -23,6 +23,7 @@
     "pg": "^6.0.2"
   },
   "devDependencies": {
-    "nodemon": "^1.9.2"
+    "nodemon": "^1.9.2",
+    "prettier": "^1.16.4"
   }
 }
