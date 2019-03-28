@@ -2,6 +2,7 @@
 
 const express = require('express');
 const linksRoutes  = express.Router();
+const LinkHelpers = require('../lib/link-helpers.js');
 
 module.exports = (knex) => {
 
@@ -9,9 +10,8 @@ module.exports = (knex) => {
     Promise.all([
       knex
       .select('*')
-      .from('links')
-      .join('users',{'links.user_id' : 'users.id'})
-      .join('comments',{'links.id' : 'comments.link_id'})
+      .from('comments')
+      .join('links',{'links.id' : 'comments.link_id'})
       .where('links.id',1),
       knex
       .select('*')
@@ -25,18 +25,19 @@ module.exports = (knex) => {
   linksRoutes.get("/:linkID", (req, res) => {
     const linkID = req.params.linkID;
     const response = knex.select('*').from('links')
-                       .join('users',{'links.user_id' : 'users.id'})
-                       .where('links.id',linkID)
-                       .then(function(results){
-                         let links = results[0];
-      res.render('link', {
-        title: links.title,
-        user: links.full_name,
-        user_avatar: links.avatar,
-        url: links.url,
-        desc: links.description,
-        create_date: links.create_date
-    // const currentUser = req.session.user_ID;
+                         .join('users',{'links.user_id' : 'users.id'})
+                         .where('links.id',linkID)
+                         .then(function(results){
+                            let links = results[0];
+                              res.render('link', {
+                                session: req.session.userid,
+                                title: links.title,
+                                user: links.full_name,
+                                user_avatar: links.avatar,
+                                url: links.url,
+                                desc: links.description,
+                                create_date: links.create_date
+
     });
   });
     // const comment_res = knex.select('*').from('comments')
