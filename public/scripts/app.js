@@ -9,9 +9,9 @@ $(() => {
   });;
 });
 
-$(document).ready(function(){
+$(document).ready(function() {
   //Initialize Masonry Script
-  var $grid = $('.container').imagesLoaded( function() {
+  var $grid = $('.container').imagesLoaded(function () {
     $grid.masonry({
       itemSelector: '.links',
       columnWidth: '.links',
@@ -21,3 +21,5 @@ $(document).ready(function(){
     });
   });
 });
+
+  $(document).foundation();

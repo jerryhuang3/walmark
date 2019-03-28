@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<div class="top-bar" id="realEstateMenu">
+<div class="top-bar">
   <div class="top-bar-left">
-    <ul class="menu" data-responsive-menu="accordion">
+    <ul class="menu">
       <li class="menu-text">walmark</li>
       <li><a href="#">Links</a></li>
       <li><a href="#">Placeholder</a></li>
@@ -12,8 +12,36 @@
   </div>
   <div class="top-bar-right">
     <ul class="menu">
-      <li><a class="button">Login</a></li>
-      <li><a class="button">Register</a></li>
+      <li>
+        <button class="button" data-open="login">Login</button>
+        <div class="reveal" id="login" data-reveal>
+          <form>
+            <h4 class="text-center">Login</h4>
+            <label>Email<input type="email" placeholder="somebody@example.com"></label>
+            <label>Password<input type="password" placeholder="Password"></label>
+            <p><input type="submit" class="button expanded" value="Login"></p>
+          </form>
+          <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </li>
+      <li>
+        <button class="button" data-open="register">Register</button>
+        <div class="reveal" id="register" data-reveal>
+          <form>
+            <h4 class="text-center">Register</h4>
+            <label>Full Name<input type="text" placeholder="John Doe"></label>
+            <label>Username<input type="text" placeholder="Username"></label>
+            <label>Email<input type="email" placeholder="somebody@example.com"></label>
+            <label>Password<input type="password" placeholder="Password"></label>
+            <p><input type="submit" class="button expanded" value="Register"></p>
+          </form>
+          <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </li>
     </ul>
   </div>
 </div>
