@@ -26,39 +26,6 @@ body h1 {
   color: #244751;
 }
 
-.foundation-5-top-bar {
-  background: #333;
-  color: white;
-}
-
-.foundation-5-top-bar .menu {
-  background: #333;
-}
-
-.foundation-5-top-bar .menu a {
-  color: white;
-}
-
-.foundation-5-top-bar .is-dropdown-submenu {
-  border: 0;
-}
-
-.foundation-5-top-bar .is-dropdown-submenu-item.opens-right a::after {
-  border-color: transparent transparent transparent white;
-}
-
-.foundation-5-top-bar .js-drilldown-back > a::before {
-  border-color: transparent white transparent transparent;
-}
-
-.foundation-5-top-bar .is-drilldown-submenu-parent > a::after {
-  border-color: transparent transparent transparent white;
-}
-
-.foundation-5-top-bar .dropdown.menu.medium-horizontal > li.is-dropdown-submenu-parent > a::after {
-  border-color: white transparent transparent;
-}
-
 .container {
   background: rgba(255, 255, 255, 0.54);
   margin: 0 auto;
