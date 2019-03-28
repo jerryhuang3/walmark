@@ -50,3 +50,10 @@ CREATE TABLE ratings (
   PRIMARY KEY (user_id, link_id),
   rating INTEGER
 );
+
+CREATE TABLE likes (
+   user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+   link_id INTEGER NOT NULL REFERENCES links(id) ON DELETE CASCADE,
+   PRIMARY KEY (user_id, link_id),
+   liked INTEGER
+);
