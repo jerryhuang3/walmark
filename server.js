@@ -43,6 +43,41 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+// Login
+app.post("/login", (req, res) => {
+  knex
+  .select("*")
+    .from("users")
+    .then((results) => {
+      for (let i = 0; i < results.length; i++) {
+        if (req.body.email === results[i].email && req.body.password === results[i].password) {
+          console.log("MATCH");
+          return res.redirect("/");
+        } else {
+          res.status(403).send("HTTP 403 - NOT FOUND: E-MAIL OR PASSWORD INCORRECT!");
+        }
+      }
+    });
+});
+
+// Register
+app.post("/register", (req, res) => {
+  knex
+  .select("*")
+    .from("users")
+    .then((results) => {
+    for (let i = 0; i < results.length; i++) {
+      if (req.body.email === results[i].email) {
+        return res.status(400).send("HTTP 400 - BAD REQUEST: E-MAIL ALREADY USED!");
+      } else if (req.body.username === results[i].username) {
+        return res.status(400).send("HTTP 400 - BAD REQUEST: USERNAME ALREADY USED!");
+      } else {
+        return res.redirect("/");
+      }
+    }
+  });
+});
+
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
