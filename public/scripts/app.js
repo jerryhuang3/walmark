@@ -29,3 +29,13 @@ $(document).ready(function() {
 });
 
   $(document).foundation();
+
+//get links page
+$('.container').on('click', '.links', function() {
+  $.ajax({
+    method: 'GET',
+    url: '/links/' + this.id
+  });
+})
+
+

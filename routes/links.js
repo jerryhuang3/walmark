@@ -6,12 +6,17 @@ const linksRoutes  = express.Router();
 module.exports = (knex) => {
 
   linksRoutes.get("/", (req, res) => {
-    knex
+    Promise.all([
+      knex
       .select('*')
       .from('links')
       .join('users',{'links.user_id' : 'users.id'})
-      .where('links.id',1)
-      .then((results) => {
+      .join('comments',{'links.id' : 'comments.link_id'})
+      .where('links.id',1),
+      knex
+      .select('*')
+      .from('users')
+    ]).then((results) => {
         res.json(results)
     });
   });
@@ -19,7 +24,7 @@ module.exports = (knex) => {
 
   linksRoutes.get("/:linkID", (req, res) => {
     const linkID = req.params.linkID;
-    const result = knex.select('*').from('links')
+    const response = knex.select('*').from('links')
                        .join('users',{'links.user_id' : 'users.id'})
                        .where('links.id',linkID)
                        .then(function(results){
@@ -34,6 +39,8 @@ module.exports = (knex) => {
     // const currentUser = req.session.user_ID;
     });
   });
+    // const comment_res = knex.select('*').from('comments')
+    //                         .join('links')
 });
 
 
