@@ -1,3 +1,9 @@
+function escape(str) {
+  var div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+
 $(() => {
   $.ajax({
     method: "GET",
@@ -23,3 +29,13 @@ $(document).ready(function() {
 });
 
   $(document).foundation();
+
+//get links page
+$('.container').on('click', '.links', function() {
+  $.ajax({
+    method: 'GET',
+    url: '/links/' + this.id
+  });
+})
+
+

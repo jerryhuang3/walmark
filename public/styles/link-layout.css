@@ -19,7 +19,7 @@ html {
 }
 
 body {
-  background-color: #EEE;
+  background-color: #D8D8D8;
 }
 
 body h1 {
@@ -59,14 +59,60 @@ body h1 {
   border-color: white transparent transparent;
 }
 
-.container {
+#link-container {
+  font-family: 'PT Sans', sans-serif;
   background: rgba(255, 255, 255, 0.54);
-  margin: 0 auto;
-  max-width: 75vw;
+  margin: 2vw auto;
+  max-width: 60vw;
+  height: auto;
+  border: 1px solid grey;
+  border-radius: 8px;
+  padding: 2vw;
 }
 
-.container .links {
-  width: 33.33%;
-  margin-bottom: 20px;
-  padding-left: 1em;
+.link-img {
+  width: 25vw;
+  float: left;
+}
+
+.link-info {
+  width: 25vw;
+  display: inline-block;
+  margin: auto 1vw;
+  border: 1px solid grey;
+}
+
+.link-info h4 {
+  font-weight: bold;
+}
+
+.link-avatar {
+  width: 5vw;
+  border-radius: 100%;
+}
+
+.link-desc {
+  width: 20vw;
+  height: auto;
+}
+
+.link-comments {
+  width: 25vw;
+  display: inline-block;
+  margin: auto 1vw;
+  border: 1px solid grey;
+}
+
+.link-comments h4 {
+  font-weight: bold;
+}
+
+.comment-avatar {
+  width: 3vw;
+  border-radius: 100%;
+  float: left;
+}
+
+.comment-content textarea {
+  display: inline-block;
 }
