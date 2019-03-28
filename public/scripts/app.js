@@ -6,7 +6,7 @@ $(() => {
     for(user of users) {
       $("<div>").text(user.full_name).appendTo($("body"));
     }
-  });;
+  });
 });
 
 $(document).ready(function() {

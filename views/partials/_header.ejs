@@ -12,36 +12,45 @@
   </div>
   <div class="top-bar-right">
     <ul class="menu">
-      <li>
-        <button class="button" data-open="login">Login</button>
-        <div class="reveal" id="login" data-reveal>
-          <form method="POST" action="/login">
-            <h4 class="text-center">Login</h4>
-            <label>Email<input type="email" placeholder="somebody@example.com" name="email"></label>
-            <label>Password<input type="password" placeholder="Password" name="password"></label>
-            <p><input type="submit" class="button expanded" value="Login"></p>
+      <%if (!session) {%>
+        <li>
+          <button class="button" data-open="login">Login</button>
+          <div class="reveal" id="login" data-reveal>
+            <form method="POST" action="/login">
+              <h4 class="text-center">Login</h4>
+              <label>Username<input type="text" placeholder="Username" name="username"></label>
+              <label>Password<input type="password" placeholder="Password" name="password"></label>
+              <p><input type="submit" class="button expanded" value="Login"></p>
+            </form>
+            <button class="close-button" data-close aria-label="Close modal" type="button">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </li>
+        <li>
+          <button class="button" data-open="register">Register</button>
+          <div class="reveal" id="register" data-reveal>
+            <form method="POST" action="/register">
+              <h4 class="text-center">Register</h4>
+              <label>Full Name<input type="text" placeholder="John Doe" name="fullName"></label>
+              <label>Username<input type="text" placeholder="Username" name="username"></label>
+              <label>Email<input type="email" placeholder="somebody@example.com" name="email"></label>
+              <label>Password<input type="password" placeholder="Password" name="password"></label>
+              <p><input type="submit" class="button expanded" value="Register"></p>
+            </form>
+            <button class="close-button" data-close aria-label="Close modal" type="button">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </li>
+      <%} else {%>
+        <li><a href="#">Welcome <%=session%>!</a></li>
+        <li>
+          <form method="POST" action="/logout">
+            <button class="button" type="submit">Logout</button>
           </form>
-          <button class="close-button" data-close aria-label="Close modal" type="button">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      </li>
-      <li>
-        <button class="button" data-open="register">Register</button>
-        <div class="reveal" id="register" data-reveal>
-          <form method="POST" action="/register">
-            <h4 class="text-center">Register</h4>
-            <label>Full Name<input type="text" placeholder="John Doe" name="full_name"></label>
-            <label>Username<input type="text" placeholder="Username" name="username"></label>
-            <label>Email<input type="email" placeholder="somebody@example.com" name="email"></label>
-            <label>Password<input type="password" placeholder="Password" name="password"></label>
-            <p><input type="submit" class="button expanded" value="Register"></p>
-          </form>
-          <button class="close-button" data-close aria-label="Close modal" type="button">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      </li>
+        </li>
+        <%}%>
     </ul>
   </div>
 </div>
