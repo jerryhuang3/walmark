@@ -26,7 +26,7 @@ module.exports = (knex) => {
     if (!currentUser){
       res.redirect('back');
     } else {
-    
+
     res.render("create-link", templateVars);
   }
   })
@@ -42,6 +42,7 @@ module.exports = (knex) => {
           .where('links.id',linkId)
                 .then(function(results){
                   const links = results[0];
+                  console.log(results[0]);
                   const vartemplate = {
                     id: req.session.userid,
                     title: links.title,
@@ -80,7 +81,7 @@ module.exports = (knex) => {
         like_count = 0
       knex.insert([{user_id: user_id, link_id: link_id, text: text, create_date: knex.fn.now()}])
           .into('comments').asCallback(function(err){
-            if (err) { 
+            if (err) {
               res.status(500).json({ error: err.message });
             } else {
                 console.log('YAY!');
