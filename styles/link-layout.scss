@@ -16,46 +16,6 @@ html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%; }
 
-body {
-  background-color: #D8D8D8;
-
-  h1 {
-    color: #244751;
-  }
-}
-
-.foundation-5-top-bar {
-  background: #333;
-  color: white;
-
-  .menu {
-    background: #333;
-
-    a {
-      color: white;
-    }
-  }
-
-  .is-dropdown-submenu {
-    border: 0;
-  }
-
-  .is-dropdown-submenu-item.opens-right a::after {
-    border-color: transparent transparent transparent white;
-  }
-
-  .js-drilldown-back > a::before {
-    border-color: transparent white transparent transparent;
-  }
-
-  .is-drilldown-submenu-parent > a::after {
-    border-color: transparent transparent transparent white;
-  }
-
-  .dropdown.menu.medium-horizontal > li.is-dropdown-submenu-parent > a::after {
-    border-color: white transparent transparent;
-  }
-}
 
 #link-container {
   font-family: 'PT Sans', sans-serif;

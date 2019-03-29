@@ -23,7 +23,6 @@ module.exports = (knex) => {
   });
 
   linksRoutes.get("/create", (req, res) => {
-
     const currentUser = req.session.userid;
     if (!currentUser){
       res.redirect('back');

@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/link-layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/create-link.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/foundation.css">
     <script>$(document).foundation();</script>
@@ -27,10 +27,20 @@
   <body>
   <% include ./partials/_header %>
 
-  <div id="newpin-container">
+  <div id="newlink-container">
      <form action="/create" method="POST">
-        <input placeholder="Add your title" type="text" name="username" required />
-        <input placeholder="Full Name" type="text" name="fullname" required />
+        <input placeholder="Add your title" type="text" name="link-title" required />
+        <input placeholder="Insert the link here" type="text" name="link-url" required />
+        <textarea placeholder="Descripe your resource" type="text" name="link-desc"></textarea>
+          <span>Pick a Topic</span>
+          <div class="dropdown-options">
+              <select>
+                <option id="program">Programming</option>
+                <option id="music">Music</option>
+                <option id="math">Math</option>
+              </select>
+          </div>
+        <button class="button mark">Mark</button>
     </form>
   </div>
 
