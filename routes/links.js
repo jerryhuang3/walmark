@@ -4,6 +4,8 @@ const express = require('express');
 const linksRoutes  = express.Router();
 const LinkHelpers = require('../lib/link-helpers.js');
 const cookieSession = require('cookie-session');
+const cheerio = require('cheerio');
+const request = require('request');
 
 module.exports = (knex) => {
 
@@ -21,37 +23,61 @@ module.exports = (knex) => {
   });
 
   linksRoutes.get("/create", (req, res) => {
+
     const currentUser = req.session.userid;
-    const templateVars = { id : currentUser};
     if (!currentUser){
       res.redirect('back');
     } else {
-    
-    res.render("create-link", templateVars);
-  }
+      knex
+      .select('*')
+      .from('users')
+      .where('id', req.session.userid)
+      .then((userInfo) => {
+        let templateVars = userInfo[0];
+        res.render("create_link", templateVars);
+      }
+  })
+
+  linksRoutes.post("/create", (req, res) => {
+    let imgURL = req.body.url;
+    request({
+      method: 'GET',
+      url: imgURL}, (err, res, body) => {
+
+    if (err) return console.error(err);
+
+    let $ = cheerio.load(body);
+
+    let webImg = $('img:first');
+});
   })
 
 
-
-//getting comments
+//getting link page
   linksRoutes.get("/:linkId", (req, res) => {
     const linkId = req.params.linkId;
     const response =
-      knex.select('*').from('links')
+      Promise.all([
+        knex.select('*').from('links')
           .join('users',{'links.user_id' : 'users.id'})
-          .where('links.id',linkId)
+          .where('links.id',linkId),
+        knex.select('username','full_name')
+            .from('users')
+            .where('id', req.session.userid)])
                 .then(function(results){
-                  const links = results[0];
+                  const links = results[0][0];
+                  const cookie = results[1][0];
                   const vartemplate = {
                     id: req.session.userid,
                     title: links.title,
-                    full_name: links.full_name,
+                    fullname: links.full_name,
                     user_avatar: links.avatar,
                     url: links.url,
                     desc: links.description,
                     create_date: links.create_date,
                     link_id:linkId,
-                    username:links.username
+                    username:cookie.username,
+                    full_name: cookie.full_name,
                   }
                     res.render('link', vartemplate);
   });

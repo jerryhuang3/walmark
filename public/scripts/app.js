@@ -50,11 +50,11 @@ function renderComments(comments) {
 }
 
 function loadComments(){
-  $.get('/comments', function (allComments){
+  $.get('comments', function (allComments){
     renderComments(allComments);
   });
 }
 
 loadComments();
 
-});
+}); 
