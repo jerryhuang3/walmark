@@ -15,6 +15,17 @@ $(() => {
   });
 });
 
+$(() => {
+  $.ajax({
+    method: "GET",
+    url: "/api/comments"
+  }).done((users) => {
+    for(user of users) {
+  $("<div>").text(user.text).appendTo($("body"));
+}
+});
+});
+
 $(document).ready(function() {
   //Initialize Masonry Script
   var $grid = $('.container').imagesLoaded(function () {
