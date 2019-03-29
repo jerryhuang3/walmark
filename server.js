@@ -67,15 +67,45 @@ app.use("/api/comments", commentsRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
-  let templateVars = {session: req.session.userid};
-  res.render("index", templateVars);
+  if (req.session.userid) {
+    knex
+    .select('*')
+      .from('users')
+      .where('id', req.session.userid)
+      .then((userInfo) => {
+        let templateVars = userInfo[0];
+        console.log(templateVars);
+        return res.render('index', templateVars);
+      });
+  } else {
+    let templateVars = { id: req.session.userid };
+    res.render('index', templateVars);
+  }
 });
 
 // USER PROFILE
-app.get("/users/:username", (req, res) => {
-  let templateVars = {session: req.session.userid};
-  res.render("user_profile", templateVars);
+app.get("/users/:username/profile", (req, res) => {
+  knex
+    .select('id', 'full_name', 'username', 'email', 'avatar')
+    .from('users')
+    .where('id', req.session.userid)
+    .then((userInfo) => {
+      console.log(userInfo[0]);
+      let templateVars = userInfo[0];
+      res.render('user_profile', templateVars);
+    });
 });
+
+// Update User Profile
+app.post('/users/:username/profile/update', (req, res) => {
+  knex('users')
+    .where({id: req.session.userid})
+    .update({full_name: req.body.fullName, email: req.body.email, password: req.body.password})
+    .then(()=>{
+      return res.redirect('/users/:username/profile');
+    });
+});
+
 
 // Login
 app.post("/login", (req, res) => {
@@ -85,12 +115,12 @@ app.post("/login", (req, res) => {
     .then((results) => {
       for (let i = 0; i < results.length; i++) {
         if (req.body.username === results[i].username && req.body.password === results[i].password) {
-          req.session.userid = req.body.username;
+          req.session.userid = results[i].id;
           console.log("MATCH");
           return res.redirect("/");
         }
       }
-      return res.status(403).send("HTTP 403 - NOT FOUND: E-MAIL OR PASSWORD INCORRECT!").end();
+      return res.status(403).send("HTTP 403 - NOT FOUND: USERNAME OR PW INCORRECT!").end();
     });
 });
 
@@ -100,21 +130,26 @@ app.post("/register", (req, res) => {
   .select("*")
     .from("users")
     .then((results) => {
-    for (let i = 0; i < results.length; i++) {
-      if (req.body.email === results[i].email) {
-        return res.status(400).send("HTTP 400 - BAD REQUEST: E-MAIL ALREADY USED!").end();
-      } else if (req.body.username === results[i].username) {
-        return res.status(400).send("HTTP 400 - BAD REQUEST: USERNAME ALREADY USED!").end();
+      for(let i = 0;i < results.length;i++) {
+        if (req.body.email === results[i].email) {
+          return res.status(400).send("HTTP 400 - BAD REQUEST: E-MAIL ALREADY USED!").end();
+        } else if (req.body.username === results[i].username) {
+          return res.status(400).send("HTTP 400 - BAD REQUEST: USERNAME ALREADY USED!").end();
+        }
       }
-    }
-    knex("users")
-      .insert({ full_name: req.body.fullName, username: req.body.username, email: req.body.email, password: req.body.password })
-      .then( function (result) {
-        res.json({ success: true, message: 'ok' });     // respond back to request
-      });
-    req.session.userid = req.body.username;
+      knex("users")
+        .insert({full_name: req.body.fullName, username: req.body.username, email: req.body.email, password: req.body.password, avatar: `https://avatars.dicebear.com/v2/avataaars/${req.body.username}.svg`})
+        .then(() => {
+          knex.select('id')
+            .from('users')
+            .where('username', req.body.username)
+            .then((results) => {
+              console.log(results[0].id);
+              req.session.userid = results[0].id;
+              res.redirect('/');
+            });
+        });
     });
-  return res.redirect("/");
 });
 
 // Clears cookies upon logging out

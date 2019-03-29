@@ -9,21 +9,9 @@ $(() => {
     method: "GET",
     url: "/api/users"
   }).done((users) => {
-    for(user of users) {
-      $("<div>").text(user.full_name).appendTo($("body"));
-    }
-  });
-});
 
-$(() => {
-  $.ajax({
-    method: "GET",
-    url: "/api/comments"
-  }).done((users) => {
-    for(user of users) {
-  $("<div>").text(user.text).appendTo($("body"));
-}
-});
+
+  });
 });
 
 $(document).ready(function() {

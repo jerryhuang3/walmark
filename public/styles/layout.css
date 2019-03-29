@@ -38,8 +38,18 @@ body h1 {
   padding-left: 1em;
 }
 
-.container .editForms, .h2 {
+.editProfile {
+  text-align: center;
+}
+
+.profileContainer {
+  background: white;
+  margin: 0 auto;
+  max-width: 50vw;
+}
+
+.profileContainer .editLeft {
+  vertical-align: center;
+  margin: 0 auto;
   width: 45%;
-  float: left;
-  padding-left: 1em;
 }

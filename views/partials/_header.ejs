@@ -12,7 +12,7 @@
   </div>
   <div class="top-bar-right">
     <ul class="menu">
-      <%if (!session) {%>
+      <%if (!id) {%>
         <li>
           <button class="button" data-open="login">Login</button>
           <div class="reveal" id="login" data-reveal>
@@ -44,7 +44,7 @@
           </div>
         </li>
       <%} else {%>
-        <li><a href="#">Welcome <%=session%>!</a></li>
+        <li><a href="/users/<%=username%>/profile">Welcome <%=full_name%>!</a></li>
         <li>
           <form method="POST" action="/logout">
             <button class="button" type="submit">Logout</button>
