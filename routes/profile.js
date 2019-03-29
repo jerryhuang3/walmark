@@ -29,10 +29,8 @@ profileRoutes.get("/:userID/boards/:boardID", (req, res) => {
   const response =
     knex.select('*').from('boards')
           .join('users',{'boards.user_id' : 'users.id'})
-          .where('boards.id',boardID)
           .then(function(results){
             const boards = results[0];
-            console.log(results[0]);
             const vartemplate = {
               id: req.session.userid,
               title: boards.title,

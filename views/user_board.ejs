@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/link-layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/user_board.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/foundation.css">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
@@ -29,11 +29,21 @@
   <% include ./partials/_header %>
 
     <section id="link-container">
-        <img class="link-img" src="/images/fashion.jpg">
+        <h3><%=title%></h3>
         <div class="link-info">
-            <h3><%=title%></h3>
-            <img class="link-avatar" src="<%=user_avatar%>">
-            <p class="link-fullname"><%=full_name%></p>
+            <p class="link-name"><%=full_name%></p>
+            <a href="#" class="button secondary link-visit">Learn Now</a>
+            <p class="link-desc">Description</p>
+            <p class="link-date">Created March 28, 2019</p>
+        </div>
+        <div class="link-info">
+            <p class="link-name"><%=full_name%></p>
+            <a href="#" class="button secondary link-visit">Learn Now</a>
+            <p class="link-desc">Description</p>
+            <p class="link-date">Created March 28, 2019</p>
+        </div>
+        <div class="link-info">
+            <p class="link-name"><%=full_name%></p>
             <a href="#" class="button secondary link-visit">Learn Now</a>
             <p class="link-desc">Description</p>
             <p class="link-date">Created March 28, 2019</p>
