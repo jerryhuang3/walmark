@@ -11,6 +11,7 @@
     margin: 0 auto;
   }
 }
+
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 html {
   line-height: 1.15;
@@ -20,6 +21,7 @@ html {
 body {
   background-color: #EEE;
 }
+
 body h1 {
   color: #244751;
 }
@@ -35,21 +37,3 @@ body h1 {
   margin-bottom: 20px;
   padding-left: 1em;
 }
-
-.editProfile {
-  text-align: center;
-}
-
-.profileContainer {
-  background: white;
-  margin: 0 auto;
-  max-width: 50vw;
-}
-
-.profileContainer .editLeft {
-  vertical-align: center;
-  margin: 0 auto;
-  width: 45%;
-}
-/*# sourceMappingURL=layout.css.map */
-

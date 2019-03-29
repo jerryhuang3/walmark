@@ -18,12 +18,16 @@ const knexLogger  = require('knex-logger');
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const linksRoutes = require("./routes/links");
+<<<<<<< HEAD
 const linkRoutes = require("./routes/home");
 const ratingsRoutes = require("./routes/ratings");
 const boardsRoutes = require("./routes/boards");
 const topicsRoutes = require("./routes/topics");
 const likesRoutes = require("./routes/likes");
 const commentsRoutes = require("./routes/comments");
+=======
+const profileRoutes = require("./routes/profile");
+>>>>>>> 211e41f3798d5ac8be43882aa3e22a9dd22a2305
 
 // Encrypting user sessions
 app.use(cookies({
@@ -57,13 +61,14 @@ app.use(express.static("public"));
 
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
-app.use("/links", linksRoutes(knex));
 app.use("/api/links", linkRoutes(knex));
 app.use("/api/ratings", ratingsRoutes(knex));
 app.use("/api/boards", boardsRoutes(knex));
 app.use("/api/topics", topicsRoutes(knex));
 app.use("/api/likes", likesRoutes(knex));
 app.use("/api/comments", commentsRoutes(knex));
+app.use("/users", profileRoutes(knex));
+app.use("/links", linksRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
