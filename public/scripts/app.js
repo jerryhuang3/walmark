@@ -12,7 +12,7 @@ $(() => {
 
 
   });
-});
+
 
 $(document).ready(function() {
   //Initialize Masonry Script
@@ -29,12 +29,32 @@ $(document).ready(function() {
 
 $(document).foundation();
 
-//get links page
-$('.container').on('click', '.links', function() {
-  $.ajax({
-    method: 'GET',
-    url: '/links/' + this.id
+
+function createCommentElement(data) {
+  let $comment = `
+    <article>
+    <img class="comment-avatar" src="${escape(data.avatar)}">
+    <div class="comment-content">
+        <span class="comment-fullname">${escape(data.full_name)}</span>
+        <span class="comment-date">${escape(data.create_date)}</span>
+        <p class="comment-text">${escape(data.text)}</p>
+    </div>
+    </article>`
+    return $comment;
+}
+
+function renderComments(comments) {
+  for (let individual = 0; individual < comments.length; individual++) {
+    $('#comments-container').prepend(createCommentElement(comments[individual]));
+  }
+}
+
+function loadComments(){
+  $.get('/comments', function (allComments){
+    renderComments(allComments);
   });
-})
+}
 
+loadComments();
 
+});

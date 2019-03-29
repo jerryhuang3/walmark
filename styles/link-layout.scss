@@ -62,14 +62,15 @@ body {
   background: rgba(255, 255, 255, 0.54);
   margin: 2vw auto;
   max-width: 60vw;
-  height: auto;
+  // height: auto;
+  overflow: auto;
   border: 1px solid grey;
   border-radius: 8px;
   padding: 2vw;
 }
 
 .link-img {
-  width: 25vw;
+  max-width: 28vw;
   float: left;
 }
 
@@ -78,16 +79,16 @@ body {
   display: inline-block;
   margin: auto 1vw;
   border: 1px solid grey;
+  padding: 0.5vw;
 
-  h4 {
+  h3 {
   font-weight: bold;
   }
 }
 
-
-.link-avatar {
-  width: 5vw;
-  border-radius: 100%;
+.comment-fullname, .link-fullname {
+  font-weight: bold;
+  display: inline-block;
 }
 
 .link-desc {
@@ -98,18 +99,24 @@ body {
 .link-comments {
   width: 25vw;
   display: inline-block;
-  margin: auto 1vw;
+  margin: 0 1vw;
   border: 1px solid grey;
+  padding: 0.5vw;
 
   h4 {
     font-weight: bold;
   }
 }
 
-.comment-avatar {
+.link-visit {
+  width: 22vw;
+}
+
+.comment-avatar, .link-avatar {
   width: 3vw;
   border-radius: 100%;
   float: left;
+  margin: 0 0.5vw;
 }
 
 .comment-content textarea {

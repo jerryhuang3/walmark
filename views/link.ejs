@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Home Page</title>
+    <title>Walmark</title>
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -29,27 +29,23 @@
     <section id="link-container">
         <img class="link-img" src="/images/fashion.jpg">
         <div class="link-info">
-            <h4><%=title%></h4>
+            <h3><%=title%></h3>
             <img class="link-avatar" src="<%=user_avatar%>">
-            <span class="link-fullname"><%=user%></span>
+            <p class="link-fullname"><%=full_name%></p>
             <a href="<%=url%>" class="button secondary link-visit">Learn Now</a>
             <p class="link-desc"><%=desc%></p>
             <p class="link-date">Created March 28, 2019</p>
         </div>
         <div class="link-comments">
             <h4>Comments</h4>
-            <img class="comment-avatar" src="/images/noavatar.jpg">
-            <div class="comment-content">
-                <span class="comment-fullname">John Doe</span>
-                <span class="comment-date">5d</span>
-                <p class="comment-text">very cool post</p>
+            <div id="comments-container">
+              <!-- insert all comments here -->
             </div>
-            <div class="comment-content">
+            <form action="/links/<%=link_id%>/comment" method="POST" class="comment-content">
                 <!-- <img class="comment-post-avatar" src="images/noavatar.jpg"> -->
                 <textarea name="text" placeholder="How do you like this?"></textarea>
                 <input type="submit" value="Done">
-            </div>
-            </img>
+            </form>
         </div>
         
 
