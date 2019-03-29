@@ -29,26 +29,26 @@
     <section id="link-container">
         <img class="link-img" src="/images/fashion.jpg">
         <div class="link-info">
-            <h4><%=title%></h4>
+            <h3><%=title%></h3>
             <img class="link-avatar" src="<%=user_avatar%>">
-            <span class="link-fullname"><%=user%></span>
+            <p class="link-fullname"><%=user%></p>
             <a href="<%=url%>" class="button secondary link-visit">Learn Now</a>
             <p class="link-desc"><%=desc%></p>
             <p class="link-date">Created March 28, 2019</p>
         </div>
         <div class="link-comments">
             <h4>Comments</h4>
-            <img class="comment-avatar" src="/images/noavatar.jpg">
+            <img class="comment-avatar" src="<%=comment_avatar%>">
             <div class="comment-content">
-                <span class="comment-fullname">John Doe</span>
+                <span class="comment-fullname"><%=comment_name%></span>
                 <span class="comment-date">5d</span>
-                <p class="comment-text">very cool post</p>
+                <p class="comment-text"><%=comment_text%></p>
             </div>
-            <div class="comment-content">
+            <form action="/links/<%=link_id%>/comment" method="POST" class="comment-content">
                 <!-- <img class="comment-post-avatar" src="images/noavatar.jpg"> -->
                 <textarea name="text" placeholder="How do you like this?"></textarea>
                 <input type="submit" value="Done">
-            </div>
+            </form>
             </img>
         </div>
         
