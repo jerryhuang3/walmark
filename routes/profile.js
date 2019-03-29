@@ -21,5 +21,3 @@ module.exports = (knex) => {
 
   return profileRoutes;
 }
-
-let image = <img src="${user_avatar}" />
