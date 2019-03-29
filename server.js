@@ -104,7 +104,7 @@ app.post('/users/:username/profile/update', (req, res) => {
     .where({id: req.session.userid})
     .update({full_name: req.body.fullName, email: req.body.email, password: req.body.password})
     .then((results)=>{
-      return res.redirect(`/users/${results[0].username}/profile`);
+      return res.redirect(`/users/${req.body.username}/profile`);
     });
 });
 
