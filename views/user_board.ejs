@@ -34,20 +34,9 @@
             <h3><%=title%></h3>
             <img class="link-avatar" src="<%=user_avatar%>">
             <p class="link-fullname"><%=full_name%></p>
-            <a href="<%=url%>" class="button secondary link-visit">Learn Now</a>
-            <p class="link-desc"><%=desc%></p>
+            <a href="#" class="button secondary link-visit">Learn Now</a>
+            <p class="link-desc">Description</p>
             <p class="link-date">Created March 28, 2019</p>
-        </div>
-        <div class="link-comments">
-            <h4>Comments</h4>
-            <div id="comments-container">
-              <!-- insert all comments here -->
-            </div>
-            <form action="/links/<%=link_id%>/comment" method="POST" class="comment-content">
-                <!-- <img class="comment-post-avatar" src="images/noavatar.jpg"> -->
-                <textarea name="text" placeholder="How do you like this?"></textarea>
-                <input type="submit" value="Done">
-            </form>
         </div>
 
 

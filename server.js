@@ -108,15 +108,6 @@ app.post('/users/:username/profile/update', (req, res) => {
     });
 });
 
-// User clicks resource
-app.get("/users/:userID/boards/:boardID", (req, res) => {
-  const templateVars = {
-    user_id: req.session.id,
-    resource_id: req.params.resourceId
-  }
-  res.render('user_board', templateVars);
-});
-
 
 // Login
 app.post("/login", (req, res) => {
