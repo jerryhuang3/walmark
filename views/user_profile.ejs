@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Edit Profile</title>
+
+  <link rel="stylesheet" href="../../vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="../../vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="../../styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="../../styles/foundation.css" type="text/css" />
+</head>
+
+
+
+<body>
+<% include ./partials/_header %>
+<h1>Walmark<img src="../images/walmart.png" width="40px" height="40px"></h1>
+<p>Save links. Learn better.</p>
+<h2 class="editProfile">Edit Profile</h2>
+<div class="profileContainer">
+  <form method="POST" action="/users/<%=username%>/profile/update">
+    <div class="editLeft">
+      <img src="<%=avatar%>">
+    </div>
+      <div>
+        <label>Full Name<input type="text" value="<%=full_name%>" name="fullName"></label>
+      </div>
+    <div class="noEdit">
+      <label>Username<input type="text" value="<%=username%>" readonly></label>
+    </div>
+    <div>
+      <label>Email<input type="text" value="<%=email%>" name="email"></label>
+    </div>
+    <div>
+      <label>Password<input type="text" name="password"></label>
+    </div>
+    <div>
+    <button type="submit" class="button expanded">Update</button>
+    </div>
+  </form>
+</div>
+
+<script type="text/javascript" src="../../vendor/jquery.js"></script>
+<script type="text/javascript" src="../../vendor/what-input.js"></script>
+<script type="text/javascript" src="../../vendor/foundation.js"></script>
+<script type="text/javascript" src="../../vendor/masonry.pkgd.js"></script>
+<script type="text/javascript" src="../../vendor/imagesloaded.pkgd.js"></script>
+<script type="text/javascript" src="../../scripts/app.js"></script>
+</body>
+</html>
