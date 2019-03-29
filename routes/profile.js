@@ -9,12 +9,14 @@ module.exports = (knex) => {
     const userID = req.params.userID;
     const result = knex.select('*').from('users')
                       .then(function(results){
+                        console.log(results);
                          let users = results[0];
       res.render('account_page', {
-        user: users.full_name,
+        full_name: users.full_name,
         user_avatar: users.avatar,
         email: users.email,
-        session: req.session.userID
+        id: req.session.userid,
+        username: users.username
     });
   });
 });

@@ -35,8 +35,9 @@ module.exports = (knex) => {
       .then((userInfo) => {
         let templateVars = userInfo[0];
         res.render("create_link", templateVars);
-      }
-  })
+      })
+  }
+})
 
   linksRoutes.post("/create", (req, res) => {
     let imgURL = req.body.url;
@@ -106,7 +107,7 @@ module.exports = (knex) => {
         like_count = 0
       knex.insert([{user_id: user_id, link_id: link_id, text: text, create_date: knex.fn.now()}])
           .into('comments').asCallback(function(err){
-            if (err) { 
+            if (err) {
               res.status(500).json({ error: err.message });
             } else {
                 console.log('YAY!');

@@ -9,14 +9,10 @@ $(() => {
     method: "GET",
     url: "/api/users"
   }).done((users) => {
-
-
   });
 
-
-$(document).ready(function() {
   //Initialize Masonry Script
-  var $grid = $('.container').imagesLoaded(function () {
+  var $grid = $('.container').imagesLoaded(function() {
     $grid.masonry({
       itemSelector: '.links',
       columnWidth: '.links',
@@ -25,13 +21,9 @@ $(document).ready(function() {
       stagger: 30
     });
   });
-});
 
-$(document).foundation();
-
-
-function createCommentElement(data) {
-  let $comment = `
+  function createCommentElement(data) {
+    let $comment = `
     <article>
     <img class="comment-avatar" src="${escape(data.avatar)}">
     <div class="comment-content">
@@ -39,22 +31,23 @@ function createCommentElement(data) {
         <span class="comment-date">${escape(data.create_date)}</span>
         <p class="comment-text">${escape(data.text)}</p>
     </div>
-    </article>`
+    </article>`;
     return $comment;
-}
+  };
 
-function renderComments(comments) {
-  for (let individual = 0; individual < comments.length; individual++) {
-    $('#comments-container').prepend(createCommentElement(comments[individual]));
+  function renderComments(comments) {
+    for (let individual = 0; individual < comments.length; individual++) {
+      $('#comments-container').prepend(createCommentElement(comments[individual]));
+    }
   }
-}
 
-function loadComments(){
-  $.get('comments', function (allComments){
-    renderComments(allComments);
-  });
-}
+  function loadComments() {
+    $.get('./comments', function(allComments) {
+      renderComments(allComments);
+    });
+  };
 
-loadComments();
+  loadComments();
 
-}); 
+});
+
