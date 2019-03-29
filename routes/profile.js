@@ -22,6 +22,7 @@ profileRoutes.get("/:userID", (req, res) => {
   });
 });
 
+// User boards
 profileRoutes.get("/:userID/boards/:boardID", (req, res) => {
   const userID = req.params.userID;
   const boardID = req.params.boardID;
