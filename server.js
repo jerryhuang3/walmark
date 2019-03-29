@@ -17,7 +17,8 @@ const knexLogger  = require('knex-logger');
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
-const linksRoutes = require("./routes/links")
+const linksRoutes = require("./routes/links");
+const profileRoutes = require("./routes/profile");
 
 // Encrypting user sessions
 app.use(cookies({
@@ -52,6 +53,7 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 app.use("/links", linksRoutes(knex));
+app.use("/users", profileRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
