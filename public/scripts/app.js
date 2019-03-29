@@ -4,16 +4,16 @@ function escape(str) {
   return div.innerHTML;
 }
 
-// $(() => {
-//   $.ajax({
-//     method: "GET",
-//     url: "/api/users"
-//   }).done((users) => {
-//     for(user of users) {
-//       $("<div>").text(user.full_name).appendTo($("body"));
-//     }
-//   });
-// });
+$(() => {
+  $.ajax({
+    method: "GET",
+    url: "/api/users"
+  }).done((users) => {
+    for(user of users) {
+      $("<div>").text(user.full_name).appendTo($("body"));
+    }
+  });
+
 
 $(document).ready(function() {
   //Initialize Masonry Script
@@ -28,27 +28,45 @@ $(document).ready(function() {
   });
 });
 
-  $(document).foundation();
-
-//get links page
-// function renderComments(comments) {
-//   for (let individual = 0; individual < comments.length; individual++) {
-//     $('.link-comments').prepend(createComment(comments[individual]));
-//   }
-// }
-// function loadTweets(){
-//   $.get(`http://localhost:8080/links/${this.id}/comments`, function (comments){
-//     renderTweets(comments);
-//   });
-// }
-// function createTweetElement(data) {
-//   let $comment = `
-//     <h4>Comments</h4>
-//     <img class="comment-avatar" src="<%=comment_avatar%>">
-//     <div class="comment-content">
-//         <span class="comment-fullname"><%=comment_name%></span>
-//         <span class="comment-date">5d</span>
-//         <p class="comment-text"><%=comment_text%></p>
-//     </div>`
+//   $(document).foundation();
+//   var request = require('request');
+//   const cheerio = require('cheerio')
 
 
+//   request('https://www.ikea.com/ca/en/catalog/products/40395288/', function (error, response, body) {
+//     var cheer = cheerio.load(body);
+//     console.log(cheer);
+//     $('.newpin').each(function(i, element){
+//       var src = $('.newimg').attr("src");
+//       console.log(cheer);
+//     });
+// });
+
+function createCommentElement(data) {
+  let $comment = `
+    <article>
+    <img class="comment-avatar" src="${escape(data.avatar)}">
+    <div class="comment-content">
+        <span class="comment-fullname">${escape(data.full_name)}</span>
+        <span class="comment-date">${escape(data.create_date)}</span>
+        <p class="comment-text">${escape(data.text)}</p>
+    </div>
+    </article>`
+    return $comment;
+}
+
+function renderComments(comments) {
+  for (let individual = 0; individual < comments.length; individual++) {
+    $('#comments-container').prepend(createCommentElement(comments[individual]));
+  }
+}
+
+function loadComments(){
+  $.get('./comments', function (allComments){
+    renderComments(allComments);
+  });
+}
+
+loadComments();
+
+});

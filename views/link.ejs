@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Home Page</title>
+    <title>Walmark</title>
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -38,18 +38,14 @@
         </div>
         <div class="link-comments">
             <h4>Comments</h4>
-            <img class="comment-avatar" src="<%=comment_avatar%>">
-            <div class="comment-content">
-                <span class="comment-fullname"><%=comment_name%></span>
-                <span class="comment-date">5d</span>
-                <p class="comment-text"><%=comment_text%></p>
+            <div id="comments-container">
+              <!-- insert all comments here -->
             </div>
             <form action="/links/<%=link_id%>/comment" method="POST" class="comment-content">
                 <!-- <img class="comment-post-avatar" src="images/noavatar.jpg"> -->
                 <textarea name="text" placeholder="How do you like this?"></textarea>
                 <input type="submit" value="Done">
             </form>
-            </img>
         </div>
         
 
