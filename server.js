@@ -71,6 +71,12 @@ app.get("/", (req, res) => {
   res.render("index", templateVars);
 });
 
+// USER PROFILE
+app.get("/users/:username", (req, res) => {
+  let templateVars = {session: req.session.userid};
+  res.render("user_profile", templateVars);
+});
+
 // Login
 app.post("/login", (req, res) => {
   knex

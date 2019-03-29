@@ -39,7 +39,7 @@ $(document).ready(function() {
   });
 });
 
-  $(document).foundation();
+$(document).foundation();
 
 //get links page
 $('.container').on('click', '.links', function() {
