@@ -27,13 +27,39 @@ body {
 #link-container {
   background: rgba(255, 255, 255, 0.54);
   margin: 0 auto;
-  max-width: 75vw;
+  max-width: 85vw;
+  top: 2em;
 }
 
 #link-container .links {
   width: 20%;
   margin-bottom: 20px;
   padding-left: 1em;
+}
+
+#link-container img {
+  border-radius: 2em;
+}
+
+#link-container .links:hover {
+  transform: scale(1.05);
+}
+
+#link-container p {
+  color: #6c6c6c;
+  text-align: center;
+}
+
+.walmark {
+  position: relative;
+  left: -3em;
+  top: .25em;
+}
+
+.search {
+  position: relative;
+  left: -1.5em;
+  top: .5em;
 }
 
 .editProfile {

@@ -41,13 +41,13 @@ $( document ).ready(function() {
   };
 
   function createHomeLinks(randomLinks) {
-    var myArray = ['300', '450', '500'];
+    var myArray = ['400', '500', '600'];
     var randomItem = myArray[Math.floor(Math.random() * myArray.length)];
 
     return $randomLinks = `
        <div class="links" xmlns="http://www.w3.org/1999/html">
-          <a href="/links/${randomLinks.id}/"><img src="https://picsum.photos/200/${randomItem}/?random" /></a>
-          <p>${randomLinks.title}</p>
+          <a href="/links/${randomLinks.id}/"><img src="https://picsum.photos/300/${randomItem}/?random" /></a>
+          <p><strong>${randomLinks.title}</strong></p>
        </div>`;
   }
 
