@@ -8,7 +8,8 @@ module.exports = (knex) => {
   boardsLinks.get("/", (req, res) => {
     knex
     .select("*")
-      .from("boards_links")
+      .from("boards")
+      .join('links', 'user_id', '=', 'user_id')
       .then((results) => {
       res.json(results);
 });

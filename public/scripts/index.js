@@ -30,18 +30,24 @@ $( document ).ready(function() {
         horizontalOrder: true,
         percentPosition: true,
       });
+      // change size of item by toggling gigante class
+      $grid.on( 'click', '.grid-item', function() {
+        $(this).toggleClass('gigante');
+        // trigger layout after item size changes
+        $grid.masonry('layout');
+      });
+
     });
   };
 
   function createHomeLinks(randomLinks) {
-    var myArray = ['200', '300', '400', '500', '600'];
+    var myArray = ['300', '450', '500'];
     var randomItem = myArray[Math.floor(Math.random() * myArray.length)];
 
     return $randomLinks = `
        <div class="links" xmlns="http://www.w3.org/1999/html">
           <a href="/links/${randomLinks.id}/"><img src="https://picsum.photos/200/${randomItem}/?random" /></a>
-          <h2>${randomLinks.title}</h2>
-          <p>${randomLinks.description}</p>
+          <p>${randomLinks.title}</p>
        </div>`;
   }
 

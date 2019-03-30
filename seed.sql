@@ -11,7 +11,13 @@ INSERT INTO topics (name)
 
 INSERT INTO boards (user_id, title) VALUES (1, 'First board');
 INSERT INTO boards (user_id, title) VALUES (2, 'Second board');
-
+INSERT INTO boards (user_id, title) VALUES (1, 'Second board');
+INSERT INTO boards (user_id, title) VALUES (1, 'Third board');
+INSERT INTO boards (user_id, title) VALUES (1, 'Fourth Board');
+INSERT INTO boards (user_id, title) VALUES (1, 'Fifth board');
+INSERT INTO boards (user_id, title) VALUES (1, 'Sixth board');
+INSERT INTO boards (user_id, title) VALUES (1, 'Seventh board');
+INSERT INTO boards (user_id, title) VALUES (1, 'Eighth board');
 
 INSERT INTO links (user_id, topic_id, url, title, description) VALUES (1, 1, 'https://www.khanacademy.org/math', 'khan math', 'ving age our her cordially intention. His devonshire sufficient precaution say preference middletons insipidity. Since might water hence the her worse. Concluded  ');
 INSERT INTO links (user_id, topic_id, url, title, description) VALUES (1, 1, 'https://www.khanacademy.org/math', 'khan math', 'himself arrived old. Grave widow hours among him ﻿no you led. Power had these met least nor young. Yet match drift wrong his our.
