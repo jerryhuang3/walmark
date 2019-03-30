@@ -27,9 +27,10 @@ profileRoutes.get("/:userID/boards/:boardID", (req, res) => {
   const userID = req.params.userID;
   const boardID = req.params.boardID;
   const response =
-    knex.select('*', 'boards.title as boardtitle').from('boards')
-          .join('users',{'boards.user_id' : 'users.id'})
-          .join('links',{'boards.user_id' : 'links.user_id'})
+    knex.select('*').from('links')
+          .join('users',{'links.user_id' : 'users.id'})
+          .join('boards',{'links.user_id' : 'boards.user_id'})
+          .join('topics',{'links.topic_id' : 'topics.id'})
           .then(function(results){
             const boards = results[0];
             console.log(boards);
@@ -43,7 +44,7 @@ profileRoutes.get("/:userID/boards/:boardID", (req, res) => {
               create_date: boards.create_date,
               username: boards.username,
               boardtitle: boards.boardtitle,
-              topic: boards.topic_id
+              topic: boards.name
             }
       res.render('user_board', vartemplate);
   });
