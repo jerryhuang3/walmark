@@ -135,11 +135,13 @@ app.post('/search', (req, res) => {
   knex
     .select('*')
     .from('links')
-    .where('*', 'LIKE', '%search%')
+    .join('topics', {'topics.id' : 'links.topic_id'})
+    .where('title', 'LIKE', `%${search}%`)
+    .orWhere('description', 'LIKE', `%${search}%`)
+    .orWhere('name', 'LIKE', `%${search}%`)
     .then((results) => {
-      stat
-
-  })
+      console.log(results);
+  });
 });
 
 
