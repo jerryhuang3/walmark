@@ -24,5 +24,34 @@ module.exports = (knex) => {
 //   });
 // });
 
+// User boards
+profileRoutes.get("/:userID/boards/:boardID", (req, res) => {
+  const userID = req.params.userID;
+  const boardID = req.params.boardID;
+  const response =
+    knex.select('*').from('links')
+          .join('users',{'links.user_id' : 'users.id'})
+          .join('boards',{'links.user_id' : 'boards.user_id'})
+          .join('topics',{'links.topic_id' : 'topics.id'})
+          .then(function(results){
+            const boards = results[0];
+            console.log(boards);
+            const vartemplate = {
+              id: req.session.userid,
+              title: boards.title,
+              full_name: boards.full_name,
+              user_avatar: boards.avatar,
+              url: boards.url,
+              description: boards.description,
+              create_date: boards.create_date,
+              username: boards.username,
+              boardtitle: boards.boardtitle,
+              topic: boards.name
+            }
+      res.render('user_board', vartemplate);
+  });
+});
+
+
   return profileRoutes;
 }
