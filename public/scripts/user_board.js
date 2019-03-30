@@ -25,9 +25,6 @@ $( document ).ready(function() {
   };
 
   function createHomeLinks(randomLinks) {
-    var myArray = ['200', '300', '400', '500', '600'];
-    var randomItem = myArray[Math.floor(Math.random() * myArray.length)];
-
     return $randomLinks = `
         <div class="links">
             <p class="link-name">${randomLinks.linktitle}</p>
