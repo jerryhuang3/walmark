@@ -24,6 +24,7 @@ const boardsRoutes = require("./routes/boards");
 const topicsRoutes = require("./routes/topics");
 const likesRoutes = require("./routes/likes");
 const commentsRoutes = require("./routes/comments");
+const usersboardRoutes = require("./routes/users_boards");
 const profileRoutes = require("./routes/profile");
 
 // Encrypting user sessions
@@ -66,7 +67,9 @@ app.use("/api/boards", boardsRoutes(knex));
 app.use("/api/topics", topicsRoutes(knex));
 app.use("/api/likes", likesRoutes(knex));
 app.use("/api/comments", commentsRoutes(knex));
-
+app.use("/api/userboards", usersboardRoutes(knex));
+app.use("/users", profileRoutes(knex));
+app.use("/links", linksRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
@@ -77,13 +80,32 @@ app.get("/", (req, res) => {
       .where('id', req.session.userid)
       .then((userInfo) => {
         let templateVars = userInfo[0];
-        console.log(templateVars);
         return res.render('index', templateVars);
       });
   } else {
     let templateVars = { id: req.session.userid };
     res.render('index', templateVars);
   }
+});
+
+
+// Account Page
+app.get("/users/:userid", (req, res) => {
+  knex
+    .select('*')
+    .from('users')
+    .where('id', req.session.userid)
+    .then(function(results){
+    let users = results[0];
+    console.log(results);
+    res.render('account_page', {
+      full_name: users.full_name,
+      user_avatar: users.avatar,
+      email: users.email,
+      id: req.session.userid,
+      username: users.username,
+    });
+  });
 });
 
 // USER PROFILE
@@ -93,7 +115,6 @@ app.get("/users/:username/profile", (req, res) => {
     .from('users')
     .where('id', req.session.userid)
     .then((userInfo) => {
-      console.log(userInfo[0]);
       let templateVars = userInfo[0];
       res.render('user_profile', templateVars);
     });
@@ -147,7 +168,6 @@ app.post("/register", (req, res) => {
             .from('users')
             .where('username', req.body.username)
             .then((results) => {
-              console.log(results[0].id);
               req.session.userid = results[0].id;
               res.redirect('/');
             });
