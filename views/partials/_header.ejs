@@ -6,8 +6,10 @@
     <ul class="menu">
       <li class="menu-text"><a href="/">Walmark</a></li>
       <li class="walmark"><a href="/"><img src="/images/walmart.png" width="25px" height="25px"></a></li>
+      <%if (id) {%>
       <li class="menu-text"><a href="/users/<%=username%>">Account</a></li>
       <li class="menu-text"><a href="/users/<%=username%>/profile">Profile</a></li>
+      <%}%>
       <li class="menu-text"><input type="text" placeholder="Search" name="username"></li>
       <li class="search"><a href="#"><img src="/images/search.png" width="20px" height="20px"></a></li>
     </ul>

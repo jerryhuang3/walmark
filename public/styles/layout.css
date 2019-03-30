@@ -29,27 +29,54 @@ body h1 {
 #link-container {
   background: rgba(255, 255, 255, 0.54);
   margin: 0 auto;
-  max-width: 85vw;
+  max-width: 95vw;
   top: 2em;
 }
 
 #link-container .links {
-  width: 20%;
+  position: relative;
+  width: 15%;
   margin-bottom: 20px;
-  padding-left: 1em;
 }
 
 #link-container img {
-  border-radius: 2em;
+  border-radius: .5em;
 }
 
 #link-container .links:hover {
   transform: scale(1.05);
 }
 
-#link-container p {
-  color: #6c6c6c;
-  text-align: center;
+#link-container .links:hover .overlay-img {
+  opacity: .5;
+}
+
+#link-container .links:hover p {
+  opacity: 1;
+}
+
+#link-container .links .overlay-img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  background-color: #0073CF;
+  border-radius: .5em;
+  overflow: hidden;
+}
+
+#link-container .links p {
+  position: absolute;
+  color: #ffffff;
+  padding-left: 2em;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  text-shadow: 2px black;
 }
 
 .walmark {
@@ -83,12 +110,11 @@ body h1 {
 #boards-container {
   background: rgba(255, 255, 255, 0.54);
   margin: 0 auto;
-  max-width: 85vw;
+  max-width: 75vw;
 }
 
-#boards-container .boards {
-  width: 30%;
+#boards-container .links {
+  width: 20%;
   margin-bottom: 20px;
   padding-left: 1em;
-  border: 2px solid grey;
 }

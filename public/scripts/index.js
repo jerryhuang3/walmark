@@ -21,14 +21,15 @@ $( document ).ready(function() {
     let randomLinks = shuffle(allLinks);
 
     for (let i = 0; i < randomLinks.length; i++) {
-      $("#link-container").prepend(createHomeLinks(randomLinks[i])).masonry('prepended', createHomeLinks(randomLinks[i]));
+        $("#link-container").prepend(createHomeLinks(randomLinks[i])).masonry('prepended', createHomeLinks(randomLinks[i]));
     }
     let $grid = $('#link-container').imagesLoaded(function() {
       $grid.masonry({
         itemSelector: '.links',
         columnWidth: '.links',
+        gutter: 20,
         horizontalOrder: true,
-        percentPosition: true,
+        fitWidth: true,
       });
       // change size of item by toggling gigante class
       $grid.on( 'click', '.grid-item', function() {
@@ -41,12 +42,13 @@ $( document ).ready(function() {
   };
 
   function createHomeLinks(randomLinks) {
-    var myArray = ['400', '500', '600'];
+    var myArray = ['400', '450', '500', '550', '600'];
     var randomItem = myArray[Math.floor(Math.random() * myArray.length)];
 
     return $randomLinks = `
-       <div class="links" xmlns="http://www.w3.org/1999/html">
+       <div class="links">
           <a href="/links/${randomLinks.id}/"><img src="https://picsum.photos/300/${randomItem}/?random" /></a>
+           <div class="overlay-img"></div>
           <p><strong>${randomLinks.title}</strong></p>
        </div>`;
   }
