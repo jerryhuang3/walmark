@@ -39,18 +39,29 @@ module.exports = (knex) => {
 })
 
   linksRoutes.post("/create", (req, res) => {
-    let imgURL = req.body.url;
-    request({
-      method: 'GET',
-      url: imgURL}, (err, res, body) => {
+    if (!req.body) {
+      res.status(400).json({ error: 'invalid request: no data in POST body'});
+      return;
+    }
+    const topic = knex.select('id').from('topics').where('name',req.body.link_topic)
+    const title = req.body.link_title
+    const desc = req.body.link_desc
+    const url = req.body.link_url
+    const userid = req.session.userid
+    knex
+    .insert({user_id:userid, topic_id:topic, url:url, title:title, 
+            description:desc, create_date:knex.fn.now()})
+    .into('links').asCallback(function(err){
+      if (err) {
+        res.status(500).json({ error: err.message });
+      } else {
+          console.log('YAY!');
+          res.redirect('/');
+      }
+  });
 
-    if (err) return console.error(err);
-
-    let $ = cheerio.load(body);
-
-    let webImg = $('img:first');
-});
-  })
+      
+})
 
 
 //getting link page

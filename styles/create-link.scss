@@ -25,7 +25,7 @@ html {
     justify-content: center;
     padding: 2vw;
 
-    input[name="link-title"] {
+    input[name="link_title"] {
       font-size: 2vw;
       font-weight: bold;
     }
@@ -41,12 +41,12 @@ html {
       border-right-color: white;
     }
 
-    textarea[name="link-desc"] {
+    textarea[name="link_desc"] {
       min-height: 10vw;
     }
 }
 
-.link-dropdown {
+// .link-dropdown {
 
-}
+// }
 

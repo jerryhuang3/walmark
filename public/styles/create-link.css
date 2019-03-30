@@ -28,7 +28,7 @@ html {
   padding: 2vw;
 }
 
-#newlink-container input[name="link-title"] {
+#newlink-container input[name="link_title"] {
   font-size: 2vw;
   font-weight: bold;
 }
@@ -45,6 +45,6 @@ html {
   border-right-color: white;
 }
 
-#newlink-container textarea[name="link-desc"] {
+#newlink-container textarea[name="link_desc"] {
   min-height: 10vw;
 }

@@ -28,24 +28,21 @@
   <% include ./partials/_header %>
 
   <div id="newlink-container">
-     <form action="/create" method="POST">
-        <input placeholder="Add your title" type="text" name="link-title" required />
-        <input placeholder="Insert the link here" type="text" name="link-url" required />
-        <textarea placeholder="Descripe your resource" type="text" name="link-desc"></textarea>
+     <form action="/links/create" method="POST">
+        <input placeholder="Add your title" type="text" name="link_title" required />
+        <input placeholder="Insert the link here" type="text" name="link_url" required />
+        <textarea placeholder="Descripe your resource" type="text" name="link_desc"></textarea>
           <span>Pick a Topic</span>
-          <div class="dropdown-options">
-              <select>
-                <option id="program">Programming</option>
-                <option id="music">Music</option>
-                <option id="math">Math</option>
+          <div class="dropdown_options">
+              <select name="link_topic">
+                <option id="program">programming</option>
+                <option id="music">music</option>
+                <option id="math">math</option>
               </select>
           </div>
         <button class="button mark">Mark</button>
     </form>
   </div>
-
-
-   <div class="newpin"><img class="newimg" src="#"></div>
 
 
 
