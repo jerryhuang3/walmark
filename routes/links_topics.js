@@ -6,7 +6,7 @@ const linksTopicsRoutes  = express.Router();
 module.exports = (knex) => {
 
   linksTopicsRoutes.get("/", (req, res) => {
-    knex.select('*', 'links.title as linktitle').from('links')
+    knex.select('*', 'links.title as linktitle', 'links.id as linkid').from('links')
           .join('users',{'links.user_id' : 'users.id'})
           .join('boards',{'links.user_id' : 'boards.user_id'})
           .join('topics',{'links.topic_id' : 'topics.id'})
