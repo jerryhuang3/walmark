@@ -1,23 +1,15 @@
 $( document ).ready(function() {
     function loadHomeLinks()
   {
-    $.get('/api/links', function(allLinks) {
+    $.get('/api/linkstopics', function(allLinks) {
       renderHomeLinks(allLinks);
     });
   }
   ;
   loadHomeLinks();
 
-  function shuffle(a) {
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-  }
-
   function renderHomeLinks(allLinks) {
-    let randomLinks = shuffle(allLinks);
+    let randomLinks = allLinks;
 
     for (let i = 0; i < randomLinks.length; i++) {
       $("#link-container").prepend(createHomeLinks(randomLinks[i]));
@@ -38,10 +30,10 @@ $( document ).ready(function() {
 
     return $randomLinks = `
         <div class="links">
-            <p class="link-name">${randomLinks.title}</p>
-            <p>Topic: </p>
-            <p class="link-desc">Description: <%=description%></p>
-            <a href="<%=url%>" class="button secondary link-visit">Learn Now</a>
+            <p class="link-name">${randomLinks.linktitle}</p>
+            <p>Topic: ${randomLinks.name}</p>
+            <p class="link-desc">Description: ${randomLinks.description}</p>
+            <a href="${randomLinks.url}" class="button secondary link-visit">Learn Now</a>
         </div>
        `;
   }

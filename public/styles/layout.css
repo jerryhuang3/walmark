@@ -83,12 +83,11 @@ body h1 {
 #boards-container {
   background: rgba(255, 255, 255, 0.54);
   margin: 0 auto;
-  max-width: 85vw;
+  max-width: 75vw;
 }
 
-#boards-container .boards {
-  width: 30%;
+#boards-container .links {
+  width: 20%;
   margin-bottom: 20px;
   padding-left: 1em;
-  border: 2px solid grey;
 }
