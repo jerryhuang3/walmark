@@ -38,6 +38,7 @@ module.exports = (knex) => {
   }
 })
 
+//create link
   linksRoutes.post("/create", (req, res) => {
     if (!req.body) {
       res.status(400).json({ error: 'invalid request: no data in POST body'});
@@ -58,11 +59,8 @@ module.exports = (knex) => {
           console.log('YAY!');
           res.redirect('/');
       }
-  });
-
-      
+  });      
 })
-
 
 //getting link page
   linksRoutes.get("/:linkId", (req, res) => {
@@ -92,6 +90,15 @@ module.exports = (knex) => {
                   }
                     res.render('link', vartemplate);
   });
+});
+
+//edit link
+linksRoutes("/:shortURL/", (req, res) =>{
+  const shortURL = req.params.shortURL;
+  if(req.session.user_ID == urlDatabase[shortURL].userID){
+  urlDatabase[shortURL].longURL = req.body.longURL;
+  res.redirect('/urls');
+  }
 });
 
   //displaying comments on one link
