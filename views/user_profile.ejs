@@ -17,8 +17,7 @@
 
 <body>
 <% include ./partials/_header %>
-<h1>Walmark<img src="../images/walmart.png" width="40px" height="40px"></h1>
-<p>Save links. Learn better.</p>
+
 <h2 class="editProfile">Edit Profile</h2>
 <div class="profileContainer">
   <form method="POST" action="/users/<%=username%>/profile/update">
@@ -32,10 +31,10 @@
       <label>Username<input type="text" value="<%=username%>" name="username" readonly></label>
     </div>
     <div>
-      <label>Email<input type="text" value="<%=email%>" name="email"></label>
+      <label>Email<input type="email" value="<%=email%>" name="email"></label>
     </div>
     <div>
-      <label>Password<input type="text" name="password"></label>
+      <label>Password<input type="password" name="password"></label>
     </div>
     <div>
     <button type="submit" class="button expanded">Update</button>

@@ -7,33 +7,36 @@
 
     <title>Home Page</title>
 
-    <link rel="stylesheet" href="../../vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="../../vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="../../styles/layout.css" type="text/css" />
-    <link rel="stylesheet" href="../../styles/foundation.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/foundation.css" type="text/css" />
   </head>
 
 
 
   <body>
   <% include ./partials/_header %>
-    <h1>Walmark<img src="../../images/walmart.png" width="40px" height="40px"></h1>
-    <p>Save links. Learn better.</p>
     <h2><%=full_name%>'s Hub</h2>
     <p>Email: <%=email%></p>
 
+<div class="resource-bar">
+  <a id="click1">Walls</a>
+  <a id="click2">Links</a>
+  <a id="click3">Saved</a>
+</div>
+  <div id="boards-container">
 
-  <div class="container">
-  <p>User content should fill this area</p>
 
   </div>
 
 
-  <script type="text/javascript" src="../vendor/jquery.js"></script>
-  <script type="text/javascript" src="../vendor/what-input.js"></script>
-  <script type="text/javascript" src="../vendor/foundation.js"></script>
-  <script type="text/javascript" src="../vendor/masonry.pkgd.js"></script>
-  <script type="text/javascript" src="../vendor/imagesloaded.pkgd.js"></script>
+  <script type="text/javascript" src="/vendor/jquery.js"></script>
+  <script type="text/javascript" src="/vendor/what-input.js"></script>
+  <script type="text/javascript" src="/vendor/foundation.js"></script>
+  <script type="text/javascript" src="/vendor/masonry.pkgd.js"></script>
+  <script type="text/javascript" src="/vendor/imagesloaded.pkgd.js"></script>
+  <script type="text/javascript" src="/scripts/userResources.js"></script>
   <script>$(document).foundation();</script>
   </body>
 </html>
