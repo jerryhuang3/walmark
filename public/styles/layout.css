@@ -26,14 +26,14 @@ body h1 {
   color: #244751;
 }
 
-.container {
+#link-container {
   background: rgba(255, 255, 255, 0.54);
   margin: 0 auto;
   max-width: 75vw;
 }
 
-.container .links {
-  width: 33.33%;
+#link-container .links {
+  width: 20%;
   margin-bottom: 20px;
   padding-left: 1em;
 }
