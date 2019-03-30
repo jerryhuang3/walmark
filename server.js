@@ -106,7 +106,7 @@ app.get("/users/:userid", (req, res) => {
   });
 });
 
-// USER PROFILE
+// User Profile
 app.get("/users/:username/profile", (req, res) => {
   knex
     .select('id', 'full_name', 'username', 'email', 'avatar')
@@ -118,7 +118,7 @@ app.get("/users/:username/profile", (req, res) => {
     });
 });
 
-// Update User Profile
+// User Profile Update
 app.post('/users/:username/profile/update', (req, res) => {
   knex('users')
     .where({id: req.session.userid})
@@ -126,6 +126,20 @@ app.post('/users/:username/profile/update', (req, res) => {
     .then((results)=>{
       return res.redirect(`/users/${req.body.username}/profile`);
     });
+});
+
+// Search
+app.post('/search', (req, res) => {
+  let search = req.body.search;
+  console.log(search);
+  knex
+    .select('*')
+    .from('links')
+    .where('*', 'LIKE', '%search%')
+    .then((results) => {
+      stat
+
+  })
 });
 
 

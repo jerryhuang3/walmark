@@ -42,7 +42,6 @@ module.exports = (knex) => {
           .where('links.id',linkId)
                 .then(function(results){
                   const links = results[0];
-                  console.log(results[0]);
                   const vartemplate = {
                     id: req.session.userid,
                     title: links.title,
