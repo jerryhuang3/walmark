@@ -24,19 +24,26 @@ module.exports = (knex) => {
 
   linksRoutes.get("/create", (req, res) => {
     const currentUser = req.session.userid;
-    if (!currentUser){
-      res.redirect('back');
-    } else {
-      knex
-      .select('*')
-      .from('users')
-      .where('id', req.session.userid)
-      .then((userInfo) => {
-        let templateVars = userInfo[0];
-        res.render("create_link", templateVars);
-      })
-  }
-})
+    const boards = knex.select('title').from('boards').where('user_id',currentUser)
+                    .then((results)=> { res.json(results.title)})
+    // if (!currentUser){
+    //   res.redirect('back');
+    // } else {
+    //   knex
+    //   .select('*')
+    //   .from('users')
+    //   .where('id', req.session.userid)
+    //   .then(function(results){
+    //     const cookie = results[0]
+    //     const templateVars = {
+    //     id: req.session.userid,
+    //     username:cookie.username,
+    //     full_name: cookie.full_name,
+    //     boards : boards}
+        // res.render("create_link", templateVars);
+        // })
+      // }
+  });
 
 //create link
   linksRoutes.post("/create", (req, res) => {
@@ -45,6 +52,7 @@ module.exports = (knex) => {
       return;
     }
     const topic = knex.select('id').from('topics').where('name',req.body.link_topic)
+    
     const title = req.body.link_title
     const desc = req.body.link_desc
     const url = req.body.link_url
@@ -72,10 +80,13 @@ module.exports = (knex) => {
           .where('links.id',linkId),
         knex.select('username','full_name')
             .from('users')
-            .where('id', req.session.userid)])
+            .where('id', req.session.userid),
+        knex.select('title').from('boards')
+        .where('user_id',req.session.userid)])
                 .then(function(results){
                   const links = results[0][0];
                   const cookie = results[1][0];
+                  const boards = results[2][0];
                   const vartemplate = {
                     id: req.session.userid,
                     title: links.title,
@@ -89,16 +100,16 @@ module.exports = (knex) => {
                     full_name: cookie.full_name,
                   }
                     res.render('link', vartemplate);
+                    // res.json(boards)
   });
 });
 
 //edit link
-linksRoutes("/:shortURL/", (req, res) =>{
-  const shortURL = req.params.shortURL;
-  if(req.session.user_ID == urlDatabase[shortURL].userID){
-  urlDatabase[shortURL].longURL = req.body.longURL;
-  res.redirect('/urls');
-  }
+linksRoutes.post("/:linkId/edit", (req, res) =>{
+    const currentUser = req.session.userid
+    const boards = knex.select('title').from('boards')
+                       .where('user_id',currentUser)
+  res.json(boards);
 });
 
   //displaying comments on one link

@@ -26,3 +26,14 @@ INSERT INTO links (user_id, topic_id, url, title, description) VALUES (2, 2, 'ht
 
 INSERT INTO comments (user_id, link_id, text) VALUES (1, 1, 'cool');
 INSERT INTO comments (user_id, link_id, text) VALUES (2, 2, 'not cool');
+
+-- new seed here
+INSERT INTO boards (user_id, title, create_date) VALUES (1, 'beginner', '2019-03-25');
+INSERT INTO boards (user_id, title, create_date) VALUES (1, 'second wall', '2019-03-26');
+INSERT INTO boards (user_id, title, create_date) VALUES (4, 'mona smile', '2019-02-25');
+
+INSERT INTO boards_links (link_id, board_id) VALUES (1, 3);
+INSERT INTO boards_links (link_id, board_id) VALUES (2, 1);
+INSERT INTO boards_links (link_id, board_id) VALUES (3, 2);
+INSERT INTO boards_links (link_id, board_id) VALUES (7, 5);
+INSERT INTO boards_links (link_id, board_id) VALUES (9, 5);
