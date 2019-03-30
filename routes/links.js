@@ -24,25 +24,28 @@ module.exports = (knex) => {
 
   linksRoutes.get("/create", (req, res) => {
     const currentUser = req.session.userid;
-    const boards = knex.select('title').from('boards').where('user_id',currentUser)
-                    .then((results)=> { res.json(results.title)})
-    // if (!currentUser){
-    //   res.redirect('back');
-    // } else {
-    //   knex
-    //   .select('*')
-    //   .from('users')
-    //   .where('id', req.session.userid)
-    //   .then(function(results){
-    //     const cookie = results[0]
-    //     const templateVars = {
-    //     id: req.session.userid,
-    //     username:cookie.username,
-    //     full_name: cookie.full_name,
-    //     boards : boards}
-        // res.render("create_link", templateVars);
-        // })
-      // }
+    if (!currentUser){
+      res.redirect('back');
+    } else {
+      Promise.all([
+      knex
+      .select('*')
+      .from('users')
+      .where('id', req.session.userid),
+      knex.select('title').from('boards').where('user_id',currentUser)
+      ])
+      .then(function(results){
+        const cookie = results[0][0]
+        const boards = results[1]
+        const templateVars = {
+        id: req.session.userid,
+        username:cookie.username,
+        full_name: cookie.full_name,
+        boards : boards}
+        // res.json(boards);
+        res.render("create_link", templateVars);
+        })
+      }
   });
 
 //create link
@@ -51,24 +54,49 @@ module.exports = (knex) => {
       res.status(400).json({ error: 'invalid request: no data in POST body'});
       return;
     }
-    const topic = knex.select('id').from('topics').where('name',req.body.link_topic)
-    
     const title = req.body.link_title
     const desc = req.body.link_desc
     const url = req.body.link_url
     const userid = req.session.userid
-    knex
-    .insert({user_id:userid, topic_id:topic, url:url, title:title, 
-            description:desc, create_date:knex.fn.now()})
-    .into('links').asCallback(function(err){
+    knex.select('id').from('topics').where('name',req.body.link_topic)
+    .then(function(result){
+      const topic = result[0].id;
+      knex.select('id').from('boards').where('title',req.body.link_board)
+      .then(function(result){
+        const board = result[0].id;
+        // console.log(board,topic);
+        knex.insert({user_id:userid, topic_id:topic, url:url, title:title, 
+            description:desc, create_date:knex.fn.now()}).returning('id')
+    .into('links').then(function(result){
+        const id = result[0];
+        console.log(id);
+         return knex.insert({link_id: id, board_id: board}).into('boards_links');
+    }).asCallback(function(err){
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
           console.log('YAY!');
           res.redirect('/');
       }
-  });      
-})
+      })
+    })
+  })
+});
+  //   knex
+  //   .insert({user_id:userid, topic_id:topic, url:url, title:title, 
+  //           description:desc, create_date:knex.fn.now()}).returning('id')
+  //   .into('links').then(function(id){
+  //     console.log(id);
+  //     // knex.insert({link_id: id, board_id: board}).into('boards_links')
+  //   }).asCallback(function(err){
+  //     if (err) {
+  //       res.status(500).json({ error: err.message });
+  //     } else {
+  //         console.log('YAY!');
+  //         res.redirect('/');
+  //     }
+  // });      
+
 
 //getting link page
   linksRoutes.get("/:linkId", (req, res) => {

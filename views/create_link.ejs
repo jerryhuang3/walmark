@@ -19,7 +19,7 @@
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script src="/vendor/masonry.pkgd.js"></script>
     <script src="/vendor/imagesloaded.pkgd.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
+    <!-- <script type="text/javascript" src="/scripts/app.js"></script> -->
   </head>
 
 
@@ -36,17 +36,16 @@
           <div class="dropdown_options">
               <select name="link_topic">
                 <option id="program">programming</option>
-                <option id="music">music</option>
+                <!-- <option id="music">music</option> -->
                 <option id="math">math</option>
               </select>
           </div>
           <div class="dropdown_options">
             <span>Pick a Wall</span>
               <select name="link_board">
-                <!-- <%for (let board in boards) {%>
-                  <option><%=board%></option>
-                <%}%> -->
-                <p><%=boards%></p>
+              <% for (let board = 0; board < boards.length; board++) {%>
+              <option><%=boards[board].title%></option>
+              <%};%>
               </select>
           </div>
         <button class="button mark">Mark</button>
