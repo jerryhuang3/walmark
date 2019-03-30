@@ -1,0 +1,97 @@
+/**
+ * Foundation for Sites by ZURB
+ * Version 6.5.1
+ * foundation.zurb.com
+ * Licensed under MIT Open Source
+ */
+@media print, screen and (min-width: 40em) {
+  .reveal, .reveal.tiny, .reveal.small, .reveal.large {
+    right: auto;
+    left: auto;
+    margin: 0 auto;
+  }
+}
+
+/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: #D8D8D8;
+}
+
+body h1 {
+  color: #244751;
+}
+
+.foundation-5-top-bar {
+  background: #333;
+  color: white;
+}
+
+.foundation-5-top-bar .menu {
+  background: #333;
+}
+
+.foundation-5-top-bar .menu a {
+  color: white;
+}
+
+.foundation-5-top-bar .is-dropdown-submenu {
+  border: 0;
+}
+
+.foundation-5-top-bar .is-dropdown-submenu-item.opens-right a::after {
+  border-color: transparent transparent transparent white;
+}
+
+.foundation-5-top-bar .js-drilldown-back > a::before {
+  border-color: transparent white transparent transparent;
+}
+
+.foundation-5-top-bar .is-drilldown-submenu-parent > a::after {
+  border-color: transparent transparent transparent white;
+}
+
+.foundation-5-top-bar .dropdown.menu.medium-horizontal > li.is-dropdown-submenu-parent > a::after {
+  border-color: white transparent transparent;
+}
+
+#link-container {
+  font-family: 'PT Sans', sans-serif;
+  background: rgba(255, 255, 255, 0.54);
+  margin: 2vw auto;
+  max-width: 60vw;
+  overflow: auto;
+  border: 1px solid grey;
+  border-radius: 8px;
+  padding: 2vw;
+}
+
+.link-info {
+  width: 25vw;
+  display: inline-block;
+  margin: 15px 1vw;
+  border: 1px solid grey;
+  padding: 0.5vw;
+}
+
+.link-info h3 {
+  font-weight: bold;
+}
+
+.link-name {
+  font-weight: bold;
+  display: inline-block;
+}
+
+.link-desc {
+  width: 20vw;
+  height: auto;
+}
+
+.link-visit {
+  width: 22vw;
+}
