@@ -11,7 +11,6 @@
     margin: 0 auto;
   }
 }
-
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 html {
   line-height: 1.15;
@@ -21,19 +20,18 @@ html {
 body {
   background-color: #EEE;
 }
-
 body h1 {
   color: #244751;
 }
 
-.container {
+#link-container {
   background: rgba(255, 255, 255, 0.54);
   margin: 0 auto;
   max-width: 75vw;
 }
 
-.container .links {
-  width: 33.33%;
+#link-container .links {
+  width: 20%;
   margin-bottom: 20px;
   padding-left: 1em;
 }
@@ -53,3 +51,5 @@ body h1 {
   margin: 0 auto;
   width: 45%;
 }
+
+/*# sourceMappingURL=layout.css.map */
