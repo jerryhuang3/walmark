@@ -26,6 +26,7 @@ const likesRoutes = require("./routes/likes");
 const commentsRoutes = require("./routes/comments");
 const usersboardRoutes = require("./routes/users_boards");
 const profileRoutes = require("./routes/profile");
+const boards = require("./routes/boards");
 
 // Encrypting user sessions
 app.use(cookies({
@@ -68,6 +69,7 @@ app.use("/api/comments", commentsRoutes(knex));
 app.use("/api/userboards", usersboardRoutes(knex));
 app.use("/users", profileRoutes(knex));
 app.use("/links", linksRoutes(knex));
+app.use("/boards", boards(knex));
 
 // Home page
 app.get("/", (req, res) => {
