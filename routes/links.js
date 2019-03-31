@@ -2,40 +2,9 @@
 
 const express = require('express');
 const linksRoutes  = express.Router();
-const LinkHelpers = require('../lib/link-helpers.js');
-const cookieSession = require('cookie-session');
-const cheerio = require('cheerio');
-const request = require('request');
-
-<<<<<<< HEAD
 
 module.exports = (knex) => {
 
-=======
-// const getImage = function(url, cb){
-//   request(url, function (error, response, html) {
-//     if (!error && response.statusCode == 200) {
-//       var $ = cheerio.load(html);
-//       // console.log('html',html);
-//       const imgs = $('img').toArray().map(e => {
-//         return `http:${e.attribs.src}`
-//       })
-//       cb(imgs)
-//     }
-//   })
-// }
-
-module.exports = (knex) => {
-
-
-  // linksRoutes.get("/try", (req, res) => {
-  //   getImage("https://en.wikipedia.org/wiki/Plant", function(images) {
-  //     res.json(images);
-  //   })
-  // })
-
-
->>>>>>> b260667a6609b30b5b81dbd31297da81381bcf0f
   linksRoutes.get("/create", (req, res) => {
     const currentUser = req.session.userid;
     if (!currentUser){
@@ -107,39 +76,40 @@ linksRoutes.get("/:linkId", (req, res) => {
     knex.select('*').from('links')
         .join('users',{'links.user_id' : 'users.id'})
         .where('links.id',linkId)
-        .then(function(results){
+        .then(function(results) {
           const links = results[0];
           knex.select('title').from('boards')
-          .where('user_id',req.session.userid)
-          .then(function(results){
-            const boards = results;
-            knex('ratings').avg('rating')
-              .where('link_id', linkId)
-              .then(function(results){
-                const ratings = Math.round(10 * results[0].avg) / 10;
-              knex.select('learnt').from('learnt_counters').where({link_id:linkId, user_id:req.session.userid})
-                .then(function(result){
-                const learnt = result[0].learnt;
-                const vartemplate = {
-                  id: req.session.userid,
-                  title: links.title,
-                  full_name: links.full_name,
-                  user_avatar: links.avatar,
-                  url: links.url,
-                  desc: links.description,
-                  create_date: links.create_date,
-                  link_id:linkId,
-                  username:links.username,
-                  boards: boards,
-                  color: links.color,
-                  avg_rating: ratings,
-                  learnt: learnt
-                }
-                  res.render('link', vartemplate);
+            .where('user_id', req.session.userid)
+            .then(function(results) {
+              const boards = results;
+              knex('ratings').avg('rating')
+                .where('link_id', linkId)
+                .then(function(results) {
+                  const ratings = Math.round(10 * results[0].avg) / 10;
+                  knex.select('learnt').from('learnt_counters').where({ link_id: linkId, user_id: req.session.userid })
+                    .then(function(result) {
+                      const learnt = result[0].learnt;
+                      const vartemplate = {
+                        id: req.session.userid,
+                        title: links.title,
+                        full_name: links.full_name,
+                        user_avatar: links.avatar,
+                        url: links.url,
+                        desc: links.description,
+                        create_date: links.create_date,
+                        link_id: linkId,
+                        username: links.username,
+                        boards: boards,
+                        color: links.color,
+                        avg_rating: ratings,
+                        learnt: learnt
+                      }
+                      res.render('link', vartemplate);
 
+                    })
                 })
-            })
-      });
+            });
+        });
 });
 
 //edit link
@@ -285,4 +255,4 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
 
 
   return linksRoutes;
-}
+};
