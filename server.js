@@ -59,6 +59,8 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 // Mount all resource routes
+app.use("/users", profileRoutes(knex));
+app.use("/links", linksRoutes(knex));
 app.use("/api/users", usersRoutes(knex));
 app.use("/api/links", linkRoutes(knex));
 app.use("/api/ratings", ratingsRoutes(knex));

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/styles/link-layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/foundation.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
 
 
@@ -29,8 +30,21 @@
   <% include ./partials/_header %>
 
     <section id="link-container">
-        <img class="link-img" src="https://picsum.photos/400/500/?random">
+        <img class="link-img" src="">
+        <!-- <div class="color-block"></div> -->
+        <div class="right-col">
         <div class="link-info">
+            <a href="/links/<%=link_id%>/edit"><i class="fas fa-pen"></i></a>
+            <div id="saved">Marked!</div>
+            <form id="saveform" action="/links/<%=link_id%>/save" method="POST">
+            <select id="saveto" name="selectme">
+                <option value="" >Mark it on your wall</option>
+                <% for (let board = 0; board < boards.length; board++) {%>
+                  <option value="<%=boards[board].title%>"><%=boards[board].title%></option>
+                  <%};%>
+                </select>
+              </form>
+              
             <h3><%=title%></h3>
             <img class="link-avatar" src="<%=user_avatar%>">
             <p class="link-fullname"><%=full_name%></p><br><br>
@@ -38,6 +52,7 @@
             <p class="link-desc"><%=desc%></p>
             <p class="link-date">Created March 28, 2019</p>
         </div>
+        <hr>
         <div class="link-comments">
             <h4>Comments</h4>
             <div id="comments-container">
@@ -49,10 +64,8 @@
                 <input type="submit" value="Done">
             </form>
         </div>
-
-
+      </div>
     </section>
-
 
   </body>
 </html>

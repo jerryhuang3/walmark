@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Walmark</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/create-link.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/foundation.css">
+    <script>$(document).foundation();</script>
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
+
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script src="/vendor/masonry.pkgd.js"></script>
+    <script src="/vendor/imagesloaded.pkgd.js"></script>
+    <!-- <script type="text/javascript" src="/scripts/app.js"></script> -->
+  </head>
+
+
+
+  <body>
+  <% include ./partials/_header %>
+
+  <div id="newlink-container">
+     <form action="/links/create" method="POST">
+        <input placeholder="Add your title" type="text" name="link_title" required />
+        <input placeholder="Insert the link here" type="text" name="link_url" required />
+        <textarea placeholder="Descripe your resource" type="text" name="link_desc"></textarea>
+          <span>Pick a Topic</span>
+          <div class="dropdown_options">
+              <select name="link_topic">
+                <option>math</option>
+                <option>programming</option>
+                <option>javascript</option>
+                <option>gaming</option>
+                <option>english</option>
+                <option>science</option>
+                <option>fitness</option>
+                <option>wizardry</option>
+                <option>dating</option>
+                <option>nature</option>
+                <option>business</option>
+                <option>python</option>
+                <option>cooking</option>
+              </select>
+          </div>
+          <div class="dropdown_options">
+            <span>Pick a Wall</span>
+              <select name="link_board">
+              <% for (let board = 0; board < boards.length; board++) {%>
+              <option><%=boards[board].title%></option>
+              <%};%>
+              </select>
+          </div>
+        <button class="button mark">Mark</button>
+    </form>
+  </div>
+
+
+
+  </body>
+</html>

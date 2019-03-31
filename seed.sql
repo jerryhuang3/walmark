@@ -7,6 +7,28 @@ INSERT INTO topics (name)
   VALUES('math');
 INSERT INTO topics (name)
   VALUES('programming');
+INSERT INTO topics (name)
+  VALUES('javascript');
+INSERT INTO topics (name)
+  VALUES('gaming');
+INSERT INTO topics (name)
+  VALUES('english');
+INSERT INTO topics (name)
+  VALUES('science');
+INSERT INTO topics (name)
+  VALUES('fitness');
+INSERT INTO topics (name)
+  VALUES('wizardry');
+INSERT INTO topics (name)
+  VALUES('dating');
+INSERT INTO topics (name)
+  VALUES('nature');
+INSERT INTO topics (name)
+  VALUES('business');
+INSERT INTO topics (name)
+  VALUES('python');
+INSERT INTO topics (name)
+  VALUES('cooking');
 
 
 INSERT INTO boards (user_id, title) VALUES (1, 'First board');
@@ -53,3 +75,14 @@ INSERT INTO links (user_id, topic_id, url, title, description) VALUES (4, 2, 'ht
 
                                                                        INSERT INTO comments (user_id, link_id, text) VALUES (1, 1, 'cool');
 INSERT INTO comments (user_id, link_id, text) VALUES (2, 2, 'not cool');
+
+-- new seed here
+INSERT INTO boards (user_id, title, create_date) VALUES (1, 'beginner', '2019-03-25');
+INSERT INTO boards (user_id, title, create_date) VALUES (1, 'second wall', '2019-03-26');
+INSERT INTO boards (user_id, title, create_date) VALUES (4, 'mona smile', '2019-02-25');
+
+INSERT INTO boards_links (link_id, board_id) VALUES (1, 3);
+INSERT INTO boards_links (link_id, board_id) VALUES (2, 1);
+INSERT INTO boards_links (link_id, board_id) VALUES (3, 2);
+INSERT INTO boards_links (link_id, board_id) VALUES (7, 5);
+INSERT INTO boards_links (link_id, board_id) VALUES (9, 5);

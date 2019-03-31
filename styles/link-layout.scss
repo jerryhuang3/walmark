@@ -16,53 +16,13 @@ html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%; }
 
-body {
-  background-color: #D8D8D8;
-
-  h1 {
-    color: #244751;
-  }
-}
-
-.foundation-5-top-bar {
-  background: #333;
-  color: white;
-
-  .menu {
-    background: #333;
-
-    a {
-      color: white;
-    }
-  }
-
-  .is-dropdown-submenu {
-    border: 0;
-  }
-
-  .is-dropdown-submenu-item.opens-right a::after {
-    border-color: transparent transparent transparent white;
-  }
-
-  .js-drilldown-back > a::before {
-    border-color: transparent white transparent transparent;
-  }
-
-  .is-drilldown-submenu-parent > a::after {
-    border-color: transparent transparent transparent white;
-  }
-
-  .dropdown.menu.medium-horizontal > li.is-dropdown-submenu-parent > a::after {
-    border-color: white transparent transparent;
-  }
-}
 
 #link-container {
   font-family: 'PT Sans', sans-serif;
   background: rgba(255, 255, 255, 0.54);
   margin: 2vw auto;
-  max-width: 60vw;
-  // height: auto;
+  max-width: 50vw;
+  height: auto;
   overflow: auto;
   border: 1px solid grey;
   border-radius: 8px;
@@ -76,9 +36,6 @@ body {
 
 .link-info {
   width: 25vw;
-  display: inline-block;
-  margin: auto 1vw;
-  border: 1px solid grey;
   padding: 0.5vw;
 
   h3 {
@@ -98,9 +55,7 @@ body {
 
 .link-comments {
   width: 25vw;
-  display: inline-block;
-  margin: 0 1vw;
-  border: 1px solid grey;
+  margin: 0 auto;
   padding: 0.5vw;
 
   h4 {
@@ -120,5 +75,39 @@ body {
 }
 
 .comment-content textarea {
+  display: inline-block;
+}
+
+.fa-pen {
+  color: grey;
+  float: right;
+  margin: 1vw;
+}
+
+.color-block {
+  background-color: red;
+  max-width: 28vw;
+  height: 30vw;
+  float: left;
+}
+
+.right-col {
+  float: right;
+  border: 1px solid grey;
+}
+
+#saved {
+  width: 5vw;
+  height: 2vw;
+  background-color: #0072CE;
+  color: #FFB81C;
+  font-weight: bold;
+  text-align: center;
+  display: none;
+  position: absolute;
+  z-index: 2;
+}
+
+#saveform {
   display: inline-block;
 }

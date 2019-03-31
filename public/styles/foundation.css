@@ -2475,6 +2475,10 @@ ul.no-bullet, ol.no-bullet {
   .button:hover, .button:focus {
     background-color: #14679e;
     color: #fefefe; }
+  .button.mark {
+    font-weight: bold;
+    background-color: #0072CE;
+    color: #FFB81C; }
   .button.tiny {
     font-size: 0.6rem; }
   .button.small {
