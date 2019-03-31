@@ -7,14 +7,6 @@ function escape(str) {
 }
 
 $(() => {
-  $.ajax({
-    method: "GET",
-    url: "/api/users"
-  }).done((users) => {
-  });
-
-
-
   function createCommentElement(data) {
     let $comment = `
     <article>
@@ -41,6 +33,10 @@ $(() => {
   };
 
   loadComments();
+
+  // $('.fa-pen').click(function(){
+  //   $('#register_form').slideToggle();
+  // });
 
 
 });

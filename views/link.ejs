@@ -30,9 +30,9 @@
   <% include ./partials/_header %>
 
     <section id="link-container">
-        <img class="link-img" src="https://picsum.photos/400/500/?random">
+        <img class="link-img" src="<%=img%>">
         <div class="link-info">
-            <a><i class="fas fa-pen"></i></a>
+            <a href="/links/<%=link_id%>/edit"><i class="fas fa-pen"></i></a>
             <h3><%=title%></h3>
             <img class="link-avatar" src="<%=user_avatar%>">
             <p class="link-fullname"><%=full_name%></p><br><br>
@@ -52,27 +52,6 @@
             </form>
         </div>
     </section>
-
-
-    <div class="form-popup" id="myForm">
-        <form action="/links/<%=link_id%>/edit" method="POST" id="form-container">
-          <h4>Edit this link</h4>
-      
-          <label for="edit-board">Wall</label>
-          <select name="edit_board">
-              <option>programming</option>
-              <option>music</option>
-              <option>math</option>
-            </select>
-          <input type="text" placeholder="Enter Email" name="email" required>
-      
-          <label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="psw" required>
-      
-          <button type="submit" class="btn">Login</button>
-          <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
-        </form>
-      </div>
 
   </body>
 </html>

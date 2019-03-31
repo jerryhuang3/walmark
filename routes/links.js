@@ -7,20 +7,27 @@ const cookieSession = require('cookie-session');
 const cheerio = require('cheerio');
 const request = require('request');
 
+const getImage = function(url, cb){
+  request(url, function (error, response, html) {
+    if (!error && response.statusCode == 200) {
+      var $ = cheerio.load(html);
+      const imgs = $('img').toArray().map(e => {
+        return `http:${e.attribs.src}` 
+      })
+      cb(imgs)
+    }
+  })
+}
+
 module.exports = (knex) => {
 
-  linksRoutes.get("/", (req, res) => {
-    Promise.all([
-      knex.select('*').from('links')
-      .join('users',{'links.user_id' : 'users.id'})
-      .where('links.id',1),
-  knex.select('*').from('comments')
-      .join('users',{'comments.user_id' : 'users.id'})
-      .where('comments.link_id',1)
-    ]).then((results) => {
-        res.json(results)
-    });
-  });
+
+  // linksRoutes.get("/try", (req, res) => {
+  //   getImage("https://en.wikipedia.org/wiki/Plant", function(images) {
+  //     res.json(images);
+  //   })            
+  // })
+
 
   linksRoutes.get("/create", (req, res) => {
     const currentUser = req.session.userid;
@@ -82,63 +89,96 @@ module.exports = (knex) => {
     })
   })
 });
-  //   knex
-  //   .insert({user_id:userid, topic_id:topic, url:url, title:title, 
-  //           description:desc, create_date:knex.fn.now()}).returning('id')
-  //   .into('links').then(function(id){
-  //     console.log(id);
-  //     // knex.insert({link_id: id, board_id: board}).into('boards_links')
-  //   }).asCallback(function(err){
-  //     if (err) {
-  //       res.status(500).json({ error: err.message });
-  //     } else {
-  //         console.log('YAY!');
-  //         res.redirect('/');
-  //     }
-  // });      
-
 
 //getting link page
-  linksRoutes.get("/:linkId", (req, res) => {
-    const linkId = req.params.linkId;
-    const response =
-      Promise.all([
-        knex.select('*').from('links')
-          .join('users',{'links.user_id' : 'users.id'})
-          .where('links.id',linkId),
-        knex.select('username','full_name')
-            .from('users')
-            .where('id', req.session.userid),
-        knex.select('title').from('boards')
-        .where('user_id',req.session.userid)])
-                .then(function(results){
-                  const links = results[0][0];
-                  const cookie = results[1][0];
-                  const boards = results[2][0];
-                  const vartemplate = {
-                    id: req.session.userid,
-                    title: links.title,
-                    fullname: links.full_name,
-                    user_avatar: links.avatar,
-                    url: links.url,
-                    desc: links.description,
-                    create_date: links.create_date,
-                    link_id:linkId,
-                    username:cookie.username,
-                    full_name: cookie.full_name,
-                  }
-                    res.render('link', vartemplate);
-                    // res.json(boards)
-  });
+linksRoutes.get("/:linkId", (req, res) => {
+  const linkId = req.params.linkId;
+  const response =
+    knex.select('*').from('links')
+        .join('users',{'links.user_id' : 'users.id'})
+        .where('links.id',linkId)
+              .then(function(results){
+                const links = results[0];
+                getImage(links.url, function(images) {
+                const vartemplate = {
+                  id: req.session.userid,
+                  title: links.title,
+                  full_name: links.full_name,
+                  user_avatar: links.avatar,
+                  url: links.url,
+                  desc: links.description,
+                  create_date: links.create_date,
+                  link_id:linkId,
+                  username:links.username,
+                  img:images[4]
+                }            
+                  res.render('link', vartemplate);
+              })
+});
 });
 
 //edit link
-linksRoutes.post("/:linkId/edit", (req, res) =>{
-    const currentUser = req.session.userid
-    const boards = knex.select('title').from('boards')
-                       .where('user_id',currentUser)
-  res.json(boards);
+linksRoutes.get("/:linkId/edit", (req, res) =>{
+  const currentUser = req.session.userid;
+  const link_id = req.params.linkId;
+  if (!currentUser){
+    res.redirect('back');
+  } else {
+    Promise.all([
+    knex.select('*').from('users').where('id', req.session.userid),
+    knex.select('title').from('boards').where('user_id',currentUser),
+    knex.select('*').from('links').where('id', link_id)
+    ])
+    .then(function(results){
+      const cookie = results[0][0]
+      const boards = results[1]
+      const link = results[2][0]
+      const templateVars = {
+      id: currentUser,
+      link_id: link_id,
+      username:cookie.username,
+      full_name: cookie.full_name,
+      boards : boards,
+      link_title : link.title,
+      link_desc : link.description,
+      link_date : link.create_date}
+      res.render("edit_link", templateVars);
+      // res.json(results[0][0])
+      })
+    }
 });
+
+  //submit edit
+  linksRoutes.post("/:linkId/edit", (req, res) =>{
+    const user = req.session.userid;
+    const link_id = req.params.linkId;
+    knex.select('id').from('topics').where('name',req.body.link_topic)
+    .then((gettopic)=>{
+      knex('links').where({id : link_id})
+      .update({topic_id: gettopic[0].id, title: req.body.link_title, description: req.body.link_desc})
+      .then((result)=>{
+        res.redirect(`/links/${link_id}`)
+      })
+    })
+ 
+  })
+//delete link
+  linksRoutes.post("/:linkId/delete", (req, res) => {
+    console.log('heelooo');
+    const currentUser = req.session.userid;
+    const link_id = req.params.linkId;
+    knex.select('user_id').from('links').where('id',link_id).then((result)=>{
+      if (currentUser != result[0].user_id){
+        res.redirect('back');
+      } else {
+        knex('links').where({id : link_id}).del().then( (result) => {
+          res.redirect('/')
+        })
+      }
+    })
+    
+  });
+
 
   //displaying comments on one link
   linksRoutes.get("/:linkId/comments", (req, res) => {
