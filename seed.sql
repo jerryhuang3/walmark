@@ -7,6 +7,28 @@ INSERT INTO topics (name)
   VALUES('math');
 INSERT INTO topics (name)
   VALUES('programming');
+INSERT INTO topics (name)
+  VALUES('javascript');
+INSERT INTO topics (name)
+  VALUES('gaming');
+INSERT INTO topics (name)
+  VALUES('english');
+INSERT INTO topics (name)
+  VALUES('science');
+INSERT INTO topics (name)
+  VALUES('fitness');
+INSERT INTO topics (name)
+  VALUES('wizardry');
+INSERT INTO topics (name)
+  VALUES('dating');
+INSERT INTO topics (name)
+  VALUES('nature');
+INSERT INTO topics (name)
+  VALUES('business');
+INSERT INTO topics (name)
+  VALUES('python');
+INSERT INTO topics (name)
+  VALUES('cooking');
 
 
 INSERT INTO boards (user_id, title) VALUES (1, 'First board');
@@ -32,8 +54,39 @@ INSERT INTO links (user_id, topic_id, url, title, description) VALUES (2, 2, 'ht
 INSERT INTO links (user_id, topic_id, url, title, description) VALUES (2, 1, 'https://lighthouselabs.com', 'Fitness', 'Plank club is about to commence. Everyone get ready to plank for 2 minutes!');
 INSERT INTO links (user_id, topic_id, url, title, description) VALUES (1, 1, 'https://lighthouselabs.com', 'Fitness', 'Plank club is about to commence. Everyone get ready to plank for 2 minutes!');
 INSERT INTO links (user_id, topic_id, url, title, description) VALUES (2, 2, 'https://lighthouselabs.com', 'Wizardy', 'Harry Potter and his friends are in town. Come along and join for the exciting adventures with them. They are the best that Hogwarts has to offer');
-
+INSERT INTO links (user_id, topic_id, url, title, description) VALUES (2, 1, 'https://lighthouselabs.com', 'Fitness', 'Plank club is about to commence. Everyone get ready to plank for 2 minutes!');
+INSERT INTO links (user_id, topic_id, url, title, description) VALUES (3, 1, 'https://lighthouselabs.com', 'Nature', 'Plank club is about to commence. Everyone get ready to plank for 2 minutes!');
+INSERT INTO links (user_id, topic_id, url, title, description) VALUES (5, 5, 'https://lighthouselabs.com', 'Physics', 'Physucks. That is all you need to know.');
+INSERT INTO links (user_id, topic_id, url, title, description) VALUES (6, 4, 'https://lighthouselabs.com', 'Nature', 'Plank club is about to commence. Everyone get ready to plank for 2 minutes!');
+INSERT INTO links (user_id, topic_id, url, title, description) VALUES (7, 2, 'https://lighthouselabs.com', 'Physics', 'Physucks. That is all you need to know.');
+INSERT INTO links (user_id, topic_id, url, title, description) VALUES (8, 1, 'https://lighthouselabs.com', 'FORTRAN', 'I solve problems');
+INSERT INTO links (user_id, topic_id, url, title, description) VALUES (1, 1, 'https://lighthouselabs.com', 'Javascript', 'CALLBACKS CALLBACKS CALLBACKS CALLBACKS CALLBACKS CALLBACKS CALLBACKS CALLBACKS CALLBACKS ERROR');
+INSERT INTO links (user_id, topic_id, url, title, description) VALUES (3, 3, 'https://lighthouselabs.com', 'Gaming', 'How to play League of Legends');
+INSERT INTO links (user_id, topic_id, url, title, description) VALUES (4, 1, 'https://lighthouselabs.com', 'Javascript', 'CALLBACKS CALLBACKS CALLBACKS CALLBACKS CALLBACKS CALLBACKS CALLBACKS CALLBACKS CALLBACKS ERROR');
+INSERT INTO links (user_id, topic_id, url, title, description) VALUES (2, 2, 'https://lighthouselabs.com', 'Dating', 'How to talk to people.');
+INSERT INTO links (user_id, topic_id, url, title, description) VALUES (1, 3, 'https://lighthouselabs.com', 'Business', 'Fake it til you make it!');
+INSERT INTO links (user_id, topic_id, url, title, description) VALUES (2, 7, 'https://lighthouselabs.com', 'Python', 'Python is an interpreted, object-oriented, high-level programming language with dynamic semantics. Its high-level built in data structures, combined with dynamic typing and dynamic binding.');
+INSERT INTO links (user_id, topic_id, url, title, description) VALUES (4, 7, 'https://lighthouselabs.com', 'Python', 'Python is an interpreted, object-oriented, high-level programming language with dynamic semantics. Its high-level built in data structures, combined with dynamic typing and dynamic binding.');
+INSERT INTO links (user_id, topic_id, url, title, description) VALUES (2, 5, 'https://lighthouselabs.com', 'Nature', 'Come look at me!');
+INSERT INTO links (user_id, topic_id, url, title, description) VALUES (4, 4, 'https://lighthouselabs.com', 'Cooking', '10000 Tips on becoming the next Master Chef!');
+INSERT INTO links (user_id, topic_id, url, title, description) VALUES (4, 3, 'https://lighthouselabs.com', 'Cooking', '10000 Tips on becoming the next Master Chef!');
+INSERT INTO links (user_id, topic_id, url, title, description) VALUES (4, 2, 'https://lighthouselabs.com', 'Wizardy', 'Harry Potter and his friends are in town. Come along and join for the exciting adventures with them. They are the best that Hogwarts has to offer');
 
 
                                                                        INSERT INTO comments (user_id, link_id, text) VALUES (1, 1, 'cool');
 INSERT INTO comments (user_id, link_id, text) VALUES (2, 2, 'not cool');
+
+-- new seed here
+INSERT INTO boards (user_id, title, create_date) VALUES (1, 'beginner', '2019-03-25');
+INSERT INTO boards (user_id, title, create_date) VALUES (1, 'second wall', '2019-03-26');
+INSERT INTO boards (user_id, title, create_date) VALUES (4, 'mona smile', '2019-02-25');
+
+INSERT INTO boards_links (link_id, board_id) VALUES (1, 3);
+INSERT INTO boards_links (link_id, board_id) VALUES (2, 1);
+INSERT INTO boards_links (link_id, board_id) VALUES (3, 2);
+INSERT INTO boards_links (link_id, board_id) VALUES (7, 5);
+INSERT INTO boards_links (link_id, board_id) VALUES (9, 5);
+
+
+ALTER TABLE links
+ADD COLUMN color VARCHAR(50);

@@ -7,14 +7,6 @@ function escape(str) {
 }
 
 $(() => {
-  $.ajax({
-    method: "GET",
-    url: "/api/users"
-  }).done((users) => {
-  });
-
-
-
   function createCommentElement(data) {
     let $comment = `
     <article>
@@ -41,6 +33,19 @@ $(() => {
   };
 
   loadComments();
+
+  //saving link
+  $('#saveto').change(function() {
+    $( "#saved" ).fadeIn('slow'); 
+   setTimeout(function() {
+      $( "#saved" ).fadeOut(function(){
+        $('#saveform').submit();
+        event.preventDefault();
+      })
+    }, 1000);
+    });
+
+
 
 
 });

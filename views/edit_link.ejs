@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Walmark</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/edit-link.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/foundation.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
+
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script src="/vendor/masonry.pkgd.js"></script>
+    <script src="/vendor/imagesloaded.pkgd.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+    <script src="/vendor/foundation.js"></script>
+    <script>$(document).foundation();</script>
+  </head>
+
+
+
+<body>
+<div id="edit-link">
+    <form action="/links/<%=link_id%>/delete" method=POST><button><i class="fas fa-trash"></i></button></form>
+    <form action="/links/<%=link_id%>/edit" method="POST" id="form-container">
+        <h4>Edit this link</h4>
+    
+        <input value="<%=link_title%>" type="text" name="link_title" required />
+        <textarea type="text" name="link_desc"><%=link_desc%></textarea>
+          <span>Topic</span>
+          <div class="dropdown_options">
+              <select name="link_topic">
+                  <option>math</option>
+                  <option>programming</option>
+                  <option>javascript</option>
+                  <option>gaming</option>
+                  <option>english</option>
+                  <option>science</option>
+                  <option>fitness</option>
+                  <option>wizardry</option>
+                  <option>dating</option>
+                  <option>nature</option>
+                  <option>business</option>
+                  <option>python</option>
+                  <option>cooking</option>
+              </select>
+          </div>
+        <button class="button mark">Save</button>
+      </form>
+      
+      
+      
+    </div>
+
+
+
+
+</body>
+</html>
+    

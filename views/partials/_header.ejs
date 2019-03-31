@@ -9,9 +9,13 @@
       <%if (id) {%>
       <li class="menu-text"><a href="/users/<%=username%>">Account</a></li>
       <li class="menu-text"><a href="/users/<%=username%>/profile">Profile</a></li>
-      <li class="menu-text"><input type="text" placeholder="Search" name="username"></li>
-      <li class="search"><a href="#"><img src="/images/search.png" width="20px" height="20px"></a></li>
-    <%}%>
+      <%}%>
+      <li class="menu-text">
+        <form method="GET" action="/results">
+          <input  id="search" type="text" placeholder="Search" name="search">
+          <img class="search"  src="/images/search.png" width="20px" height="20px">
+        </form>
+      </li>
     </ul>
   </div>
   <div class="top-bar-right">

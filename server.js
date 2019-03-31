@@ -29,6 +29,7 @@ const profileRoutes = require("./routes/profile");
 const boards = require("./routes/boards");
 const linksTopicsRoutes = require("./routes/linkstopics");
 const boardsLinksRoutes = require("./routes/boards_links");
+const searchRoutes = require("./routes/search");
 
 // Encrypting user sessions
 app.use(cookies({
@@ -61,6 +62,8 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 // Mount all resource routes
+app.use("/users", profileRoutes(knex));
+app.use("/links", linksRoutes(knex));
 app.use("/api/users", usersRoutes(knex));
 app.use("/api/links", linkRoutes(knex));
 app.use("/api/ratings", ratingsRoutes(knex));
@@ -74,6 +77,7 @@ app.use("/links", linksRoutes(knex));
 app.use("/boards", boards(knex));
 app.use("/api/linkstopics", linksTopicsRoutes(knex));
 app.use("/api/boardslinks", boardsLinksRoutes(knex));
+app.use("/results", searchRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
@@ -101,7 +105,6 @@ app.get("/users/:userid", (req, res) => {
     .where('id', req.session.userid)
     .then(function(results){
     let users = results[0];
-    console.log(results);
     res.render('account_page', {
       full_name: users.full_name,
       user_avatar: users.avatar,
@@ -112,7 +115,7 @@ app.get("/users/:userid", (req, res) => {
   });
 });
 
-// USER PROFILE
+// User Profile
 app.get("/users/:username/profile", (req, res) => {
   knex
     .select('id', 'full_name', 'username', 'email', 'avatar')
@@ -124,7 +127,7 @@ app.get("/users/:username/profile", (req, res) => {
     });
 });
 
-// Update User Profile
+// User Profile Update
 app.post('/users/:username/profile/update', (req, res) => {
   knex('users')
     .where({id: req.session.userid})
