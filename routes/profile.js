@@ -24,7 +24,7 @@ module.exports = (knex) => {
 //   });
 // });
 
-// User boards
+// User board page when viewing a board
 profileRoutes.get("/:userID/boards/:boardID", (req, res) => {
   const boardID = req.params.boardID;
   knex.select('*', 'links.title as linktitle', 'links.id as linkid').from('links')
@@ -49,5 +49,11 @@ profileRoutes.get("/:userID/boards/:boardID", (req, res) => {
     res.render('user_board', vartemplate);
   });
 });
+
+// User page showing all user boards
+profileRoutes.get("/:userID/boards/", (req, res) => {
+  res.render('all_user_board');
+});
+
   return profileRoutes;
 }
