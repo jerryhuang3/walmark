@@ -3,28 +3,8 @@
 const express = require('express');
 const linksRoutes  = express.Router();
 
-// const getImage = function(url, cb){
-//   request(url, function (error, response, html) {
-//     if (!error && response.statusCode == 200) {
-//       var $ = cheerio.load(html);
-//       // console.log('html',html);
-//       const imgs = $('img').toArray().map(e => {
-//         return `http:${e.attribs.src}`
-//       })
-//       cb(imgs)
-//     }
-//   })
-// }
 
 module.exports = (knex) => {
-
-
-  // linksRoutes.get("/try", (req, res) => {
-  //   getImage("https://en.wikipedia.org/wiki/Plant", function(images) {
-  //     res.json(images);
-  //   })
-  // })
-
 
   linksRoutes.get("/create", (req, res) => {
     const currentUser = req.session.userid;
@@ -99,20 +79,27 @@ linksRoutes.get("/:linkId", (req, res) => {
           knex.select('title').from('boards')
           .where('user_id',req.session.userid)
           .then(function(results){
-            const boards = results
-            const vartemplate = {
-              id: req.session.userid,
-              title: links.title,
-              full_name: links.full_name,
-              user_avatar: links.avatar,
-              url: links.url,
-              desc: links.description,
-              create_date: links.create_date,
-              link_id:linkId,
-              username:links.username,
-              boards: boards
-            }
-              res.render('link', vartemplate);
+            const boards = results;
+            knex('ratings').avg('rating')
+              .where('link_id', linkId)
+              .then(function(results){
+                const ratings = Math.round(10 * results[0].avg) / 10;
+                const vartemplate = {
+                  id: req.session.userid,
+                  title: links.title,
+                  full_name: links.full_name,
+                  user_avatar: links.avatar,
+                  url: links.url,
+                  desc: links.description,
+                  create_date: links.create_date,
+                  link_id:linkId,
+                  username:links.username,
+                  boards: boards,
+                  color: links.color,
+                  avg_rating: ratings
+                }
+                  res.render('link', vartemplate);
+          });
           })
 });
 });
@@ -130,9 +117,9 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
     knex.select('*').from('links').where('id', link_id)
     ])
     .then(function(results){
-      const cookie = results[0][0]
-      const boards = results[1]
-      const link = results[2][0]
+      const cookie = results[0][0];
+      const boards = results[1];
+      const link = results[2][0];
       const templateVars = {
       id: currentUser,
       link_id: link_id,
@@ -224,8 +211,7 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
       }
       const user_id = req.session.userid,
         link_id = req.params.linkId,
-        text = req.body.text,
-        like_count = 0
+        text = req.body.text
       knex.insert({user_id: user_id, link_id: link_id, text: text, create_date: knex.fn.now()})
           .into('comments').asCallback(function(err){
             if (err) {
@@ -253,6 +239,7 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
       })
     })
   })
+
 
 
   return linksRoutes;

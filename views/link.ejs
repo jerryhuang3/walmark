@@ -55,7 +55,7 @@
           <hr>
           <div class='link-ratings'>
             <ul id='stars'>
-              <li><h4>Rating: 3.5</h4></li>
+              <li><h4>Rating<%if (avg_rating > 0) {%>: <%=avg_rating%>  <%}%></h4></li>
               <li class='star' data-value='1'><i class='fa fa-star fa-fw'></i></li>
               <li class='star' data-value='2'><i class='fa fa-star fa-fw'></i></li>
               <li class='star' data-value='3'><i class='fa fa-star fa-fw'></i></li>
