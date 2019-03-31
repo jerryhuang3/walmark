@@ -170,7 +170,7 @@ app.post("/register", (req, res) => {
             .where('username', req.body.username)
             .then((results) => {
               req.session.userid = results[0].id;
-              res.redirect('/');
+              res.redirect('back');
             });
         });
     });

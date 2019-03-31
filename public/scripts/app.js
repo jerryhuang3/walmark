@@ -36,7 +36,7 @@ $(() => {
 
   //saving link
   $('#saveto').change(function() {
-    $( "#saved" ).fadeIn('slow'); 
+    $( "#saved" ).fadeIn('slow');
    setTimeout(function() {
       $( "#saved" ).fadeOut(function(){
         $('#saveform').submit();
@@ -45,6 +45,40 @@ $(() => {
     }, 1000);
     });
 
+
+
+
+  $('.star').on('mouseover', function(){
+    let mousedStar = $(this).data('value'); // The star currently mouse on
+    console.log($(this).data());
+    $.each($(this).parent().children('.star'), function(eachStar) {
+      if (eachStar < mousedStar) {
+        $(this).addClass('hover');
+      }
+      else {
+        $(this).removeClass('hover');
+      }
+    })
+  }).on('mouseout', function() {
+    $.each($(this).parent().children('.star'), function() {
+      $(this).removeClass('hover');
+    });
+  }).on('click', function(){
+    let mousedStar = $(this).data('value');
+    var stars = $(this).parent().children('.star');
+
+    for (i = 0; i < mousedStar; i++) {
+      $(stars[i]).addClass('rating');
+
+    }
+
+    let linkID = (window.location.pathname);
+    linkID = linkID.replace(/\/links\//, '').replace('/', '');
+    $.post('/api/ratings', {rating:$(this).data('value'), linkID:linkID}, function(){
+
+    });
+
+  });
 
 
 

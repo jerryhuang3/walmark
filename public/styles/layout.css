@@ -119,3 +119,30 @@ body h1 {
   margin-bottom: 20px;
   padding-left: 1em;
 }
+
+#stars {
+  margin: 0 auto;
+  padding: 0.5vw;
+  top: 3em;
+  list-style: none;
+}
+
+#stars h4 {
+  font-weight: bold;
+}
+
+#stars > li.star {
+  display: inline-block;
+}
+
+.link-ratings ul > li.star > i.fa {
+  color: #969498;
+}
+
+.link-ratings ul > li.star.hover > i.fa {
+  color: #bccc05;
+}
+
+.link-ratings ul > li.star.rating > i.fa {
+  color: #bccc05;
+}
