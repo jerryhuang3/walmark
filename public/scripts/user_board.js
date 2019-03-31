@@ -1,27 +1,30 @@
 $( document ).ready(function() {
     function loadHomeLinks()
   {
-    $.get('/api/links', function(allLinks) {
+    $.get('/api/boardslinks', function(allLinks) {
       renderHomeLinks(allLinks);
     });
   }
   ;
   loadHomeLinks();
 
-  function shuffle(a) {
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-  }
+  var pathArray = window.location.pathname.split('/');
+  // pathArray.forEach(element => {
+  //   console.log('element:', element)
+  // })
+
+  let board = pathArray[4];
+  // console.log('board:', board);
 
   function renderHomeLinks(allLinks) {
-    let randomLinks = shuffle(allLinks);
+    let randomLinks = (allLinks);
+    console.log(randomLinks)
+    randomLinks.forEach(element => {
+      if (element.boardid == board) {
+        $("#link-container").prepend(createHomeLinks(randomLinks[board]))
+      }
+    })
 
-    for (let i = 0; i < randomLinks.length; i++) {
-      $("#link-container").prepend(createHomeLinks(randomLinks[i])).masonry('prepended', createHomeLinks(randomLinks[i]));
-    }
     let $grid = $('#link-container').imagesLoaded(function() {
       $grid.masonry({
         itemSelector: '.links',
@@ -39,9 +42,10 @@ $( document ).ready(function() {
     return $randomLinks = `
        <div class="links" xmlns="http://www.w3.org/1999/html">
           <a href="/links/${randomLinks.id}/"><img src="https://picsum.photos/200/${randomItem}/?random" /></a>
-          <h2>${randomLinks.title}</h2>
+          <p>Topic: ${randomLinks.name}</p>
+          <p><strong>${randomLinks.linktitle}</strong></p>
           <p>${randomLinks.description}</p>
+          <a href="${randomLinks.url}" class="button secondary link-visit">Learn Now</a>
        </div>`;
   }
-
 });

@@ -16,8 +16,8 @@ profileRoutes.get("/:userID/board/:boardID", (req, res) => {
           .join('topics',{'links.topic_id' : 'topics.id'})
           .then(function(results){
             const boards = results[0];
-            console.log(boards);
-            const vartemplate = {
+            // console.log(boards);
+            const templateVars = {
               id: req.session.userid,
               title: boards.title,
               full_name: boards.full_name,
@@ -26,10 +26,10 @@ profileRoutes.get("/:userID/board/:boardID", (req, res) => {
               description: boards.description,
               create_date: boards.create_date,
               username: boards.username,
-              boardtitle: boards.boardtitle,
+              boardtitle: boards.title,
               topic: boards.name
             }
-      res.render('user_board', vartemplate);
+      res.render('user_board', templateVars);
   });
 });
 

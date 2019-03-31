@@ -9,7 +9,6 @@ module.exports = (knex) => {
     knex.select('*')
       .from('users')
       .join('boards', 'users.id', '=', 'boards.user_id')
-      .where('users.id', req.session.userid)
       .then(function(results) {
         res.json(results);
       });
