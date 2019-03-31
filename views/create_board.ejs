@@ -19,7 +19,7 @@
     <% include ./partials/_header %>
     <div class="newboard-container">
       <h1>Create a new board</h1>
-       <form action="/create" method="POST">
+       <form action="/users/:userID/board" method="POST">
           <input placeholder="Title for board" type="text" name="board_title" required />
           <button class="Create">Create</button>
       </form>
