@@ -38,8 +38,8 @@ $(document).ready(function() {
 
     return $randomLinks = `
        <div class="links">
-          <a href="/links/${randomLinks.id}/"><img src="https://picsum.photos/300/${randomItem}/?random" /></a>
-           <div class="overlay-img"></div>
+          <img src="https://picsum.photos/300/${randomItem}/?random" />
+           <a href="/links/${randomLinks.id}/"><div class="overlay-img"></div></a>
           <p><strong>${randomLinks.title}</strong></p>
        </div>`;
   }
