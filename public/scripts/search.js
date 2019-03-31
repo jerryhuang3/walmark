@@ -15,10 +15,10 @@ $(document).ready(function() {
   //   }
   // });
 
-  function renderSearchLinks(randomLinks) {
+  function renderSearchLinks(searchData) {
 
-    for (let i = 0; i < randomLinks.length; i++) {
-      $("#link-container").prepend(createSearchLinks(randomLinks[i]));
+    for (let i = 0; i < searchData.length; i++) {
+      $("#link-container").prepend(createSearchLinks(searchData[i]));
     }
 
     let $grid = $('#link-container').imagesLoaded(function() {
@@ -32,15 +32,15 @@ $(document).ready(function() {
     });
   };
 
-  function createSearchLinks(randomLinks) {
+  function createSearchLinks(searchLinks) {
     var myArray = ['400', '450', '500', '550', '600'];
     var randomItem = myArray[Math.floor(Math.random() * myArray.length)];
-
-    return $randomLinks = `
+    console.log(searchLinks);
+    return $searchResults = `
        <div class="links">
           <img src="https://picsum.photos/300/${randomItem}/?random" />
-           <a href="/links/${randomLinks.id}/"><div class="overlay-img"></div></a>
-          <p><strong>${randomLinks.title}</strong></p>
+           <a href="/links/${searchLinks.id}/"><div class="overlay-img"></div></a>
+          <p><strong>${searchLinks.title}</strong></p>
        </div>`;
   }
 

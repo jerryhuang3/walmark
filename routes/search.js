@@ -28,7 +28,7 @@ module.exports = (knex) => {
     let searches = req.query.search;
 
     knex
-      .select('*')
+      .select('links.id', 'title')
       .from('links')
       .join('topics', {'topics.id' : 'links.topic_id'})
       .where('title', 'LIKE', `%${searches}%`)
