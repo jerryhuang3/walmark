@@ -36,7 +36,7 @@ $(() => {
 
   //saving link
   $('#saveto').change(function() {
-    $( "#saved" ).fadeIn('slow'); 
+    $( "#saved" ).fadeIn('slow');
    setTimeout(function() {
       $( "#saved" ).fadeOut(function(){
         $('#saveform').submit();
@@ -45,6 +45,34 @@ $(() => {
     }, 1000);
     });
 
+
+
+
+  $('.star').on('mouseover', function(){
+    let mousedStar = parseInt($(this).data('value')); // The star currently mouse on
+    $.each($(this).parent().children('.star'), function(eachStar) {
+      if (eachStar < mousedStar) {
+        $(this).addClass('hover');
+      }
+      else {
+        $(this).removeClass('hover');
+      }
+    })
+  }).on('mouseout', function() {
+    $.each($(this).parent().children('.star'), function() {
+      $(this).removeClass('hover');
+    });
+  }).on('click', function(){
+    let mousedStar = parseInt($(this).data('value'));
+    var stars = $(this).parent().children('.star');
+    for (i = 0; i < stars.length; i++) {
+      $(stars[i]).removeClass('rating');
+    }
+    for (i = 0; i < mousedStar; i++) {
+      $(stars[i]).addClass('rating');
+    }
+
+  });
 
 
 

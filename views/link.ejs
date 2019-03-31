@@ -44,7 +44,7 @@
                   <%};%>
                 </select>
               </form>
-              
+
             <h3><%=title%></h3>
             <img class="link-avatar" src="<%=user_avatar%>">
             <p class="link-fullname"><%=full_name%></p><br><br>
@@ -52,7 +52,19 @@
             <p class="link-desc"><%=desc%></p>
             <p class="link-date">Created March 28, 2019</p>
         </div>
-        <hr>
+          <hr>
+          <div class='link-ratings'>
+            <ul id='stars'>
+              <li><h4>Rating: 3.5</h4></li>
+              <li class='star' data-value='1'><i class='fa fa-star fa-fw'></i></li>
+              <li class='star' data-value='2'><i class='fa fa-star fa-fw'></i></li>
+              <li class='star' data-value='3'><i class='fa fa-star fa-fw'></i></li>
+              <li class='star' data-value='4'><i class='fa fa-star fa-fw'></i></li>
+              <li class='star' data-value='5'><i class='fa fa-star fa-fw'></i></li>
+            </ul>
+
+          </div>
+          <hr>
         <div class="link-comments">
             <h4>Comments</h4>
             <div id="comments-container">
