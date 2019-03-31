@@ -86,3 +86,7 @@ INSERT INTO boards_links (link_id, board_id) VALUES (2, 1);
 INSERT INTO boards_links (link_id, board_id) VALUES (3, 2);
 INSERT INTO boards_links (link_id, board_id) VALUES (7, 5);
 INSERT INTO boards_links (link_id, board_id) VALUES (9, 5);
+
+
+ALTER TABLE links
+ADD COLUMN color VARCHAR(50);

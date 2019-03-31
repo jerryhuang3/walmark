@@ -62,15 +62,16 @@ module.exports = (knex) => {
     const desc = req.body.link_desc
     const url = req.body.link_url
     const userid = req.session.userid
+    const color = req.body.link_color
     knex.select('id').from('topics').where('name',req.body.link_topic)
     .then(function(result){
       const topic = result[0].id;
       knex.select('id').from('boards').where('title',req.body.link_board)
       .then(function(result){
         const board = result[0].id;
-        // console.log(board,topic);
+        console.log(board,topic);
         knex.insert({user_id:userid, topic_id:topic, url:url, title:title,
-            description:desc, create_date:knex.fn.now()}).returning('id')
+            description:desc, create_date:knex.fn.now(), color:color}).returning('id')
     .into('links').then(function(result){
         const id = result[0];
         console.log(id);
@@ -79,7 +80,7 @@ module.exports = (knex) => {
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
-          console.log('YAY!');
+          console.log('result',req.body.karenlau);
           res.redirect('/');
       }
       })
