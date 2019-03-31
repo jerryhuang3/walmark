@@ -5,9 +5,21 @@ const boards  = express.Router();
 
 module.exports = (knex) => {
 
+  // boards api
   boards.get("/", (req, res) => {
+    knex
+    .select("*")
+      .from("boards")
+      .then((results) => {
+      res.json(results);
+    });
+  });
+
+  // all boards route
+  boards.get("/all", (req, res) => {
     res.render("all_boards")
   });
+
 
   // get from create form
   boards.get("/create", (req, res) => {
