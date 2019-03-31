@@ -20,10 +20,18 @@
   <body>
   <% include ./partials/_header %>
 
-    <div id="link-container">
-      <h2>Need to show board here if board id matches</h2>
-    </div>
-
+    <section id="link-container">
+      <% for (let link = 0; link < links.length; link++) {%>
+        <div class="right-col">
+        <div class="link-info">
+            <p class="linktitle"> <%=links[link].linktitle%> </p><br><br>
+            <p class="topic"> <%=links[link].name%> </p>
+            <a href="<%=url%>" class="button secondary link-visit">Learn Now</a>
+            <p class="link-desc">Description: <%=links[link].description%> </p>
+        </div>
+        </div>
+      <%};%>
+    </section>
 
 
   <script type="text/javascript" src="../../../../vendor/jquery.js"></script>
@@ -31,7 +39,6 @@
   <script type="text/javascript" src="../../../../vendor/foundation.js"></script>
   <script type="text/javascript" src="../../../../vendor/masonry.pkgd.js"></script>
   <script type="text/javascript" src="../../../../vendor/imagesloaded.pkgd.js"></script>
-  <script type="text/javascript" src="../../../../scripts/user_board.js"></script>
   <script>$(document).foundation();</script>
   </body>
 </html>

@@ -38,7 +38,6 @@ $( document ).ready(function() {
   function createHomeLinks(randomLinks) {
     var myArray = ['200', '300', '400', '500', '600'];
     var randomItem = myArray[Math.floor(Math.random() * myArray.length)];
-
     return $randomLinks = `
        <div class="links" xmlns="http://www.w3.org/1999/html">
           <a href="/links/${randomLinks.id}/"><img src="https://picsum.photos/200/${randomItem}/?random" /></a>

@@ -28,7 +28,7 @@ const usersboardRoutes = require("./routes/users_boards");
 const profileRoutes = require("./routes/profile");
 const boards = require("./routes/boards");
 const linksTopicsRoutes = require("./routes/linkstopics");
-const boardsLinksRoutes = require("./routes/linkstopics");
+const boardsLinksRoutes = require("./routes/boards_links");
 
 // Encrypting user sessions
 app.use(cookies({
