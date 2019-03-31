@@ -3,9 +3,6 @@ $(() => {
 $("#togglePaletteOnly").spectrum({
     replacerClassName: 'awesome',
     showPaletteOnly: true,
-    togglePaletteOnly: true,
-    togglePaletteMoreText: 'more',
-    togglePaletteLessText: 'less',
     color: 'blue',
     palette: [
         ["#000","#444","#666","#999","#ccc","#eee","#f3f3f3","#fff"],

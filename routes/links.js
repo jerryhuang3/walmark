@@ -2,6 +2,10 @@
 
 const express = require('express');
 const linksRoutes  = express.Router();
+const LinkHelpers = require('../lib/link-helpers.js');
+const cookieSession = require('cookie-session');
+const cheerio = require('cheerio');
+const request = require('request');
 
 // const getImage = function(url, cb){
 //   request(url, function (error, response, html) {
@@ -9,7 +13,7 @@ const linksRoutes  = express.Router();
 //       var $ = cheerio.load(html);
 //       // console.log('html',html);
 //       const imgs = $('img').toArray().map(e => {
-//         return `http:${e.attribs.src}`
+//         return `http:${e.attribs.src}` 
 //       })
 //       cb(imgs)
 //     }
@@ -22,7 +26,7 @@ module.exports = (knex) => {
   // linksRoutes.get("/try", (req, res) => {
   //   getImage("https://en.wikipedia.org/wiki/Plant", function(images) {
   //     res.json(images);
-  //   })
+  //   })            
   // })
 
 
@@ -69,8 +73,8 @@ module.exports = (knex) => {
       knex.select('id').from('boards').where('title',req.body.link_board)
       .then(function(result){
         const board = result[0].id;
-        console.log(board,topic);
-        knex.insert({user_id:userid, topic_id:topic, url:url, title:title,
+        // console.log(board,topic);
+        knex.insert({user_id:userid, topic_id:topic, url:url, title:title, 
             description:desc, create_date:knex.fn.now(), color:color}).returning('id')
     .into('links').then(function(result){
         const id = result[0];
@@ -80,7 +84,7 @@ module.exports = (knex) => {
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
-          console.log('result',req.body.karenlau);
+          console.log('YAY!');
           res.redirect('/');
       }
       })
@@ -100,7 +104,7 @@ linksRoutes.get("/:linkId", (req, res) => {
           knex.select('title').from('boards')
           .where('user_id',req.session.userid)
           .then(function(results){
-            const boards = results
+            const boards = results;
             const vartemplate = {
               id: req.session.userid,
               title: links.title,
@@ -111,8 +115,9 @@ linksRoutes.get("/:linkId", (req, res) => {
               create_date: links.create_date,
               link_id:linkId,
               username:links.username,
-              boards: boards
-            }
+              boards: boards,
+              color: links.color
+            }            
               res.render('link', vartemplate);
           })
 });
@@ -149,30 +154,6 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
     }
 });
 
-//getting comments
-  linksRoutes.get("/:linkId", (req, res) => {
-    const linkId = req.params.linkId;
-  const response =
-    knex.select('*').from('links')
-      .join('users', { 'links.user_id': 'users.id' })
-      .where('links.id', linkId)
-      .then(function(results) {
-        const links = results[0];
-        const vartemplate = {
-          id: req.session.userid,
-          title: links.title,
-          full_name: links.full_name,
-          user_avatar: links.avatar,
-          url: links.url,
-          desc: links.description,
-          create_date: links.create_date,
-          link_id: linkId,
-          username: links.username
-        }
-        res.render('link', vartemplate);
-      });
-});
-
   //submit edit
   linksRoutes.post("/:linkId/edit", (req, res) =>{
     const user = req.session.userid;
@@ -185,7 +166,7 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
         res.redirect(`/links/${link_id}`)
       })
     })
-
+ 
   })
 //delete link
   linksRoutes.post("/:linkId/delete", (req, res) => {
@@ -201,8 +182,7 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
         })
       }
     })
-
-
+    
   });
 
 
@@ -255,6 +235,26 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
     })
   })
 
+  //marking link done
+  linksRoutes.post("/:linkId/done", (req, res) => {
+    const linkid = req.params.linkId;
+    const userid = req.session.userid;
+    knex.select('learnt').from('learnt_counters').where({link_id:linkid, user_id:userid})
+    .then((result)=>{
+      if(result[0].learnt == 0){
+        knex('learnt_counters').where({link_id:linkid, user_id:userid})
+        .increment('learnt',1).asCallback(function(err){
+          if (err) {
+            res.status(500).json({ error: err.message });
+          } else {
+          res.redirect(`/links/${link_id}/`);
+          }
+        })
+        
+      }
+    })
+  })
+ 
 
   return linksRoutes;
 }
