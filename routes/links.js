@@ -2,10 +2,6 @@
 
 const express = require('express');
 const linksRoutes  = express.Router();
-const LinkHelpers = require('../lib/link-helpers.js');
-const cookieSession = require('cookie-session');
-const cheerio = require('cheerio');
-const request = require('request');
 
 // const getImage = function(url, cb){
 //   request(url, function (error, response, html) {
