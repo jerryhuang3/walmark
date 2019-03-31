@@ -29,15 +29,8 @@ $( document ).ready(function() {
         columnWidth: '.links',
         gutter: 20,
         horizontalOrder: true,
-        fitWidth: true,
+        percentageWidth: true
       });
-      // change size of item by toggling gigante class
-      $grid.on( 'click', '.grid-item', function() {
-        $(this).toggleClass('gigante');
-        // trigger layout after item size changes
-        $grid.masonry('layout');
-      });
-
     });
   };
 
@@ -47,8 +40,8 @@ $( document ).ready(function() {
 
     return $randomLinks = `
        <div class="links">
-          <a href="/links/${randomLinks.id}/"><img src="https://picsum.photos/300/${randomItem}/?random" /></a>
-           <div class="overlay-img"></div>
+          <img src="https://picsum.photos/300/${randomItem}/?random" />
+          <a href="/links/${randomLinks.id}/"><div class="overlay-img"></div></a>
           <p><strong>${randomLinks.title}</strong></p>
        </div>`;
   }

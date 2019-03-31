@@ -11,9 +11,9 @@
       <li class="menu-text"><a href="/users/<%=username%>/profile">Profile</a></li>
       <%}%>
       <li class="menu-text">
-        <form id="search" method="POST" action="/search">
-          <input type="text" placeholder="Search" name="search">
-          <img class="search" src="/images/search.png" width="20px" height="20px">
+        <form method="GET" action="/results">
+          <input  id="search" type="text" placeholder="Search" name="search">
+          <img class="search"  src="/images/search.png" width="20px" height="20px">
         </form>
       </li>
     </ul>

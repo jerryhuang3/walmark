@@ -26,6 +26,7 @@ const likesRoutes = require("./routes/likes");
 const commentsRoutes = require("./routes/comments");
 const usersboardRoutes = require("./routes/users_boards");
 const profileRoutes = require("./routes/profile");
+const searchRoutes = require("./routes/search");
 
 // Encrypting user sessions
 app.use(cookies({
@@ -68,6 +69,7 @@ app.use("/api/comments", commentsRoutes(knex));
 app.use("/api/userboards", usersboardRoutes(knex));
 app.use("/users", profileRoutes(knex));
 app.use("/links", linksRoutes(knex));
+app.use("/results", searchRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
@@ -95,7 +97,6 @@ app.get("/users/:userid", (req, res) => {
     .where('id', req.session.userid)
     .then(function(results){
     let users = results[0];
-    console.log(results);
     res.render('account_page', {
       full_name: users.full_name,
       user_avatar: users.avatar,
@@ -126,22 +127,6 @@ app.post('/users/:username/profile/update', (req, res) => {
     .then((results)=>{
       return res.redirect(`/users/${req.body.username}/profile`);
     });
-});
-
-// Search
-app.post('/search', (req, res) => {
-  let search = req.body.search;
-  console.log(search);
-  knex
-    .select('*')
-    .from('links')
-    .join('topics', {'topics.id' : 'links.topic_id'})
-    .where('title', 'LIKE', `%${search}%`)
-    .orWhere('description', 'LIKE', `%${search}%`)
-    .orWhere('name', 'LIKE', `%${search}%`)
-    .then((results) => {
-      console.log(results);
-  });
 });
 
 

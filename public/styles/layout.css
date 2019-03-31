@@ -76,7 +76,7 @@ body h1 {
   bottom: 0;
   left: 0;
   opacity: 0;
-  text-shadow: 2px black;
+  text-shadow: 2px 2px 2px 2px black;
 }
 
 .walmark {
