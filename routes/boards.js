@@ -2,6 +2,7 @@
 
 const express = require('express');
 const boards  = express.Router();
+const cookieSession = require('cookie-session');
 
 module.exports = (knex) => {
 
@@ -30,8 +31,14 @@ module.exports = (knex) => {
       knex
       .select('*')
       .from('users')
+      .where('id', req.session.userid)
       .then(function(results){
-        res.render("create_board");
+        const templateVars = {
+          id: req.session.userid,
+          username: results.username,
+          fullname: results.full_name,
+        }
+        res.render("create_board", templateVars);
         })
       }
   });
@@ -42,7 +49,9 @@ module.exports = (knex) => {
       res.status(400).json({error: 'invalid request: no data in POST body'});
       return;
     }
-    res.redirect("/boards");
+    const user_id = req.session.userid,
+    link_id = req.params.linkid
+    res.redirect("../users/:userID/boards");
   })
 
   return boards;
