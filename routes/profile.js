@@ -72,7 +72,6 @@ profileRoutes.get("/:userID/board", (req, res) => {
       username: results.username,
       full_name: results.full_name
     }
-      // res.json(boards);
       res.render("create_board", templateVars);
       })
     }
