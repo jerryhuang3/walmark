@@ -20,7 +20,7 @@ profileRoutes.get("/:userID/board/:boardID", (req, res) => {
         const links = results
         const templateVars = {
         id: req.session.userid,
-        title: links.title,
+        boardtitle: links.title,
         full_name: links.full_name,
         user_avatar: links.avatar,
         url: links.url,

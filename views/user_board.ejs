@@ -24,9 +24,9 @@
       <% for (let link = 0; link < links.length; link++) {%>
         <div class="right-col">
         <div class="link-info">
-            <p class="linktitle"> <%=links[link].linktitle%> </p><br><br>
+            <p class="linktitle"><strong> <%=links[link].linktitle%> </strong></p><br><br>
             <p class="topic"> <%=links[link].name%> </p>
-            <a href="<%=url%>" class="button secondary link-visit">Learn Now</a>
+            <a href="<%=links[link].url%>" class="button secondary link-visit">Learn Now</a>
             <p class="link-desc">Description: <%=links[link].description%> </p>
         </div>
         </div>
