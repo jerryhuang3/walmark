@@ -52,6 +52,32 @@ profileRoutes.get("/:userID/boards/:boardID", (req, res) => {
   });
 });
 
+// Create board
+profileRoutes.get("/:userID/board", (req, res) => {
+  const currentUser = req.session.userid;
+    if (!currentUser){
+      res.redirect('back');
+    } else {
+      Promise.all([
+      knex
+      .select('*')
+      .from('users')
+      .where('id', req.session.userid),
+      knex.select('title').from('boards').where('user_id',currentUser)
+      ])
+    .then(function(results){
+      const boards = results[1]
+      const templateVars = {
+      id: req.session.userid,
+      username: results.username,
+      full_name: results.full_name
+    }
+      // res.json(boards);
+      res.render("create_board", templateVars);
+      })
+    }
+  });
+
 
   return profileRoutes;
 }
