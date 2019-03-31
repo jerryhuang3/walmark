@@ -49,7 +49,8 @@ $(() => {
 
 
   $('.star').on('mouseover', function(){
-    let mousedStar = parseInt($(this).data('value')); // The star currently mouse on
+    let mousedStar = $(this).data('value'); // The star currently mouse on
+    console.log($(this).data());
     $.each($(this).parent().children('.star'), function(eachStar) {
       if (eachStar < mousedStar) {
         $(this).addClass('hover');
@@ -63,14 +64,19 @@ $(() => {
       $(this).removeClass('hover');
     });
   }).on('click', function(){
-    let mousedStar = parseInt($(this).data('value'));
+    let mousedStar = $(this).data('value');
     var stars = $(this).parent().children('.star');
-    for (i = 0; i < stars.length; i++) {
-      $(stars[i]).removeClass('rating');
-    }
+
     for (i = 0; i < mousedStar; i++) {
       $(stars[i]).addClass('rating');
+
     }
+
+    let linkID = (window.location.pathname);
+    linkID = linkID.replace(/\/links\//, '').replace('/', '');
+    $.post('/api/ratings', {rating:$(this).data('value'), linkID:linkID}, function(){
+
+    });
 
   });
 
