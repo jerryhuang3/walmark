@@ -34,19 +34,20 @@ html {
       opacity: 0.8;
       color: black;
     }
-    :placeholder-shown {
-      border-bottom-color: #0072CE;
-      border-left-color: white;
-      border-top-color: white;
-      border-right-color: white;
-    }
 
     textarea[name="link_desc"] {
       min-height: 10vw;
     }
 }
 
-// .link-dropdown {
+#choose_color span {
+  display: block;
+}
 
-// }
+#choose_color {
+  margin-bottom: 1vw;
+}
 
+.awesome {
+  background: rgb(255, 255, 255);
+}

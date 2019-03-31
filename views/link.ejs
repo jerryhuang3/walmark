@@ -30,11 +30,16 @@
   <% include ./partials/_header %>
 
     <section id="link-container">
-        <img class="link-img" src="">
-        <!-- <div class="color-block"></div> -->
         <div class="right-col">
         <div class="link-info">
             <a href="/links/<%=link_id%>/edit"><i class="fas fa-pen"></i></a>
+            <form id="learn-link" action="/links/<%=link_id%>/learnt" method="POST">
+              <% if (learnt == 0){%>
+              <button><i class="fas fa-trophy"></i></button>
+              <%} else {%>
+              <button><i class="fas fa-trophy" id="learnt"></i></button>
+              <%}%> 
+            </form>
             <div id="saved">Marked!</div>
             <form id="saveform" action="/links/<%=link_id%>/save" method="POST">
             <select id="saveto" name="selectme">
@@ -48,6 +53,7 @@
             <h3><%=title%></h3>
             <img class="link-avatar" src="<%=user_avatar%>">
             <p class="link-fullname"><%=full_name%></p><br><br>
+            <div id="link-color" style="background-color:<%=color%>"></div>
             <a href="<%=url%>" class="button secondary link-visit">Learn Now</a>
             <p class="link-desc"><%=desc%></p>
             <p class="link-date">Created March 28, 2019</p>

@@ -21,8 +21,8 @@ html {
 #link-container {
   font-family: 'PT Sans', sans-serif;
   background: rgba(255, 255, 255, 0.54);
-  margin: 2vw auto;
-  max-width: 50vw;
+  margin: 0 auto;
+  max-width: 40vw;
   height: auto;
   overflow: auto;
   border: 1px solid grey;
@@ -82,18 +82,21 @@ html {
 .fa-pen {
   color: grey;
   float: right;
-  margin: 1vw;
+  margin: 0.5vw;
 }
 
-.color-block {
-  background-color: red;
-  max-width: 28vw;
-  height: 30vw;
-  float: left;
+.fa-trophy {
+  color: grey;
+  margin: 0.5vw;
+  display: inline;
+}
+
+#learnt {
+  color: #FFB81C;
 }
 
 .right-col {
-  float: right;
+  display: inline-block;
   border: 1px solid grey;
 }
 
@@ -111,4 +114,11 @@ html {
 
 #saveform {
   display: inline-block;
+}
+
+#link-color {
+  width: 20vw;
+  height: 10vw;
+  display: inline-block;
+  border-radius: 10px;
 }
