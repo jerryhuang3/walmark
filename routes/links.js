@@ -79,14 +79,16 @@ module.exports = (knex) => {
     .into('links').then(function(result){
         const id = result[0];
         console.log(id);
+        knex.insert({link_id: id, user_id: userid}).into('learnt_counters').then((result)=>{          
          return knex.insert({link_id: id, board_id: board}).into('boards_links');
-    }).asCallback(function(err){
-      if (err) {
-        res.status(500).json({ error: err.message });
-      } else {
-          console.log('YAY!');
-          res.redirect('/');
-      }
+        }).asCallback(function(err){
+        if (err) {
+          res.status(500).json({ error: err.message });
+        } else {
+            console.log('YAY!');
+            res.redirect('/');
+        }
+        })
       })
     })
   })
@@ -105,6 +107,9 @@ linksRoutes.get("/:linkId", (req, res) => {
           .where('user_id',req.session.userid)
           .then(function(results){
             const boards = results;
+            knex.select('learnt').from('learnt_counters').where({link_id:linkId, user_id:req.session.userid})
+            .then(function(result){
+            const learnt = result[0].learnt;
             const vartemplate = {
               id: req.session.userid,
               title: links.title,
@@ -116,11 +121,14 @@ linksRoutes.get("/:linkId", (req, res) => {
               link_id:linkId,
               username:links.username,
               boards: boards,
-              color: links.color
+              color: links.color,
+              learnt: learnt
             }            
               res.render('link', vartemplate);
+
+            })
           })
-});
+      });
 });
 
 //edit link
@@ -163,7 +171,7 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
       knex('links').where({id : link_id})
       .update({topic_id: gettopic[0].id, title: req.body.link_title, description: req.body.link_desc})
       .then((result)=>{
-        res.redirect(`/links/${link_id}`)
+        res.redirect(`/links/${link_id}/`)
       })
     })
  
@@ -235,22 +243,31 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
     })
   })
 
-  //marking link done
-  linksRoutes.post("/:linkId/done", (req, res) => {
+  //marking link learnt
+  linksRoutes.post("/:linkId/learnt", (req, res) => {
     const linkid = req.params.linkId;
     const userid = req.session.userid;
     knex.select('learnt').from('learnt_counters').where({link_id:linkid, user_id:userid})
     .then((result)=>{
+      // console.log(result[0].learnt);
       if(result[0].learnt == 0){
         knex('learnt_counters').where({link_id:linkid, user_id:userid})
         .increment('learnt',1).asCallback(function(err){
           if (err) {
             res.status(500).json({ error: err.message });
           } else {
-          res.redirect(`/links/${link_id}/`);
+          res.redirect(`/links/${linkid}/`);
           }
         })
-        
+      } else {
+        knex('learnt_counters').where({link_id:linkid, user_id:userid})
+        .decrement('learnt',1).asCallback(function(err){
+          if (err) {
+            res.status(500).json({ error: err.message });
+          } else {
+          res.redirect(`/links/${linkid}/`);
+          }
+        })
       }
     })
   })

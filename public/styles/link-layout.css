@@ -82,7 +82,17 @@ html {
 .fa-pen {
   color: grey;
   float: right;
-  margin: 1vw;
+  margin: 0.5vw;
+}
+
+.fa-trophy {
+  color: grey;
+  margin: 0.5vw;
+  display: inline;
+}
+
+#learnt {
+  color: #FFB81C;
 }
 
 .right-col {

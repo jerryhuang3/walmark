@@ -55,5 +55,5 @@ CREATE TABLE learnt_counters (
    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
    link_id INTEGER NOT NULL REFERENCES links(id) ON DELETE CASCADE,
    PRIMARY KEY (user_id, link_id),
-   learnt INTEGER
+   learnt INTEGER DEFAULT 0
 );
