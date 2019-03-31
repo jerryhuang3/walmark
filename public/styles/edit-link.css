@@ -23,9 +23,12 @@ html {
   margin: 2vw auto;
   border: 1px solid;
   display: flex;
-  align-items: center;
   justify-content: center;
   padding: 2vw;
+}
+
+#edit-link #form-container {
+  margin: 0 auto;
 }
 
 #edit-link input[name="link_title"] {
@@ -47,4 +50,10 @@ html {
 
 #edit-link textarea[name="link_desc"] {
   min-height: 10vw;
+}
+
+#edit-link .fa-trash {
+  color: grey;
+  display: inline-block;
+  font-size: 2vw;
 }

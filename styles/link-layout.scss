@@ -21,8 +21,8 @@ html {
   font-family: 'PT Sans', sans-serif;
   background: rgba(255, 255, 255, 0.54);
   margin: 2vw auto;
-  max-width: 60vw;
-  // height: auto;
+  max-width: 50vw;
+  height: auto;
   overflow: auto;
   border: 1px solid grey;
   border-radius: 8px;
@@ -36,9 +36,6 @@ html {
 
 .link-info {
   width: 25vw;
-  display: inline-block;
-  margin: auto 1vw;
-  border: 1px solid grey;
   padding: 0.5vw;
 
   h3 {
@@ -58,9 +55,7 @@ html {
 
 .link-comments {
   width: 25vw;
-  display: inline-block;
-  margin: 0 1vw;
-  border: 1px solid grey;
+  margin: 0 auto;
   padding: 0.5vw;
 
   h4 {
@@ -87,4 +82,32 @@ html {
   color: grey;
   float: right;
   margin: 1vw;
+}
+
+.color-block {
+  background-color: red;
+  max-width: 28vw;
+  height: 30vw;
+  float: left;
+}
+
+.right-col {
+  float: right;
+  border: 1px solid grey;
+}
+
+#saved {
+  width: 5vw;
+  height: 2vw;
+  background-color: #0072CE;
+  color: #FFB81C;
+  font-weight: bold;
+  text-align: center;
+  display: none;
+  position: absolute;
+  z-index: 2;
+}
+
+#saveform {
+  display: inline-block;
 }

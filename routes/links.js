@@ -7,17 +7,18 @@ const cookieSession = require('cookie-session');
 const cheerio = require('cheerio');
 const request = require('request');
 
-const getImage = function(url, cb){
-  request(url, function (error, response, html) {
-    if (!error && response.statusCode == 200) {
-      var $ = cheerio.load(html);
-      const imgs = $('img').toArray().map(e => {
-        return `http:${e.attribs.src}` 
-      })
-      cb(imgs)
-    }
-  })
-}
+// const getImage = function(url, cb){
+//   request(url, function (error, response, html) {
+//     if (!error && response.statusCode == 200) {
+//       var $ = cheerio.load(html);
+//       // console.log('html',html);
+//       const imgs = $('img').toArray().map(e => {
+//         return `http:${e.attribs.src}` 
+//       })
+//       cb(imgs)
+//     }
+//   })
+// }
 
 module.exports = (knex) => {
 
@@ -97,23 +98,26 @@ linksRoutes.get("/:linkId", (req, res) => {
     knex.select('*').from('links')
         .join('users',{'links.user_id' : 'users.id'})
         .where('links.id',linkId)
-              .then(function(results){
-                const links = results[0];
-                getImage(links.url, function(images) {
-                const vartemplate = {
-                  id: req.session.userid,
-                  title: links.title,
-                  full_name: links.full_name,
-                  user_avatar: links.avatar,
-                  url: links.url,
-                  desc: links.description,
-                  create_date: links.create_date,
-                  link_id:linkId,
-                  username:links.username,
-                  img:images[4]
-                }            
-                  res.render('link', vartemplate);
-              })
+        .then(function(results){
+          const links = results[0];
+          knex.select('title').from('boards')
+          .where('user_id',req.session.userid)
+          .then(function(results){
+            const boards = results
+            const vartemplate = {
+              id: req.session.userid,
+              title: links.title,
+              full_name: links.full_name,
+              user_avatar: links.avatar,
+              url: links.url,
+              desc: links.description,
+              create_date: links.create_date,
+              link_id:linkId,
+              username:links.username,
+              boards: boards
+            }            
+              res.render('link', vartemplate);
+          })
 });
 });
 
@@ -164,7 +168,7 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
   })
 //delete link
   linksRoutes.post("/:linkId/delete", (req, res) => {
-    console.log('heelooo');
+    // console.log('heelooo');
     const currentUser = req.session.userid;
     const link_id = req.params.linkId;
     knex.select('user_id').from('links').where('id',link_id).then((result)=>{
@@ -201,7 +205,7 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
         link_id = req.params.linkId,
         text = req.body.text,
         like_count = 0
-      knex.insert([{user_id: user_id, link_id: link_id, text: text, create_date: knex.fn.now()}])
+      knex.insert({user_id: user_id, link_id: link_id, text: text, create_date: knex.fn.now()})
           .into('comments').asCallback(function(err){
             if (err) {
               res.status(500).json({ error: err.message });
@@ -212,6 +216,23 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
         });
   })
 
+  //saving link to own board
+  linksRoutes.post("/:linkId/save", (req, res) => {
+    const link_id = req.params.linkId;
+    const board = req.body.selectme;
+    knex.select('id').from('boards').where('title',board)
+    .then((result)=> {
+      knex.insert({link_id: link_id, board_id:result[0].id})
+      .into('boards_links').asCallback(function(err){
+        if (err) {
+          res.status(500).json({ error: err.message });
+        } else {
+        res.redirect(`/links/${link_id}/`);
+        }
+      })
+    })
+  })
+ 
 
   return linksRoutes;
 }

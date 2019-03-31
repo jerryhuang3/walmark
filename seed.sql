@@ -7,6 +7,28 @@ INSERT INTO topics (name)
   VALUES('math');
 INSERT INTO topics (name)
   VALUES('programming');
+INSERT INTO topics (name)
+  VALUES('javascript');
+INSERT INTO topics (name)
+  VALUES('gaming');
+INSERT INTO topics (name)
+  VALUES('english');
+INSERT INTO topics (name)
+  VALUES('science');
+INSERT INTO topics (name)
+  VALUES('fitness');
+INSERT INTO topics (name)
+  VALUES('wizardry');
+INSERT INTO topics (name)
+  VALUES('dating');
+INSERT INTO topics (name)
+  VALUES('nature');
+INSERT INTO topics (name)
+  VALUES('business');
+INSERT INTO topics (name)
+  VALUES('python');
+INSERT INTO topics (name)
+  VALUES('cooking');
 
 
 INSERT INTO boards (user_id, title) VALUES (1, 'First board');

@@ -34,9 +34,18 @@ $(() => {
 
   loadComments();
 
-  // $('.fa-pen').click(function(){
-  //   $('#register_form').slideToggle();
-  // });
+  //saving link
+  $('#saveto').change(function() {
+    $( "#saved" ).fadeIn('slow'); 
+   setTimeout(function() {
+      $( "#saved" ).fadeOut(function(){
+        $('#saveform').submit();
+        event.preventDefault();
+      })
+    }, 1000);
+    });
+
+
 
 
 });
