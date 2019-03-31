@@ -25,34 +25,30 @@ module.exports = (knex) => {
   // get from create form
   boards.get("/create", (req, res) => {
     const currentUser = req.session.userid;
-    if (!currentUser){
-      res.redirect('back');
-    } else {
-      knex
-      .select('*')
-      .from('users')
-      .where('id', req.session.userid)
-      .then(function(results){
-        const templateVars = {
-          id: req.session.userid,
-          username: results.username,
-          fullname: results.full_name,
-        }
-        res.render("create_board", templateVars);
-        })
-      }
-  });
+    knex
+    .select('*')
+    .from('users')
+    .then(function(results){
+      const cookie = results[0][0]
+      const boards = results[1]
+      const templateVars = {
+      id: req.session.userid,
+      boards : boards}
+      // res.json(boards);
+      res.render("create_board", templateVars);
+      })
+    });
 
   // post to database and redirect to /users/boards
-  boards.post("/create", (req, res) => {
-    if (!req.body) {
-      res.status(400).json({error: 'invalid request: no data in POST body'});
-      return;
-    }
-    const user_id = req.session.userid,
-    link_id = req.params.linkid
-    res.redirect("../users/:userID/boards");
-  })
+  // boards.post("/create", (req, res) => {
+  //   if (!req.body) {
+  //     res.status(400).json({error: 'invalid request: no data in POST body'});
+  //     return;
+  //   }
+  //   const user_id = req.session.userid,
+  //   link_id = req.params.linkid
+  //   res.redirect("../users/:userID/boards");
+  // })
 
   return boards;
 }
