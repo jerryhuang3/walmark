@@ -74,6 +74,7 @@ profileRoutes.get("/:userID/board/:boardID", (req, res) => {
         username: links.username,
         linktitle: links.linktitle,
         topic: links.name,
+        color: links.color,
         links: links
         }
       res.render('user_board', templateVars);

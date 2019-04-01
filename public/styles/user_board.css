@@ -68,6 +68,7 @@ body h1 {
   border: 1px solid grey;
   border-radius: 8px;
   padding: 2vw;
+  padding-left: 4vw;
 }
 
 .link-info {
@@ -75,7 +76,17 @@ body h1 {
   display: inline-block;
   margin: 15px 1vw;
   border: 1px solid grey;
-  padding: 0.5vw;
+  padding: 2.5vw;
+  float: left;
+  position: relative;
+  width: 30%;
+  text-align: left;
+  opacity: 0.5;
+  overflow: auto;
+}
+
+.link-info:hover {
+  opacity: 1;
 }
 
 .link-info h3 {

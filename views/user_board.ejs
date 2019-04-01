@@ -20,10 +20,10 @@
   <body>
   <% include ./partials/_header %>
 
-    <section id="link-container">
+    <section id="link-container" style="margin-top:20px">
       <% for (let link = 0; link < links.length; link++) {%>
         <div class="right-col">
-        <div class="link-info">
+        <div class="link-info" style="background-color:<%=links[link].color%>;">
             <p class="linktitle"><strong> <%=links[link].linktitle%> </strong></p><br><br>
             <p class="topic"> <%=links[link].name%> </p>
             <a href="<%=links[link].url%>" class="button secondary link-visit">Learn Now</a>
