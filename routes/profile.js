@@ -48,7 +48,7 @@ profileRoutes.post("/:userID/board/create", (req, res) => {
       console.log(result)
     })
   })
-  res.redirect('/');
+  res.redirect('/users/:userID');
 })
 
 // Route for updating boards
