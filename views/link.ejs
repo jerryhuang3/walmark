@@ -31,6 +31,7 @@
   <% include ./partials/_header %>
 
     <section id="link-box">
+
         <div class="right-col">
         <div class="link-info">
           <% if (id == link_user){%>
@@ -46,50 +47,56 @@
               <%} else {%>
 
               <%}%>
-            </form>
+              <form id="learn-link" action="/links/<%=link_id%>/learnt" method="POST">
+                <% if (learnt == 0){%>
+                <button><i class="fas fa-trophy"></i></button>
+                <%} else if (learnt == 1){%>
+                <button><i class="fas fa-trophy" id="learnt"></i></button>
+                <%} else {%>
+
+                <%}%>
+              </form>
             <div id="saved">Marked!</div>
             <form id="saveform" action="/links/<%=link_id%>/save" method="POST">
             <select id="saveto" name="selectme">
                 <option value="" >Mark it on your wall</option>
                 <% for (let board = 0; board < boards.length; board++) {%>
-                  <option value="<%=boards[board].title%>"><%=boards[board].title%></option>
+                <option value="<%=boards[board].title%>"><%=boards[board].title%></option>
                   <%};%>
-                </select>
-              </form>
-
+            </select>
+            </form>
+          </div>
             <h3><%=title%></h3>
             <img class="link-avatar" src="<%=user_avatar%>">
             <p class="link-fullname"><%=link_name%></p><br><br>
-            <div id="link-color" style="background-color:<%=color%>"></div>
-            <a href="<%=url%>" class="button secondary link-visit">Learn Now</a>
+            <a href="<%=url%>"><div id="link-color" style="background-color:<%=color%>"></div></a>
+
             <p class="link-desc"><%=desc%></p>
             <p class="link-date">Created on <%=create_date%></p>
-        </div>
-          <hr>
-          <div class='link-ratings'>
-            <ul id='stars'>
-              <li><h4>Rating<%if (avg_rating > 0) {%>: <%=avg_rating%>  <%}%></h4></li>
-              <li class='star' data-value='1'><i class='fa fa-star fa-fw'></i></li>
-              <li class='star' data-value='2'><i class='fa fa-star fa-fw'></i></li>
-              <li class='star' data-value='3'><i class='fa fa-star fa-fw'></i></li>
-              <li class='star' data-value='4'><i class='fa fa-star fa-fw'></i></li>
-              <li class='star' data-value='5'><i class='fa fa-star fa-fw'></i></li>
-            </ul>
-
+            <div class='link-ratings'>
+                <ul id='stars'>
+                  <li><h4>Rating<%if (avg_rating > 0) {%>: <%=avg_rating%>  <%}%></h4></li>
+                  <li class='star' data-value='1'><i class='fa fa-star fa-fw'></i></li>
+                  <li class='star' data-value='2'><i class='fa fa-star fa-fw'></i></li>
+                  <li class='star' data-value='3'><i class='fa fa-star fa-fw'></i></li>
+                  <li class='star' data-value='4'><i class='fa fa-star fa-fw'></i></li>
+                  <li class='star' data-value='5'><i class='fa fa-star fa-fw'></i></li>
+                </ul>
+              </div>
           </div>
           <hr>
-        <div class="link-comments">
+
+          <hr>
+          <div class="link-comments">
             <h4>Comments</h4>
             <div id="comments-container">
               <!-- insert all comments here -->
             </div>
-            <form action="/links/<%=link_id%>/comment" method="POST" class="comment-content">
-                <!-- <img class="comment-post-avatar" src="images/noavatar.jpg"> -->
-                <textarea name="text" placeholder="How do you like this?"></textarea>
-                <input type="submit" value="Done">
+            <form action="/links/<%=link_id%>/comment" method="POST" class="comment-submit">
+              <textarea name="text" placeholder="How do you like this?"></textarea>
+              <input type="submit" value="Done">
             </form>
         </div>
-      </div>
     </section>
 
   </body>

@@ -224,7 +224,6 @@ body h1 {
 
 #stars {
   margin: 0 auto;
-  padding: 0.5vw;
   top: 3em;
   list-style: none;
 }
@@ -247,4 +246,11 @@ body h1 {
 
 .link-ratings ul > li.star.rating > i.fa {
   color: #bccc05;
+}
+
+#logo-text {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 2vw;
+  font-weight: bold;
+  margin-right: 0.5vw;
 }

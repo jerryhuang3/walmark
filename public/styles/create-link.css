@@ -21,7 +21,8 @@ html {
 #newlink-container {
   max-width: 45vw;
   margin: 2vw auto;
-  border: 1px solid;
+  border: 1px solid grey;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
