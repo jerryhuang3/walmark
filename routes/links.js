@@ -61,7 +61,7 @@ module.exports = (knex) => {
           res.status(500).json({ error: err.message });
         } else {
             console.log('YAY!');
-            res.redirect('/');
+            res.redirect(`/links/${id}/`);
         }
         })
       })

@@ -40,6 +40,7 @@ html {
 
   h3 {
   font-weight: bold;
+  word-break: break-word;
   }
 }
 
@@ -85,19 +86,20 @@ html {
 
 .fa-pen {
   color: grey;
-  margin: 0.5vw;
+  margin: 1vw;
   order: 2;
 }
 
 .fa-trophy {
   color: grey;
-  margin: 0.5vw;
+  margin: 1vw;
   justify-content: flex-end;
   order:3;
 }
 
 #saveform {
   order:1;
+  margin-left: 0.5vw;
 }
 
 #learnt {
