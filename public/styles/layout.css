@@ -254,3 +254,10 @@ body h1 {
   font-weight: bold;
   margin-right: 0.5vw;
 }
+
+.menu-center {
+  position: relative;
+  left: 20em;
+  top: 1em;
+  font-weight: bold;
+}
