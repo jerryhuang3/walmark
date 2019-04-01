@@ -101,21 +101,24 @@ app.get("/", (req, res) => {
 
 // Account Page
 app.get("/users/:userid", (req, res) => {
-  knex
-    .select('*')
-    .from('users')
-    .where('id', req.session.userid)
+  knex.select('*').from('users')
+  .join('boards',{'users.id' : 'boards.user_id'})
+    .where('users.id', req.session.userid)
     .then(function(results){
-    let users = results[0];
-    res.render('account_page', {
-      full_name: users.full_name,
-      user_avatar: users.avatar,
-      email: users.email,
-      id: req.session.userid,
-      username: users.username,
+      console.log('results:', results);
+      const walls = results;
+      const templateVars = {
+        walls: walls,
+        full_name: walls.full_name,
+        user_avatar: walls.avatar,
+        email: walls.email,
+        id: req.session.userid,
+        username: walls.username,
+        title: walls.title
+      }
+      res.render('account_page', templateVars);
     });
   });
-});
 
 // User Profile
 app.get("/users/:username/profile", (req, res) => {
