@@ -51,11 +51,6 @@ profileRoutes.post("/:userID/board/create", (req, res) => {
   res.redirect('/users/:userID');
 })
 
-// Route for updating boards
-profileRoutes.put("/:userID/board/:boardID/update", (req, res) => {
-
-})
-
 // User boards
 profileRoutes.get("/:userID/board/:boardID", (req, res) => {
   const userID = req.params.userID;
