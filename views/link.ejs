@@ -20,7 +20,7 @@
     <script src="/vendor/masonry.pkgd.js"></script>
     <script src="/vendor/imagesloaded.pkgd.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.0/moment-with-locales.js"></script>
     <script src="/vendor/foundation.js"></script>
     <script>$(document).foundation();</script>
   </head>
@@ -36,7 +36,7 @@
           <% if (id == link_user){%>
             <a href="/links/<%=link_id%>/edit"><i class="fas fa-pen"></i></a>
             <%} else {%>
-  
+
             <%}%>
             <form id="learn-link" action="/links/<%=link_id%>/learnt" method="POST">
               <% if (learnt == 0){%>
@@ -44,7 +44,7 @@
               <%} else if (learnt == 1){%>
               <button><i class="fas fa-trophy" id="learnt"></i></button>
               <%} else {%>
-                
+
               <%}%>
             </form>
             <div id="saved">Marked!</div>

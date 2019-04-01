@@ -1,16 +1,19 @@
 
 $( document ).ready(function() {
   function loadBoards() {
-    $.get('/api/userboards', function(allLinks) {
-      renderBoards(allLinks);
+    $.get('/api/userboards', function(allBoards) {
+      renderBoards(allBoards);
     });
+    $.get('/api/userlinks', function(allLinks) {
+      renderLinks(allLinks);
+    });
+
   };
   loadBoards();
 
   function renderBoards(boardLinks) {
-
     for (let i = 0; i < boardLinks.length; i++) {
-      $("#boards-container").prepend(createBoards(boardLinks[i]));
+      $("#boards-container").prepend(createBoards(boardLinks[i], (975 + i)));
     }
     let $grid = $('#boards-container').imagesLoaded(function() {
       $grid.masonry({
@@ -19,20 +22,14 @@ $( document ).ready(function() {
         horizontalOrder: true,
         percentPosition: true
       });
-      // change size of item by toggling gigante class
-      $grid.on('click', '.grid-item', function() {
-        $(this).toggleClass('gigante');
-        // trigger layout after item size changes
-        $grid.masonry('layout');
-      });
-
     });
   };
 
-  function createBoards(boards) {
+  function createBoards(boards, count) {
 
     return $boards = `
        <div class="boards">
+           <img src="https://picsum.photos/300/400/?image=${count}">
           <h2>${boards.title}</h2>
           <h2>${boards.id}</h2>
           <h2>${boards.full_name}</h2>

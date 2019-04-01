@@ -25,6 +25,7 @@ const topicsRoutes = require("./routes/topics");
 const likesRoutes = require("./routes/likes");
 const commentsRoutes = require("./routes/comments");
 const usersboardRoutes = require("./routes/users_boards");
+const userslinkRoutes = require("./routes/users_links")
 const profileRoutes = require("./routes/profile");
 const boards = require("./routes/boards");
 const linksTopicsRoutes = require("./routes/linkstopics");
@@ -72,6 +73,7 @@ app.use("/api/topics", topicsRoutes(knex));
 app.use("/api/likes", likesRoutes(knex));
 app.use("/api/comments", commentsRoutes(knex));
 app.use("/api/userboards", usersboardRoutes(knex));
+app.use("/api/userlinks", usersboardRoutes(knex));
 app.use("/users", profileRoutes(knex));
 app.use("/links", linksRoutes(knex));
 app.use("/boards", boards(knex));

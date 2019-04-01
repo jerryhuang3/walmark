@@ -21,7 +21,7 @@ $( document ).ready(function() {
     let randomLinks = shuffle(allLinks);
 
     for (let i = 0; i < randomLinks.length; i++) {
-        $("#link-container").prepend(createHomeLinks(randomLinks[i]));
+        $("#link-container").prepend(createHomeLinks(randomLinks[i], (975 + i)));
     }
     let $grid = $('#link-container').imagesLoaded(function() {
       $grid.masonry({
@@ -34,13 +34,13 @@ $( document ).ready(function() {
     });
   };
 
-  function createHomeLinks(randomLinks) {
+  function createHomeLinks(randomLinks, count) {
     var myArray = ['400', '450', '500', '550', '600'];
     var randomItem = myArray[Math.floor(Math.random() * myArray.length)];
 
     return $randomLinks = `
        <div class="links">
-          <img src="https://picsum.photos/300/${randomItem}/?random" />
+          <img src="https://picsum.photos/300/${randomItem}/?image=${count}" />
           <a href="/links/${randomLinks.id}/"><div class="overlay-img"></div></a>
           <p><strong>${randomLinks.title}</strong></p>
        </div>`;
