@@ -19,7 +19,6 @@ html {
 
 #link-box {
   font-family: 'PT Sans', sans-serif;
-  background: rgba(255, 255, 255, 0.54);
   margin: 2vw auto;
   max-width: 60vw;
   height: auto;
@@ -27,18 +26,17 @@ html {
   border: 1px solid grey;
   border-radius: 8px;
   padding: 2vw;
-}
-
-.link-img {
-  max-width: 28vw;
-  float: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
 .link-info {
   width: 25vw;
   min-height: 35vw;
   padding: 0.5vw;
-  display: inline-block;
+  order: 1;
+  border-right: 1px solid grey;
 
   h3 {
   font-weight: bold;
@@ -60,24 +58,18 @@ html {
   min-height:35vw;
   margin: 0 auto;
   padding: 0.5vw;
-  // display: inline-block;
-  float: right;
-
+  order: 2;
   h4 {
     font-weight: bold;
   }
 }
 
-.link-visit {
-  width: 22vw;
-}
 
 #comment-container {
   height: 20vw;
+  border: 1px solid;
 }
-.comment-content {
-  height: 15vw;
-}
+
 
 .comment-avatar, .link-avatar {
   width: 3vw;
@@ -88,18 +80,24 @@ html {
 
 .comment-content textarea {
   display: inline-block;
+
 }
 
 .fa-pen {
   color: grey;
-  float: right;
   margin: 0.5vw;
+  order: 2;
 }
 
 .fa-trophy {
   color: grey;
   margin: 0.5vw;
-  display: inline;
+  justify-content: flex-end;
+  order:3;
+}
+
+#saveform {
+  order:1;
 }
 
 #learnt {
@@ -123,13 +121,20 @@ html {
   z-index: 2;
 }
 
-#saveform {
-  display: inline-block;
-}
 
 #link-color{
   width: 20vw;
   height: 10vw;
   display: inline-block;
   border-radius: 10px;
+}
+
+.link-ratings {
+  align-self: flex-end;
+  padding: 0;
+}
+
+.topbar{
+  display: flex;
+  flex-direction: row;
 }

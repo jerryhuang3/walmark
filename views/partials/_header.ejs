@@ -4,8 +4,8 @@
 <div class="top-bar">
   <div class="top-bar-left">
     <ul class="menu">
-      <li class="menu-text"><a href="/">Walmark</a></li>
-      <li class="walmark"><a href="/"><img src="/images/walmart.png" width="25px" height="25px"></a></li>
+      <li id="logo-text" class="menu-text"><a href="/">Walmark</a></li>
+      <li class="walmark"><a href="/"><img src="/images/Walmart_Spark.fw.png" width="25px" height="25px"></a></li>
       <%if (id) {%>
       <li class="menu-text"><a href="/users/<%=username%>">Account</a></li>
       <li class="menu-text"><a href="/users/<%=username%>/profile">Profile</a></li>
@@ -52,6 +52,7 @@
           </div>
         </li>
       <%} else {%>
+        <li><a href="/links/create"><i class="fas fa-plus-circle"></i></a></li>
         <li><a href="/users/<%=username%>/profile">Welcome <%=full_name%>!</a></li>
         <li>
           <form method="POST" action="/logout">

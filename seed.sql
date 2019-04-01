@@ -90,3 +90,5 @@ INSERT INTO boards_links (link_id, board_id) VALUES (9, 5);
 
 ALTER TABLE links
 ADD COLUMN color VARCHAR(50);
+ALTER SEQUENCE links_id_seq RESTART;
+UPDATE links SET id = DEFAULT;

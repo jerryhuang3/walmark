@@ -21,7 +21,8 @@ html {
 #edit-link {
   max-width: 45vw;
   margin: 2vw auto;
-  border: 1px solid;
+  border: 1px solid grey;
+  border-radius: 8px;
   display: flex;
   justify-content: center;
   padding: 2vw;
@@ -53,7 +54,12 @@ html {
 }
 
 #edit-link .fa-trash {
-  color: grey;
+  color: red;
   display: inline-block;
-  font-size: 2vw;
+  font-size: 1.5vw;
+}
+
+.goback {
+  font-weight: bold;
+  top: 30vw;
 }

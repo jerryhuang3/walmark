@@ -14,7 +14,8 @@
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 html {
   line-height: 1.15;
-  -webkit-text-size-adjust: 100%; }
+  -webkit-text-size-adjust: 100%;
+   }
 
 body {
   background-color: #EEE;
@@ -121,7 +122,7 @@ body {
 
 #stars {
   margin: 0 auto;
-  padding: 0.5vw;
+  // padding: 0.5vw;
   top: 3em;
   list-style: none;
 }
@@ -143,4 +144,11 @@ body {
 
 .link-ratings ul > li.star.rating > i.fa {
   color: #bccc05;
+}
+
+#logo-text{
+  font-family: 'PT Sans', sans-serif;
+  font-size: 2vw;
+  font-weight: bold;
+  margin-right: 0.5vw;
 }
