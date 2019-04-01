@@ -15,10 +15,17 @@
 
 
 
-  <body>
-  <% include ./partials/_header %>
+  <body class="index-page">
 
-  <div id="link-container"></div>
+  <% include ./partials/_header %>
+  <%if (!id) {%>
+    <div id="#front-page">
+      <img class="front" src="images/backgroundimg.png">
+      <div class="overlayimage"></div>
+    </div>
+  <%} else {%>
+    <div id="link-container"></div>
+  <%}%>
 
   <script type="text/javascript" src="vendor/jquery.js"></script>
   <script type="text/javascript" src="vendor/what-input.js"></script>

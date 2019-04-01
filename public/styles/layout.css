@@ -26,6 +26,27 @@ body h1 {
   color: #244751;
 }
 
+#acctpage h2, p {
+  text-align: center;
+}
+
+.resource-bar {
+  text-align: center;
+}
+
+.overlayimage {
+  position: absolute;
+  width: 100%;
+  margin: 0 auto;
+  bottom: 0;
+  top: 4.8em;
+  right: 0;
+  left: 0;
+  opacity: .5;
+  background-color: #454643;
+  overflow: hidden;
+}
+
 #link-container {
   background: rgba(255, 255, 255, 0.54);
   margin: 0 auto;
@@ -111,15 +132,94 @@ body h1 {
 #boards-container {
   background: rgba(255, 255, 255, 0.54);
   margin: 0 auto;
-  max-width: 75vw;
-  border: 1px solid black;
+  max-width: 85vw;
+  top: 2em;
 }
 
 #boards-container .boards {
+  position: relative;
   width: 20%;
   margin-bottom: 20px;
-  padding-left: 1em;
-  border: 1px solid black;
+}
+
+#boards-container img {
+  border-radius: .5em;
+}
+
+#boards-container .boards:hover {
+  transform: scale(1.05);
+}
+
+#boards-container .boards:hover .overlay-img {
+  opacity: .5;
+}
+
+#boards-container .boards:hover p {
+  opacity: 1;
+}
+
+#boards-container .boards p {
+  position: absolute;
+  color: #ffffff;
+  padding-left: 2em;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  text-shadow: 2px 2px 2px 2px black;
+}
+
+#boards-container .boards .overlay-img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  background-color: #0073CF;
+  border-radius: .5em;
+  overflow: hidden;
+}
+
+#userlinks-container {
+  background: rgba(255, 255, 255, 0.54);
+  margin: 0 auto;
+  max-width: 85vw;
+  top: -40em;
+  visibility: collapse;
+}
+
+#userlinks-container .links p {
+  position: absolute;
+  color: #ffffff;
+  padding-left: 2em;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  text-shadow: 2px 2px 2px 2px black;
+}
+
+#userlinks-container .links:hover p {
+  opacity: 1;
+}
+
+#userlinks-container .links:hover .overlay-img {
+  opacity: .5;
+}
+
+#userlinks-container .links:hover {
+  transform: scale(1.05);
+}
+
+#userlinks-container img {
+  border-radius: .5em;
+}
+
+#userlinks-container .links {
+  position: relative;
+  width: 20%;
+  margin-bottom: 20px;
 }
 
 #stars {

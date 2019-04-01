@@ -21,7 +21,7 @@ $( document ).ready(function() {
     let randomLinks = shuffle(allLinks);
 
     for (let i = 0; i < randomLinks.length; i++) {
-        $("#link-container").prepend(createHomeLinks(randomLinks[i], (975 + i)));
+        $("#link-container").prepend(createHomeLinks(randomLinks[i], (925 + i)));
     }
     let $grid = $('#link-container').imagesLoaded(function() {
       $grid.masonry({
@@ -35,8 +35,8 @@ $( document ).ready(function() {
   };
 
   function createHomeLinks(randomLinks, count) {
-    var myArray = ['400', '450', '500', '550', '600'];
-    var randomItem = myArray[Math.floor(Math.random() * myArray.length)];
+    const myArray = ['400', '500', '600'];
+    const randomItem = myArray[Math.floor(Math.random() * myArray.length)];
 
     return $randomLinks = `
        <div class="links">

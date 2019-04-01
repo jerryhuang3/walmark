@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/account_page.css" type="text/css" />
     <link rel="stylesheet" href="/styles/foundation.css" type="text/css" />
   </head>
 
@@ -18,22 +17,19 @@
 
   <body>
   <% include ./partials/_header %>
-    <h2>Hub</h2>
-    <p>Email: </p>
-
+  <div id="acctpage">
+    <h2><%=full_name%>'s Hub</h2>
+    <p>Email: <%=email%></p>
+  </div>
 
 
 <div class="resource-bar">
   <a id="click1">Walls</a>
   <a id="click2">Links</a>
-  <a id="click3">Saved</a>
 </div>
 
-<% for (let wall = 0; wall < walls.length; wall++) {%>
-        <div class="boards">
-          <h2 class= "boardTitle">Wall: <%=walls[wall].title%></h2>
-        </div>
-      <%};%>
+  <div id="boards-container"></div>
+  <div id="userlinks-container"></div>
 
 
   <script type="text/javascript" src="/vendor/jquery.js"></script>
@@ -41,6 +37,7 @@
   <script type="text/javascript" src="/vendor/foundation.js"></script>
   <script type="text/javascript" src="/vendor/masonry.pkgd.js"></script>
   <script type="text/javascript" src="/vendor/imagesloaded.pkgd.js"></script>
+  <script type="text/javascript" src="/scripts/user_resources.js"></script>
   <script>$(document).foundation();</script>
   </body>
 </html>

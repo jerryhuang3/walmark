@@ -22,10 +22,9 @@ const linkRoutes = require("./routes/home");
 const ratingsRoutes = require("./routes/ratings");
 const boardsRoutes = require("./routes/boards");
 const topicsRoutes = require("./routes/topics");
-const likesRoutes = require("./routes/likes");
 const commentsRoutes = require("./routes/comments");
 const usersboardRoutes = require("./routes/users_boards");
-const userslinkRoutes = require("./routes/users_links")
+const userslinkRoutes = require("./routes/users_links");
 const profileRoutes = require("./routes/profile");
 const boards = require("./routes/boards");
 const linksTopicsRoutes = require("./routes/linkstopics");
@@ -70,10 +69,9 @@ app.use("/api/links", linkRoutes(knex));
 app.use("/api/ratings", ratingsRoutes(knex));
 app.use("/api/boards", boardsRoutes(knex));
 app.use("/api/topics", topicsRoutes(knex));
-app.use("/api/likes", likesRoutes(knex));
 app.use("/api/comments", commentsRoutes(knex));
 app.use("/api/userboards", usersboardRoutes(knex));
-app.use("/api/userlinks", usersboardRoutes(knex));
+app.use("/api/userlinks", userslinkRoutes(knex));
 app.use("/users", profileRoutes(knex));
 app.use("/links", linksRoutes(knex));
 app.use("/boards", boards(knex));
@@ -101,24 +99,21 @@ app.get("/", (req, res) => {
 
 // Account Page
 app.get("/users/:userid", (req, res) => {
-  knex.select('*').from('users')
-  .join('boards',{'users.id' : 'boards.user_id'})
-    .where('users.id', req.session.userid)
+  knex
+  .select('*')
+    .from('users')
+    .where('id', req.session.userid)
     .then(function(results){
-      console.log('results:', results);
-      const walls = results;
-      const templateVars = {
-        walls: walls,
-        full_name: walls.full_name,
-        user_avatar: walls.avatar,
-        email: walls.email,
+      let users = results[0];
+      res.render('account_page', {
+        full_name: users.full_name,
+        user_avatar: users.avatar,
+        email: users.email,
         id: req.session.userid,
-        username: walls.username,
-        title: walls.title
-      }
-      res.render('account_page', templateVars);
+        username: users.username,
+      });
     });
-  });
+});
 
 // User Profile
 app.get("/users/:username/profile", (req, res) => {

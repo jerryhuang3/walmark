@@ -75,7 +75,7 @@ $(() => {
     let linkID = (window.location.pathname);
     linkID = linkID.replace(/\/links\//, '').replace('/', '');
     $.post('/api/ratings', {rating:$(this).data('value'), linkID:linkID}, function(){
-
+      location.reload();
     });
 
   });
