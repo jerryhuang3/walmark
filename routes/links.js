@@ -73,7 +73,7 @@ module.exports = (knex) => {
 linksRoutes.get("/:linkId", (req, res) => {
   const linkId = req.params.linkId;
   const response =
-    knex.select('*').from('links')
+    knex.select('*','links.create_date AS create_date').from('links')
         .join('users',{'links.user_id' : 'users.id'})
         .where('links.id',linkId)
         .then(function(results) {
@@ -86,13 +86,38 @@ linksRoutes.get("/:linkId", (req, res) => {
                 .where('link_id', linkId)
                 .then(function(results) {
                   const ratings = Math.round(10 * results[0].avg) / 10;
-                  knex.select('learnt').from('learnt_counters').where({ link_id: linkId, user_id: req.session.userid })
+                  knex.select('full_name').from('users').where({id: req.session.userid})
+                  .then(function(result){
+                    const full_name = result[0].full_name;
+                    knex.select('learnt').from('learnt_counters').where({ link_id: linkId, user_id: req.session.userid })
                     .then(function(result) {
+                      if (!result[0]){
+                        const vartemplate = {
+                          id: req.session.userid,
+                          link_user: links.user_id,
+                          title: links.title,
+                          full_name: full_name,
+                          link_name: links.full_name,
+                          user_avatar: links.avatar,
+                          url: links.url,
+                          desc: links.description,
+                          create_date: links.create_date,
+                          link_id: linkId,
+                          username: links.username,
+                          boards: boards,
+                          color: links.color,
+                          avg_rating: ratings,
+                          learnt: null
+                        }
+                        res.render('link', vartemplate);
+                      } else {
                       const learnt = result[0].learnt;
                       const vartemplate = {
                         id: req.session.userid,
+                        link_user: links.user_id,
+                        link_name: links.full_name,
                         title: links.title,
-                        full_name: links.full_name,
+                        full_name: full_name,
                         user_avatar: links.avatar,
                         url: links.url,
                         desc: links.description,
@@ -105,7 +130,8 @@ linksRoutes.get("/:linkId", (req, res) => {
                         learnt: learnt
                       }
                       res.render('link', vartemplate);
-
+                    }
+                   })
                     })
                 })
             });

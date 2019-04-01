@@ -17,11 +17,11 @@ html {
   -webkit-text-size-adjust: 100%; }
 
 
-#link-container {
+#link-box {
   font-family: 'PT Sans', sans-serif;
   background: rgba(255, 255, 255, 0.54);
-  margin: 0 auto;
-  max-width: 40vw;
+  margin: 2vw auto;
+  max-width: 60vw;
   height: auto;
   overflow: auto;
   border: 1px solid grey;
@@ -36,7 +36,9 @@ html {
 
 .link-info {
   width: 25vw;
+  min-height: 35vw;
   padding: 0.5vw;
+  display: inline-block;
 
   h3 {
   font-weight: bold;
@@ -55,8 +57,11 @@ html {
 
 .link-comments {
   width: 25vw;
+  min-height:35vw;
   margin: 0 auto;
   padding: 0.5vw;
+  // display: inline-block;
+  float: right;
 
   h4 {
     font-weight: bold;
@@ -65,6 +70,13 @@ html {
 
 .link-visit {
   width: 22vw;
+}
+
+#comment-container {
+  height: 20vw;
+}
+.comment-content {
+  height: 15vw;
 }
 
 .comment-avatar, .link-avatar {
