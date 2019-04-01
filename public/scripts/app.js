@@ -13,7 +13,7 @@ $(() => {
     <img class="comment-avatar" src="${escape(data.avatar)}">
     <div class="comment-content">
         <span class="comment-fullname">${escape(data.full_name)}</span>
-        <span class="comment-date">${escape(data.create_date)}</span>
+        <span class="comment-date">${moment(data.create_date).fromNow()}
         <p class="comment-text">${escape(data.text)}</p>
     </div>
     </article>`;
