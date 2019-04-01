@@ -18,9 +18,9 @@
   <body>
     <% include ./partials/_header %>
     <div class="newboard-container">
-      <h1>Create a new board</h1>
-       <form action="/users/:userID/board" method="POST">
-          <input placeholder="Title for board" type="text" name="board_title" required />
+      <h1>Create a new wall</h1>
+       <form action="/users/:userID/board/create" method="POST">
+          <input placeholder="Name your wall" type="text" name="board_title" required />
           <button class="Create">Create</button>
       </form>
     </div>

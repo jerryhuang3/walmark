@@ -5,7 +5,7 @@ const profileRoutes  = express.Router();
 
 module.exports = (knex) => {
 
-// Create board
+// Create board page
 profileRoutes.get("/:userID/board/create", (req, res) => {
   const currentUser = req.session.userid;
     if (!currentUser){
@@ -18,21 +18,37 @@ profileRoutes.get("/:userID/board/create", (req, res) => {
       .where('id', req.session.userid),
       knex.select('title').from('boards').where('user_id',currentUser)
       ])
-    .then(function(results){
-      const boards = results[1]
-      const templateVars = {
-      id: req.session.userid,
-      username: results.username,
-      full_name: results.full_name
-    }
-      res.render("create_board", templateVars);
-      })
-    }
+      .then(function(results){
+        const cookie = results[0][0]
+        const boards = results[1]
+        const templateVars = {
+        id: req.session.userid,
+        username:cookie.username,
+        full_name: cookie.full_name,
+        boards : boards}
+        // res.json(boards);
+        res.render("create_board", templateVars);
+        })
+      }
   });
 
-// Route for creating a board
+// Create board
 profileRoutes.post("/:userID/board/create", (req, res) => {
-  console.log(req.body)
+  if(!req.body) {
+    res.status(400).json({ error: 'invalid request: no data in POST body'});
+    return;
+  }
+  // console.log(req.session.userid);
+  const boardTitle = req.body.board_title;
+  const userID = req.session.userid;
+  knex.select('*').from('boards')
+  .then(function(results) {
+    knex.insert({user_id:userID, title:boardTitle, create_date:knex.fn.now()}).returning('*')
+    .into('boards').then(function(result) {
+      console.log(result)
+    })
+  })
+  res.redirect('/');
 })
 
 // Route for updating boards
@@ -51,7 +67,6 @@ profileRoutes.get("/:userID/board/:boardID", (req, res) => {
       .join('topics', {'links.topic_id' : 'topics.id'})
       .where('boards.id',boardID)
       .then(function(results){
-        console.log(results);
         const links = results
         const templateVars = {
         id: req.session.userid,
@@ -66,7 +81,6 @@ profileRoutes.get("/:userID/board/:boardID", (req, res) => {
         topic: links.name,
         links: links
         }
-        console.log(templateVars);
       res.render('user_board', templateVars);
         })
     });
