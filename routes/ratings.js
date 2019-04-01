@@ -4,7 +4,7 @@ const express = require('express');
 const ratings  = express.Router();
 
 module.exports = (knex) => {
-
+  // Crreate rating API
   ratings.get("/", (req, res) => {
     knex
     .select("*")
@@ -14,6 +14,7 @@ module.exports = (knex) => {
 });
 });
 
+  // Adds or update's a user's rating of a link
   ratings.post('/' , (req, res) => {
     let linkID = req.body.linkID;
     let rating = parseInt(req.body.rating);

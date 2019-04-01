@@ -38,7 +38,7 @@ profileRoutes.post("/:userID/board/create", (req, res) => {
     res.status(400).json({ error: 'invalid request: no data in POST body'});
     return;
   }
-  // console.log(req.session.userid);
+
   const boardTitle = req.body.board_title;
   const userID = req.session.userid;
   knex.select('*').from('boards')

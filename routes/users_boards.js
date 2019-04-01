@@ -4,7 +4,7 @@ const express = require('express');
 const usersboardRoutes  = express.Router();
 
 module.exports = (knex) => {
-
+  // API getting all of the walls belonging to a user
   usersboardRoutes.get("/", (req, res) => {
     knex.select('*')
       .from('users')

@@ -4,7 +4,7 @@ const express = require('express');
 const userslinksRoutes  = express.Router();
 
 module.exports = (knex) => {
-
+  // API getting all of a user's link's
   userslinksRoutes.get("/", (req, res) => {
     knex.select('*')
       .from('users')

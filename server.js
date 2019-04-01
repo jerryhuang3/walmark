@@ -21,7 +21,6 @@ const linksRoutes = require("./routes/links");
 const linkRoutes = require("./routes/home");
 const ratingsRoutes = require("./routes/ratings");
 const boardsRoutes = require("./routes/boards");
-const topicsRoutes = require("./routes/topics");
 const commentsRoutes = require("./routes/comments");
 const usersboardRoutes = require("./routes/users_boards");
 const userslinkRoutes = require("./routes/users_links");
@@ -68,7 +67,6 @@ app.use("/api/users", usersRoutes(knex));
 app.use("/api/links", linkRoutes(knex));
 app.use("/api/ratings", ratingsRoutes(knex));
 app.use("/api/boards", boardsRoutes(knex));
-app.use("/api/topics", topicsRoutes(knex));
 app.use("/api/comments", commentsRoutes(knex));
 app.use("/api/userboards", usersboardRoutes(knex));
 app.use("/api/userlinks", userslinkRoutes(knex));
@@ -131,7 +129,7 @@ app.get("/users/:username/profile", (req, res) => {
 app.post('/users/:username/profile/update', (req, res) => {
   knex('users')
     .where({id: req.session.userid})
-    .update({full_name: req.body.fullName, email: req.body.email, password: req.body.password})
+    .update({full_name: req.body.fullName, email: req.body.email, password: req.body.password, avatar: req.body.avatar})
     .then((results)=>{
       return res.redirect(`/users/${req.body.username}/profile`);
     });

@@ -47,7 +47,7 @@ $(() => {
 
 
 
-
+  // Ratings hovering
   $('.star').on('mouseover', function(){
     let mousedStar = $(this).data('value'); // The star currently mouse on
     console.log($(this).data());
