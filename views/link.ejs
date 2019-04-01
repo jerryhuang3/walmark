@@ -72,7 +72,7 @@
             <a href="<%=url%>"><div id="link-color" style="background-color:<%=color%>"></div></a>
 
             <p class="link-desc"><%=desc%></p>
-            <p class="link-date">Created on <%=create_date%></p>
+            <p class="link-date">Created on <%=create_date.toISOString().slice(0,10)%></p>
             <div class='link-ratings'>
                 <ul id='stars'>
                   <li><h4>Rating<%if (avg_rating > 0) {%>: <%=avg_rating%>  <%}%></h4></li>
