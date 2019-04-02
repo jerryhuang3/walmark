@@ -59,10 +59,11 @@
         </form>
       </div>
       <h3><%=title%></h3>
-      <img class="link-avatar" src="<%=user_avatar%>">
-      <p class="link-fullname"><%=link_name%></p><br><br>
+      <div class="link-creator">
+        <img class="link-avatar" src="<%=user_avatar%>">
+        <span class="link-fullname"><%=link_name%></span>
+      </div>
       <a href="<%=url%>"><div id="link-color" style="background-color:<%=color%>"></div></a>
-
       <p class="link-desc"><%=desc%></p>
       <p class="link-date">Created on <%=create_date.toISOString().slice(0,10)%></p>
       <div class='link-ratings'>
@@ -76,9 +77,6 @@
         </ul>
       </div>
     </div>
-    <hr>
-
-    <hr>
     <div class="link-comments">
       <h4>Comments</h4>
       <div id="comments-container">

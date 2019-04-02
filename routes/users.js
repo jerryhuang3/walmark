@@ -14,9 +14,6 @@ module.exports = (knex) => {
     });
   });
 
-  users.get("/users/:username", (res, req) => {
-
-  })
 
 
   return users;
