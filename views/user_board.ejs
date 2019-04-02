@@ -16,32 +16,22 @@
 <body>
 <% include ./partials/_header %>
 <section id="link-container" style="margin-top:20px">
-  <h2>Welcome to <%=username%>'s wall: </h2>
-  <form action="/boards/<%=boardid%>/delete" method=POST><button class="alert button">Delete Wall</button></form>
-
-  <%if (links.length !== 0) {%>
-    <% for (let i = 0; i < links.length; i++) {%>
-
-    <div class="right-col">
-      <div class="link-info" style="background-color:<%=links[i].color%>;">
-        <a href="/links/<%=links[i].link_id%>">
-          <p class="linktitle"><strong> <%=links[i].title%> </strong></p><br><br>
-        </a>
-        <p class="topic"> <%=links[i].name%> </p>
-        <a href="<%=links[i].url%>" class="button secondary link-visit">Learn Now</a>
-        <p class="link-desc">Description: <%=links[i].description%> </p>
-      </div>
+  <% for (let i = 0; i < links.length; i++) {%>
+  <div class="right-col">
+    <div class="link-info" style="background-color:<%=links[i].color%>;">
+      <p class="linktitle"><strong> <%=links[i].linktitle%> </strong></p><br><br>
+      <p class="topic"> <%=links[i].name%> </p>
+      <a href="<%=links[i].url%>" class="button secondary link-visit">Learn Now</a>
+      <p class="link-desc">Description: <%=links[i].description%> </p>
     </div>
-
-    <%}%>
-  <%}%>
+  </div>
+  <%};%>
 </section>
 <script type="text/javascript" src="/vendor/jquery.js"></script>
 <script type="text/javascript" src="/vendor/what-input.js"></script>
 <script type="text/javascript" src="/vendor/foundation.js"></script>
-<script type="text/javascript" src="/vendor/masonry.pkgd.js"></script>
-<script type="text/javascript" src="/vendor/imagesloaded.pkgd.js"></script>
-<script type="text/javascript" src="/scripts/wall.js"></script>
+<script type="text/javascript" src="../../../../vendor/masonry.pkgd.js"></script>
+<script type="text/javascript" src="../../../../vendor/imagesloaded.pkgd.js"></script>
 <script>$(document).foundation();</script>
 </body>
 </html>

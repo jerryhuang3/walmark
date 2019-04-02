@@ -21,7 +21,7 @@
     <script src="/vendor/imagesloaded.pkgd.js"></script>
     <script type="text/javascript" src="/scripts/create-link.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
-    <script type="text/javascript" src="/scripts/search.js"></script>
+    <script type="text/javascript" src="scripts/search.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
   </head>
 
@@ -34,7 +34,7 @@
   <div id="newlink-container">
      <form action="/links/create" method="POST">
         <input placeholder="Add your title" type="text" name="link_title" required />
-        <input placeholder="Insert the link here" type="url" name="link_url" required />
+        <input placeholder="Insert the link here" type="text" name="link_url" required />
         <textarea placeholder="Describe your resource" type="text" name="link_desc"></textarea>
         <div id="choose_color">
         <span>Pick a Color</span>
