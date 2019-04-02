@@ -12,7 +12,7 @@ module.exports = (knex) => {
       .join('topics', {'links.topic_id' : 'topics.id'})
       .then(function(results) {
         res.json(results);
-});
+      });
 });
 
   return boardsLinks;

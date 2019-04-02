@@ -2,19 +2,122 @@
 
 const express = require('express');
 const boards  = express.Router();
-const cookieSession = require('cookie-session');
 
 module.exports = (knex) => {
 
-  // boards api
+  // Boards API
   boards.get("/", (req, res) => {
     knex
     .select("*")
       .from("boards")
       .then((results) => {
       res.json(results);
+});
+});
+
+  // Create Board Page
+  boards.get("/create", (req, res) => {
+    const currentUser = req.session.userid;
+  if (!currentUser){
+    res.redirect('back');
+  } else {
+    Promise.all([
+      knex
+        .select('*')
+        .from('users')
+        .where('id', req.session.userid),
+      knex.select('title').from('boards').where('user_id',currentUser)
+    ])
+      .then(function(results){
+        const cookie = results[0][0];
+        const boards = results[1];
+        const templateVars = {
+          id: req.session.userid,
+          username: cookie.username,
+          full_name: cookie.full_name,
+          boards: boards
+        }
+        res.render("create_board", templateVars);
+      })
+  }
+});
+
+  // Delete Boards
+  boards.post("/:boardID/delete", (req, res) => {
+    const currentUser = req.session.userid;
+  const boardID = req.params.boardID;
+  knex.select('user_id')
+    .from('boards')
+    .where('id', boardID)
+    .then((result) => {
+    if(currentUser != result[0].user_id) {
+    res.status(400).send('Invalid request: This is not your board!');
+  } else {
+    knex('boards')
+      .where({ id: boardID })
+      .del()
+      .then((result) => {
+      res.redirect('/')
     });
-  });
+  }
+})
+});
+
+  // Create board
+  boards.post("/create", (req, res) => {
+    if(!req.body) {
+    res.status(400).json({ error: 'invalid request: no data in POST body'});
+    return;
+  }
+  const boardTitle = req.body.board_title;
+  const userID = req.session.userid;
+  knex.select('*').from('boards')
+    .then(function() {
+      knex.insert({user_id:userID, title:boardTitle, create_date:knex.fn.now()}).returning('*')
+        .into('boards').then(function(result) {
+      })
+    })
+  res.redirect(`/users/${userID}`);
+})
+
+  // User boards
+  boards.get("/:boardID", (req, res) => {
+    const currentUser = req.session.userid;
+  const boardID = req.params.boardID;
+  if (!currentUser) {
+    res.redirect('/');
+  }
+  knex.select('username', 'full_name', 'id').from('users').where('id', currentUser)
+    .then(function(results) {
+      const user = results[0];
+      knex.select('*').from('boards_links')
+        .join('boards',{'boards_links.board_id' : 'boards.id'})
+        .join('users', {'boards.user_id' : 'users.id'})
+        .join('links',{'boards_links.link_id' : 'links.id'})
+        .join('topics', {'links.topic_id' : 'topics.id'})
+        .where('board_id', boardID)
+        .then(function(results) {
+          const templateVars = {
+            id: req.session.userid,
+            boardid: boardID,
+            linktitle: results.title,
+            linkid: results.link_id,
+            user_avatar: results.avatar,
+            url: results.url,
+            desc: results.description,
+            create_date: results.create_date,
+            linkuser: results.username,
+            topic: results.name,
+            color: results.color,
+            links: results,
+            username: user.username,
+            full_name: user.full_name
+          }
+          res.render('user_board', templateVars);
+        })
+    })
+
+});
 
   return boards;
 }

@@ -1,45 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Home Page</title>
+  <title>Home Page</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/foundation.css" type="text/css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  </head>
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/foundation.css" type="text/css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
 
 
 
-  <body>
-  <% include ./partials/_header %>
+<body>
+<% include ./partials/_header %>
 
-  <div id="acctpage">
-    <h2><%=full_name%>'s Hub</h2>
-    <p>Email: <%=email%> </p>
+<div id="account_container">
+  <div class="avatar">
+    <img src="<%=avatar%>">
   </div>
-
-<div class="resource-bar">
-  <a id="click1">Walls</a>
-  <a id="click2">Links</a>
+  <ul class="account">
+    <li class="info"><h4><%=full_name%>'s Hub</h4></li>
+    <li class="info">
+      <a class="button primary" id="click1">Walls</a>
+      <a class="button success" id="click2">Links</a>
+      <a class="button warning" id="click3">Marked</a>
+    </li>
+  </ul>
 </div>
 
-  <div id="boards-container"></div>
-  <div id="userlinks-container"></div>
+<div id="account-nav"></div>
+<div id="boards-container"></div>
+<div id="userlinks-container"></div>
+<div id="markedlinks-container"></div>
 
 
-  <script type="text/javascript" src="/vendor/jquery.js"></script>
-  <script type="text/javascript" src="/vendor/what-input.js"></script>
-  <script type="text/javascript" src="/vendor/foundation.js"></script>
-  <script type="text/javascript" src="/vendor/masonry.pkgd.js"></script>
-  <script type="text/javascript" src="/vendor/imagesloaded.pkgd.js"></script>
-  <script type="text/javascript" src="/scripts/user_resources.js"></script>
-  <script type="text/javascript" src="/scripts/search.js"></script>
-  <script>$(document).foundation();</script>
-  </body>
+<script type="text/javascript" src="/vendor/jquery.js"></script>
+<script type="text/javascript" src="/vendor/what-input.js"></script>
+<script type="text/javascript" src="/vendor/foundation.js"></script>
+<script type="text/javascript" src="/vendor/masonry.pkgd.js"></script>
+<script type="text/javascript" src="/vendor/imagesloaded.pkgd.js"></script>
+<script type="text/javascript" src="/scripts/user_resources.js"></script>
+<script type="text/javascript" src="/scripts/search.js"></script>
+<script>$(document).foundation();</script>
+</body>
 </html>
