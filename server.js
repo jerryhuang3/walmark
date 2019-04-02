@@ -97,19 +97,35 @@ app.get("/", (req, res) => {
 
 // Account Page
 app.get("/users/:userid", (req, res) => {
-  knex
-  .select('*')
-    .from('users')
-    .where('id', req.session.userid)
-    .then(function(results){
-      let users = results[0];
-      res.render('account_page', {
-        full_name: users.full_name,
-        user_avatar: users.avatar,
-        email: users.email,
-        id: req.session.userid,
-        username: users.username,
-      });
+  knex.select('*').from('users')
+    .join('boards',{'users.id' : 'boards.user_id'})
+    .where('user_id', req.session.userid)
+    .then(function(results) {
+      if (results[0] === undefined) {
+        knex.select('*')
+          .from('users')
+          .where('id', req.session.userid)
+          .then(function(results) {
+            const user = results[0];
+            const template = {
+              full_name: user.full_name,
+              email: user.email,
+              id: req.session.userid,
+              username: user.username
+            }
+            return res.render('account_page', template);
+          });
+      } else {
+        const walls = results[0];
+        const templateVars = {
+          full_name: walls.full_name,
+          email: walls.email,
+          id: req.session.userid,
+          username: walls.username,
+          title: walls.title
+        }
+        res.render('account_page', templateVars);
+      }
     });
 });
 

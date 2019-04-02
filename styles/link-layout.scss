@@ -39,8 +39,7 @@ html {
   border-right: 1px solid grey;
 
   h3 {
-  font-weight: bold;
-  word-break: break-word;
+    font-weight: bold;
   }
 }
 
@@ -86,20 +85,19 @@ html {
 
 .fa-pen {
   color: grey;
-  margin: 1vw;
+  margin: 0.5vw;
   order: 2;
 }
 
 .fa-trophy {
   color: grey;
-  margin: 1vw;
+  margin: 0.5vw;
   justify-content: flex-end;
   order:3;
 }
 
 #saveform {
-  order:1;
-  margin-left: 0.5vw;
+  order: 1;
 }
 
 #learnt {

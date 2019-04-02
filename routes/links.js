@@ -255,7 +255,6 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
     const userid = req.session.userid;
     knex.select('learnt').from('learnt_counters').where({link_id:linkid, user_id:userid})
     .then((result)=>{
-      // console.log(result[0].learnt);
       if(result[0].learnt == 0){
         knex('learnt_counters').where({link_id:linkid, user_id:userid})
         .increment('learnt',1).asCallback(function(err){
