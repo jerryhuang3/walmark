@@ -48,13 +48,11 @@ module.exports = (knex) => {
       knex.select('id').from('boards').where('title',req.body.link_board)
       .then(function(result){
         const board = result[0].id;
-        // console.log(board,topic);
         knex.insert({user_id:userid, topic_id:topic, url:url, title:title,
             description:desc, create_date:knex.fn.now(), color:color}).returning('id')
     .into('links').then(function(result){
         const id = result[0];
-        console.log(id);
-        knex.insert({link_id: id, user_id: userid}).into('learnt_counters').then((result)=>{
+        knex.insert({link_id: id, userid: userid}).into('learnt_counters').then((result)=>{
          return knex.insert({link_id: id, board_id: board}).into('boards_links');
         }).asCallback(function(err){
         if (err) {
@@ -72,7 +70,6 @@ module.exports = (knex) => {
 //getting link page
 linksRoutes.get("/:linkId", (req, res) => {
   const linkId = req.params.linkId;
-  const response =
     knex.select('*','links.create_date AS create_date').from('links')
         .join('users',{'links.user_id' : 'users.id'})
         .where('links.id',linkId)
@@ -89,7 +86,7 @@ linksRoutes.get("/:linkId", (req, res) => {
                   knex.select('full_name').from('users').where({id: req.session.userid})
                   .then(function(result){
                     const full_name = result[0].full_name;
-                    knex.select('learnt').from('learnt_counters').where({ link_id: linkId, user_id: req.session.userid })
+                    knex.select('learnt').from('learnt_counters').where({ link_id: linkId, userid: req.session.userid })
                     .then(function(result) {
                       if (!result[0]){
                         const vartemplate = {
@@ -164,7 +161,6 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
       link_desc : link.description,
       link_date : link.create_date}
       res.render("edit_link", templateVars);
-      // res.json(results[0][0])
       })
     }
 });
@@ -183,9 +179,9 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
     })
 
   })
+
 //delete link
   linksRoutes.post("/:linkId/delete", (req, res) => {
-    // console.log('heelooo');
     const currentUser = req.session.userid;
     const link_id = req.params.linkId;
     knex.select('user_id').from('links').where('id',link_id).then((result)=>{
@@ -197,7 +193,6 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
         })
       }
     })
-
   });
 
 
@@ -252,11 +247,11 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
   //marking link learnt
   linksRoutes.post("/:linkId/learnt", (req, res) => {
     const linkid = req.params.linkId;
-    const userid = req.session.userid;
-    knex.select('learnt').from('learnt_counters').where({link_id:linkid, user_id:userid})
+    const userID = req.session.userid;
+    knex.select('learnt').from('learnt_counters').where({link_id:linkid, userid:userID})
     .then((result)=>{
       if(result[0].learnt == 0){
-        knex('learnt_counters').where({link_id:linkid, user_id:userid})
+        knex('learnt_counters').where({link_id:linkid, userid:userID})
         .increment('learnt',1).asCallback(function(err){
           if (err) {
             res.status(500).json({ error: err.message });
@@ -265,7 +260,7 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
           }
         })
       } else {
-        knex('learnt_counters').where({link_id:linkid, user_id:userid})
+        knex('learnt_counters').where({link_id:linkid, userid:userID})
         .decrement('learnt',1).asCallback(function(err){
           if (err) {
             res.status(500).json({ error: err.message });
