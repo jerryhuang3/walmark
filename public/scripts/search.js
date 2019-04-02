@@ -5,7 +5,6 @@ $(document).ready(function() {
 
 
   // Receives JSON data of search
-  $('')
   $.get(`/results/${userSearch}`, { search: userSearch }, function(searchResults) {
       renderSearchLinks(searchResults);
     });

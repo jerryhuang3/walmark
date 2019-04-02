@@ -50,6 +50,7 @@ $(() => {
   // Ratings hovering
   $('.star').on('mouseover', function(){
     let mousedStar = $(this).data('value'); // The star currently mouse on
+    console.log($(this).data());
     $.each($(this).parent().children('.star'), function(eachStar) {
       if (eachStar < mousedStar) {
         $(this).addClass('hover');
@@ -76,10 +77,8 @@ $(() => {
     $.post('/api/ratings', {rating:$(this).data('value'), linkID:linkID}, function(){
       location.reload();
     });
+
   });
-
-
-
 
 
 
