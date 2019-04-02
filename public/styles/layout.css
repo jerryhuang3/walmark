@@ -190,9 +190,14 @@ body h1 {
 #userlinks-container {
   background: rgba(255, 255, 255, 0.54);
   margin-left: 20vw;
-  max-width: 70vw;
-  top: -55em;
+  max-width: 80vw;
+  top: 2em;
   visibility: collapse;
+}
+
+#userlinks-container .create {
+  text-align: center;
+  margin-top: 2em;
 }
 
 #userlinks-container .links p {
@@ -215,6 +220,20 @@ body h1 {
 
 #userlinks-container .links:hover {
   transform: scale(1.05);
+}
+
+#userlinks-container .links .overlay-img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  background-color: #0073CF;
+  border-radius: .5em;
+  overflow: hidden;
 }
 
 #userlinks-container img {
@@ -279,4 +298,80 @@ body h1 {
 
 #account_container ul {
   list-style: none;
+}
+
+#account-nav .boards {
+  text-align: center;
+  margin-top: 2em;
+}
+
+#account-nav .links {
+  text-align: center;
+  margin-top: 2em;
+  display: none;
+}
+
+#account-nav .saved {
+  text-align: center;
+  margin-top: 2em;
+  display: none;
+}
+
+#markedlinks-container {
+  background: rgba(255, 255, 255, 0.54);
+  margin-left: 20vw;
+  max-width: 80vw;
+  top: 2em;
+  visibility: collapse;
+}
+
+#markedlinks-container .create {
+  text-align: center;
+  margin-top: 2em;
+}
+
+#markedlinks-container .marked p {
+  position: absolute;
+  color: #ffffff;
+  padding-left: 2em;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  text-shadow: 2px 2px 2px 2px black;
+}
+
+#markedlinks-container .marked:hover p {
+  opacity: 1;
+}
+
+#markedlinks-container .marked:hover .overlay-img {
+  opacity: .5;
+}
+
+#markedlinks-container .marked:hover {
+  transform: scale(1.05);
+}
+
+#markedlinks-container .marked .overlay-img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  background-color: #0073CF;
+  border-radius: .5em;
+  overflow: hidden;
+}
+
+#markedlinks-container img {
+  border-radius: .5em;
+}
+
+#markedlinks-container .marked {
+  position: relative;
+  width: 20%;
+  margin-bottom: 20px;
 }

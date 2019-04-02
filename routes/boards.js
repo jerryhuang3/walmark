@@ -51,7 +51,7 @@ module.exports = (knex) => {
       .where('id', boardID)
       .then((result) => {
         if(currentUser != result[0].user_id) {
-          res.redirect('back');
+          res.status(400).send('Invalid request: This is not your board!');
         } else {
           knex('boards')
             .where({ id: boardID })
@@ -63,6 +63,22 @@ module.exports = (knex) => {
       })
   });
 
+  // Create board
+  boards.post("/create", (req, res) => {
+    if(!req.body) {
+    res.status(400).json({ error: 'invalid request: no data in POST body'});
+    return;
+  }
+  const boardTitle = req.body.board_title;
+  const userID = req.session.userid;
+  knex.select('*').from('boards')
+    .then(function() {
+      knex.insert({user_id:userID, title:boardTitle, create_date:knex.fn.now()}).returning('*')
+        .into('boards').then(function(result) {
+      })
+    })
+  res.redirect(`/users/${userID}`);
+})
 
   // User boards
   boards.get("/:boardID", (req, res) => {
@@ -71,7 +87,7 @@ module.exports = (knex) => {
     if (!currentUser) {
       res.redirect('/');
     }
-    knex.select('username', 'full_name').from('users').where('id', currentUser)
+    knex.select('username', 'full_name', 'id').from('users').where('id', currentUser)
       .then(function(results) {
         const user = results[0];
         knex.select('*').from('boards_links')
@@ -85,6 +101,7 @@ module.exports = (knex) => {
               id: req.session.userid,
               boardid: boardID,
               linktitle: results.title,
+              linkid: results.link_id,
               user_avatar: results.avatar,
               url: results.url,
               desc: results.description,

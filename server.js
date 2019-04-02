@@ -18,16 +18,14 @@ const knexLogger  = require('knex-logger');
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const linksRoutes = require("./routes/links");
-const linkRoutes = require("./routes/home");
+const homeRoutes = require("./routes/home");
 const ratingsRoutes = require("./routes/ratings");
-const boardsRoutes = require("./routes/boards");
 const commentsRoutes = require("./routes/comments");
 const usersboardRoutes = require("./routes/users_boards");
+const markedlinkRoutes = require("./routes/marked_links");
 const userslinkRoutes = require("./routes/users_links");
-const profileRoutes = require("./routes/profile");
 const boards = require("./routes/boards");
 const linksTopicsRoutes = require("./routes/linkstopics");
-const boardsLinksRoutes = require("./routes/boards_links");
 const searchRoutes = require("./routes/search");
 
 // Encrypting user sessions
@@ -36,11 +34,6 @@ app.use(cookies({
   keys: ["secretkey"]
 }));
 
-// Generates 8 digit unique id
-function generateRandomString() {
-  let shortLink = Math.random().toString(36).substr(2, 8);
-  return shortLink;
-};
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -61,20 +54,16 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 // Mount all resource routes
-app.use("/users", profileRoutes(knex));
-app.use("/links", linksRoutes(knex));
 app.use("/api/users", usersRoutes(knex));
-app.use("/api/links", linkRoutes(knex));
+app.use("/links", linksRoutes(knex));
+app.use("/api/links", homeRoutes(knex));
 app.use("/api/ratings", ratingsRoutes(knex));
-app.use("/api/boards", boardsRoutes(knex));
 app.use("/api/comments", commentsRoutes(knex));
 app.use("/api/userboards", usersboardRoutes(knex));
+app.use("/api/markedlinks", markedlinkRoutes(knex));
 app.use("/api/userlinks", userslinkRoutes(knex));
-app.use("/users", profileRoutes(knex));
-app.use("/links", linksRoutes(knex));
 app.use("/boards", boards(knex));
 app.use("/api/linkstopics", linksTopicsRoutes(knex));
-app.use("/api/boardslinks", boardsLinksRoutes(knex));
 app.use("/results", searchRoutes(knex));
 
 // Home page
