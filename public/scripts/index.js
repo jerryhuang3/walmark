@@ -21,7 +21,7 @@ $( document ).ready(function() {
     let randomLinks = shuffle(allLinks);
 
     for (let i = 0; i < randomLinks.length; i++) {
-        $("#link-container").prepend(createHomeLinks(randomLinks[i], (971 + i)));
+        $("#link-container").prepend(createHomeLinks(randomLinks[i], (969 + i)));
     }
     let $grid = $('#link-container').imagesLoaded(function() {
       $grid.masonry({
