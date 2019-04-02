@@ -19,15 +19,22 @@
   <body>
   <% include ./partials/_header %>
 
-  <div id="acctpage">
-    <h2><%=full_name%>'s Hub</h2>
-    <p>Email: <%=email%> </p>
+  <div id="account_container">
+    <div class="avatar">
+      <img src="<%=avatar%>">
+    </div>
+    <ul class="account">
+      <li class="info"><h4><%=full_name%>'s Hub</h4></li>
+      <li class="info"><a class="button primary" id="click1">Walls</a></li>
+      <li class="info"><a class="button success" id="click1">Links</a></li>
+    </ul>
   </div>
 
-<div class="resource-bar">
-  <a id="click1">Walls</a>
-  <a id="click2">Links</a>
-</div>
+
+<!--<div class="resource-bar">-->
+  <!--<a id="click1">Walls</a>-->
+  <!--<a id="click2">Links</a>-->
+<!--</div>-->
 
   <div id="boards-container"></div>
   <div id="userlinks-container"></div>

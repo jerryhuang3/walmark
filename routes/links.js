@@ -72,7 +72,6 @@ module.exports = (knex) => {
 //getting link page
 linksRoutes.get("/:linkId", (req, res) => {
   const linkId = req.params.linkId;
-  const response =
     knex.select('*','links.create_date AS create_date').from('links')
         .join('users',{'links.user_id' : 'users.id'})
         .where('links.id',linkId)
@@ -183,9 +182,9 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
     })
 
   })
+
 //delete link
   linksRoutes.post("/:linkId/delete", (req, res) => {
-    // console.log('heelooo');
     const currentUser = req.session.userid;
     const link_id = req.params.linkId;
     knex.select('user_id').from('links').where('id',link_id).then((result)=>{
@@ -197,7 +196,6 @@ linksRoutes.get("/:linkId/edit", (req, res) =>{
         })
       }
     })
-
   });
 
 

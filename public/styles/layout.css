@@ -131,9 +131,14 @@ body h1 {
 
 #boards-container {
   background: rgba(255, 255, 255, 0.54);
-  margin: 0 auto;
-  max-width: 85vw;
+  margin-left: 20vw;
+  max-width: 80vw;
   top: 2em;
+}
+
+#boards-container .create {
+  text-align: center;
+  margin-top: 2em;
 }
 
 #boards-container .boards {
@@ -184,8 +189,8 @@ body h1 {
 
 #userlinks-container {
   background: rgba(255, 255, 255, 0.54);
-  margin: 0 auto;
-  max-width: 85vw;
+  margin-left: 20vw;
+  max-width: 70vw;
   top: -55em;
   visibility: collapse;
 }
@@ -260,4 +265,18 @@ body h1 {
   left: 0;
   top: 1em;
   font-weight: bold;
+}
+
+#account_container {
+  float: left;
+  text-align: center;
+  border-radius: .5em;
+  background: #ffffff;
+  margin: 2em 0 0 1em;
+  width: 15vw;
+  height: 25vh;
+}
+
+#account_container ul {
+  list-style: none;
 }

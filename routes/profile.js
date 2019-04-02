@@ -56,12 +56,12 @@ module.exports = (knex) => {
   const response =
     knex.select('*').from('boards_links')
       .join('boards',{'boards_links.board_id' : 'boards.id'})
+      .join('users', {'boards.user_id' : 'users.id'})
       .join('links',{'boards_links.link_id' : 'links.id'})
       .join('topics', {'links.topic_id' : 'topics.id'})
       .where('board_id', boardID)
       .then(function(results){
         const links = results;
-
         const templateVars = {
           id: req.session.userid,
           boardtitle: links.title,

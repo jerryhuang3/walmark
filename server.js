@@ -110,6 +110,7 @@ app.get("/users/:userid", (req, res) => {
             const template = {
               full_name: user.full_name,
               email: user.email,
+              avatar: user.avatar,
               id: req.session.userid,
               username: user.username
             }
@@ -120,6 +121,7 @@ app.get("/users/:userid", (req, res) => {
         const templateVars = {
           full_name: walls.full_name,
           email: walls.email,
+          avatar: walls.avatar,
           id: req.session.userid,
           username: walls.username,
           title: walls.title
@@ -137,7 +139,7 @@ app.get("/users/:username/profile", (req, res) => {
     .where('id', req.session.userid)
     .then((userInfo) => {
       let templateVars = userInfo[0];
-      res.render('user_profile', templateVars);
+      res.render('edit_profile', templateVars);
     });
 });
 

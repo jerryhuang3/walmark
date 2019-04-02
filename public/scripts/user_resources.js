@@ -14,9 +14,19 @@ $( document ).ready(function() {
 
   // Load's all of a user's boards
   function renderBoards(usersBoards) {
+    if (usersBoards[0] === undefined) {
+      $boards = `
+        <div class="create">
+            <h2>You have no walls!</h2>
+            <a class="button primary" href="/boards/create">Create New Wall</a>
+        </div>`;
+      return $("#boards-container").prepend($boards);
+    };
+
     for (let i = 0; i < usersBoards.length; i++) {
       $("#boards-container").prepend(createBoards(usersBoards[i], (975 + i)));
     }
+
     let $grid = $('#boards-container').imagesLoaded(function() {
       $grid.masonry({
         itemSelector: '.boards',
@@ -28,19 +38,26 @@ $( document ).ready(function() {
   };
 
   function createBoards(boards, count) {
-
-    return $boards = `
-       <div class="boards">
-          <img src="https://picsum.photos/400/400/?image=${count}">
-          <a href="/users/${boards.username}/board/${boards.id}/"><div class="overlay-img"></div></a>
-          <p>${boards.title}</p>
-       </div>`;
+      return $boards = `
+         <div class="boards">
+            <img src="https://picsum.photos/400/400/?image=${count}">
+            <a href="/boards/${boards.id}/"><div class="overlay-img"></div></a>
+            <p>${boards.title}</p>
+         </div>`;
   };
 
   // Loads all of a user's links
   function renderLinks(usersLinks) {
+    if (usersLinks[0] === undefined) {
+      $links = `
+        <div class="create">
+            <h2>You have no links!</h2>
+            <a class="button primary" href="/links/create">Create New Link</a>
+        </div>`;
+      return $("#userlinks-container").append($links);
+    };
+
     for (let i = 0; i < usersLinks.length; i++) {
-      console.log(usersLinks[i]);
       $("#userlinks-container").prepend(createLinks(usersLinks[i], (975 + i)));
     }
     let $grid = $('#userlinks-container').imagesLoaded(function() {
