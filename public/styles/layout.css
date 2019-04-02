@@ -131,9 +131,14 @@ body h1 {
 
 #boards-container {
   background: rgba(255, 255, 255, 0.54);
-  margin: 0 auto;
-  max-width: 85vw;
+  margin-left: 20vw;
+  max-width: 80vw;
   top: 2em;
+}
+
+#boards-container .create {
+  text-align: center;
+  margin-top: 2em;
 }
 
 #boards-container .boards {
@@ -184,10 +189,15 @@ body h1 {
 
 #userlinks-container {
   background: rgba(255, 255, 255, 0.54);
-  margin: 0 auto;
-  max-width: 85vw;
-  top: -55em;
+  margin-left: 20vw;
+  max-width: 80vw;
+  top: 2em;
   visibility: collapse;
+}
+
+#userlinks-container .create {
+  text-align: center;
+  margin-top: 2em;
 }
 
 #userlinks-container .links p {
@@ -210,6 +220,20 @@ body h1 {
 
 #userlinks-container .links:hover {
   transform: scale(1.05);
+}
+
+#userlinks-container .links .overlay-img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  background-color: #0073CF;
+  border-radius: .5em;
+  overflow: hidden;
 }
 
 #userlinks-container img {
@@ -260,16 +284,6 @@ body h1 {
   left: 0;
   top: 1em;
   font-weight: bold;
-}
-
-.newboard-container {
-  margin: 2vw auto;
-  border: 1px solid grey;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 #account_container {
