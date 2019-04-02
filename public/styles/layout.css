@@ -374,4 +374,13 @@ body h1 {
   position: relative;
   width: 20%;
   margin-bottom: 20px;
+
+.newboard-container {
+  margin: 2vw auto;
+  border: 1px solid grey;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

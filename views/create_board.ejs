@@ -20,10 +20,12 @@
   <body>
     <% include ./partials/_header %>
     <div class="newboard-container">
+
       <h1>Create a new wall</h1>
        <form action="/boards/create" method="POST">
+
           <input placeholder="Name your wall" type="text" name="board_title" required />
-          <button class="Create">Create</button>
+          <button class="button mark">Create</button>
       </form>
     </div>
 

@@ -28,14 +28,16 @@ html {
   padding: 2vw;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .link-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   width: 25vw;
   min-height: 35vw;
   padding: 0.5vw;
-  order: 1;
   border-right: 1px solid grey;
 
   h3 {
@@ -48,28 +50,44 @@ html {
   display: inline-block;
 }
 
+.link-creator {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
 .link-desc {
   width: 20vw;
-  height: auto;
+  text-align: left;
+  max-height: 5vw;
+  overflow: scroll;
 }
+
 
 .link-comments {
   width: 25vw;
   min-height:35vw;
-  margin: 0 auto;
-  padding: 0.5vw;
+  padding: 0.5vw 0.5vw 0.5vw 2vw;
   order: 2;
   h4 {
     font-weight: bold;
   }
 }
 
-
-#comment-container {
-  height: 20vw;
-  border: 1px solid;
+.comment-text {
+  text-align: left;
 }
 
+article {
+  display: flex;
+  align-items: flex-start;
+}
+
+#comments-container{
+  max-height: 22vw;
+  overflow: scroll;
+  margin-bottom: 1.5vw;
+}
 
 .comment-avatar, .link-avatar {
   width: 3vw;
@@ -92,7 +110,6 @@ html {
 .fa-trophy {
   color: grey;
   margin: 0.5vw;
-  justify-content: flex-end;
   order:3;
 }
 
@@ -123,18 +140,18 @@ html {
 
 
 #link-color{
+  margin: 1vw auto;
   width: 20vw;
   height: 10vw;
-  display: inline-block;
   border-radius: 10px;
 }
 
 .link-ratings {
-  align-self: flex-end;
   padding: 0;
 }
 
 .topbar{
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly
 }
