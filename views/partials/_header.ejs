@@ -7,8 +7,6 @@
       <li id="logo-text" class="menu-text"><a href="/">Walmark</a></li>
       <li class="walmark"><a href="/"><img src="/images/Walmart_Spark.fw.png" width="25px" height="25px"></a></li>
       <%if (id) {%>
-      <li class="menu-center"><a href="/users/<%=username%>">My Walls</a></li>
-      <li class="menu-center"><a href="/boards/create">Create a Wall</a></li>
       <li class="menu-center">
         <form method="GET" action="/results">
           <input  id="search" type="text" placeholder="Search" name="search">
@@ -52,14 +50,16 @@
           </div>
         </li>
       <%} else {%>
-      <li><a href="/links/create"><i class="fas fa-plus-circle"></i></a></li>
-      <li><a href="/users/<%=username%>/profile">Welcome <%=full_name%>!</a></li>
-      <li>
-        <form method="POST" action="/logout">
-          <button class="button" type="submit">Logout</button>
-        </form>
-      </li>
-      <%}%>
+        <li><a href="/users/<%=username%>">My Walls</a></li>
+        <li><a href="/boards/create">Create Wall <i class="fas fa-plus-circle"></i></a></li>
+        <li><a href="/links/create">Create Link <i class="fas fa-plus-circle"></i></a></li>
+        <li><a href="/users/<%=username%>/profile">Welcome <%=full_name%>!</a></li>
+        <li>
+          <form method="POST" action="/logout">
+            <button class="button" type="submit">Logout</button>
+          </form>
+        </li>
+        <%}%>
     </ul>
   </div>
 </div>
