@@ -1,6 +1,6 @@
 # Walmark
 
-Walmark is a user curated, resource wall that can help users organize and bookmark links according to whichever category they are interested in. Save links, learn better, that's Walmark.
+Walmark is a user curated, resource wall that can help users organize and bookmark links according to whichever category they are interested in. Save links, learn better. That's Walmark.
 
 ## Getting Started
 
@@ -11,6 +11,7 @@ Walmark is a user curated, resource wall that can help users organize and bookma
 
 ## Dependencies
 
+- Bcrypt
 - Body-parser
 - Cookie-session
 - Dotenv
@@ -19,28 +20,32 @@ Walmark is a user curated, resource wall that can help users organize and bookma
 - Knex
 - Knex-logger
 - Morgan
+- Method-Override
 - Node-sass-middleware
-- Pg
+- PostgreSQL
 - Request
 - Sass
 
 ## Final Product
-Walmark home page.
-!["Walmark home page"](https://github.com/jerryhuang3/LHL-Midterm-Project/blob/master/docs/Home%20Page.png?raw=true)
+Walmark landing page. Requires user to either log in or register.
+!["Walmark Landing Page"](https://github.com/jerryhuang3/LHL-Midterm-Project/blob/master/docs/Landing%20Page.png)
 
-Create a wall page.
-!["Create a wall"](https://github.com/jerryhuang3/LHL-Midterm-Project/blob/master/docs/Create%20Wall.png?raw=true)
+Walmark home page. Displays all submitted links in a randomized order.
+!["Walmark Home Page"](https://github.com/jerryhuang3/LHL-Midterm-Project/blob/master/docs/Home%20Page.png?raw=true)
+
+Create a wall page. 
+!["Create A Wall"](https://github.com/jerryhuang3/LHL-Midterm-Project/blob/master/docs/Create%20Wall.png?raw=true)
 
 Create a link page.
-!["Create a link"](https://github.com/jerryhuang3/LHL-Midterm-Project/blob/master/docs/Create%20Link.png?raw=true)
+!["Create A Link"](https://github.com/jerryhuang3/LHL-Midterm-Project/blob/master/docs/Create%20Link.png?raw=true)
 
 Individual wall page.
-!["Individual wall page"](https://github.com/jerryhuang3/LHL-Midterm-Project/blob/master/docs/Wall%20Page.png?raw=true)
+!["Individual Wall Page"](https://github.com/jerryhuang3/LHL-Midterm-Project/blob/master/docs/Wall%20Page.png?raw=true)
 
-Individual link page.
-!["Individual link page"](https://github.com/jerryhuang3/LHL-Midterm-Project/blob/master/docs/Link%20Page.png?raw=true)
+Individual link page. User can edit, learn, add to their wall, write comments, and rate the page. The placeholder image redirects to the learning resource page.
+!["Individual Link Page"](https://github.com/jerryhuang3/LHL-Midterm-Project/blob/master/docs/Link%20Page.png?raw=true)
 
-User account page.
+User Account Page. User can filter through their boards, links, and learned links.
 !["User account page"](https://github.com/jerryhuang3/LHL-Midterm-Project/blob/master/docs/User%20Account%20Page.png?raw=true)
 
 Edit profile page.
