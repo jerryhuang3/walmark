@@ -36,34 +36,34 @@ module.exports = (knex) => {
     if (!req.body) {
     res.status(400).json({ error: 'invalid request: no data in POST body'});
     return;
-  }
-  const title = req.body.link_title
-  const desc = req.body.link_desc
-  const url = req.body.link_url
-  const userid = req.session.userid
-  const color = req.body.link_color
-  knex.select('id').from('topics').where('name',req.body.link_topic)
-    .then(function(result){
-      const topic = result[0].id;
-      knex.select('id').from('boards').where('title',req.body.link_board)
-        .then(function(result){
-          const board = result[0].id;
-          knex.insert({user_id:userid, topic_id:topic, url:url, title:title,
-            description:desc, create_date:knex.fn.now(), color:color}).returning('id')
-            .into('links').then(function(result){
-            const id = result[0];
-            knex.insert({link_id: id, userid: userid}).into('learnt_counters').then((result)=>{
-              return knex.insert({link_id: id, board_id: board}).into('boards_links');
-          }).asCallback(function(err){
-              if (err) {
-                res.status(500).json({ error: err.message });
-              } else {
-                res.redirect(`/links/${id}/`);
-              }
+    }
+    const title = req.body.link_title;
+    const desc = req.body.link_desc;
+    const url = req.body.link_url;
+    const userid = req.session.userid;
+    const color = req.body.link_color;
+    knex.select('id').from('topics').where('name',req.body.link_topic)
+      .then(function(result){
+        const topic = result[0].id;
+        knex.select('id').from('boards').where('title',req.body.link_board)
+          .then(function(result){
+            const board = result[0].id;
+            knex.insert({user_id:userid, topic_id:topic, url:url, title:title,
+              description:desc, create_date:knex.fn.now(), color:color}).returning('id')
+              .into('links').then(function(result){
+              const id = result[0];
+              knex.insert({link_id: id, userid: userid}).into('learnt_counters').then((result)=>{
+                return knex.insert({link_id: id, board_id: board}).into('boards_links');
+            }).asCallback(function(err){
+                if (err) {
+                  res.status(500).json({ error: err.message });
+                } else {
+                  res.redirect(`/links/${id}/`);
+                }
+              })
             })
           })
-        })
-    })
+      })
 });
 
 //getting link page

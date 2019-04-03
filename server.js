@@ -188,7 +188,11 @@ app.post("/register", (req, res) => {
             .where('username', req.body.username)
             .then((results) => {
               req.session.userid = results[0].id;
-              return res.redirect('back');
+              knex("boards")
+                .insert({user_id: req.session.userid, title: 'First Wall', create_date:knex.fn.now()})
+                .then(() => {
+                  return res.redirect(`/users/${req.body.username}`);
+                });
             });
         });
     });
