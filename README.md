@@ -49,4 +49,4 @@ User Account Page. User can filter through their boards, links, and learned link
 !["User account page"](https://github.com/jerryhuang3/LHL-Midterm-Project/blob/master/docs/User%20Account%20Page.png?raw=true)
 
 Edit profile page.
-!["Edit profile page"](https://github.com/jerryhuang3/LHL-Midterm-Project/blob/master/docs/User%20Edit%20Profile.png?raw=true)
+!["Edit profile page"](https://github.com/jerryhuang3/LHL-Midterm-Project/blob/master/docs/Profile%20Update%20Page.png?raw=true)
