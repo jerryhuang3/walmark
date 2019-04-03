@@ -43,7 +43,7 @@ module.exports = (knex) => {
 });
 
   // Delete Boards
-  boards.post("/:boardID/delete", (req, res) => {
+  boards.delete("/:boardID/delete", (req, res) => {
     const currentUser = req.session.userid;
   const boardID = req.params.boardID;
   knex.select('user_id')

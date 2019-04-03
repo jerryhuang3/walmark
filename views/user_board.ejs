@@ -17,7 +17,7 @@
 <% include ./partials/_header %>
 <section id="link-container" style="margin-top:20px">
   <h2>Welcome to <%=username%>'s wall: </h2>
-  <form action="/boards/<%=boardid%>/delete" method=POST><button class="alert button">Delete Wall</button></form>
+  <form action="/boards/<%=boardid%>/delete/?_method=DELETE" method=POST><button class="alert button">Delete Wall</button></form>
 
   <%if (links.length !== 0) {%>
     <% for (let i = 0; i < links.length; i++) {%>

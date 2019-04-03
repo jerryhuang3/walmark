@@ -317,7 +317,7 @@ body h1 {
   display: none;
 }
 
-#markedlinks-container {
+#learnedlinks-container {
   background: rgba(255, 255, 255, 0.54);
   margin-left: 20vw;
   max-width: 80vw;
@@ -325,12 +325,12 @@ body h1 {
   visibility: collapse;
 }
 
-#markedlinks-container .create {
+#learnedlinks-container .create {
   text-align: center;
   margin-top: 2em;
 }
 
-#markedlinks-container .marked p {
+#learnedlinks-container .learned p {
   position: absolute;
   color: #ffffff;
   padding-left: 2em;
@@ -340,19 +340,19 @@ body h1 {
   text-shadow: 2px 2px 2px 2px black;
 }
 
-#markedlinks-container .marked:hover p {
+#learnedlinks-container .learned:hover p {
   opacity: 1;
 }
 
-#markedlinks-container .marked:hover .overlay-img {
+#learnedlinks-container .learned:hover .overlay-img {
   opacity: .5;
 }
 
-#markedlinks-container .marked:hover {
+#learnedlinks-container .learned:hover {
   transform: scale(1.05);
 }
 
-#markedlinks-container .marked .overlay-img {
+#learnedlinks-container .learned .overlay-img {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -366,11 +366,11 @@ body h1 {
   overflow: hidden;
 }
 
-#markedlinks-container img {
+#learnedlinks-container img {
   border-radius: .5em;
 }
 
-#markedlinks-container .marked {
+#learnedlinks-container .learned {
   position: relative;
   width: 20%;
   margin-bottom: 20px;

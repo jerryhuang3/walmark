@@ -25,10 +25,11 @@
   </div>
   <ul class="account">
     <li class="info"><h4><%=full_name%>'s Hub</h4></li>
+    <li class="info"><p>User since <%=date.toISOString().slice(0,10)%></p></li>
     <li class="info">
       <a class="button primary" id="click1">Walls</a>
       <a class="button success" id="click2">Links</a>
-      <a class="button warning" id="click3">Marked</a>
+      <a class="button warning" id="click3">Learned</a>
     </li>
     <li><a class="button secondary" href="/users/<%=username%>/profile">Edit Profile</a></li>
   </ul>
@@ -37,7 +38,7 @@
 <div id="account-nav"></div>
 <div id="boards-container"></div>
 <div id="userlinks-container"></div>
-<div id="markedlinks-container"></div>
+<div id="learnedlinks-container"></div>
 
 
 <script type="text/javascript" src="/vendor/jquery.js"></script>

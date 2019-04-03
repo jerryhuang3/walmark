@@ -29,7 +29,7 @@
 
 <body>
 <div id="edit-link">
-    <form action="/links/<%=link_id%>/edit" method="POST" id="form-container">
+    <form action="/links/<%=link_id%>/edit/?_method=PUT" method="POST" id="form-container">
         <h4>Edit this link</h4>
         <input value="<%=link_title%>" type="text" name="link_title" required />
         <textarea type="text" name="link_desc"><%=link_desc%></textarea>
@@ -54,7 +54,7 @@
         <button class="button mark">Save</button>
         <a href="javascript:history.back()"><button class="button secondary goback">Back</button></a>
       </form>
-      <form action="/links/<%=link_id%>/delete" method=POST><button><i class="fas fa-trash"></i></button></form>
+      <form action="/links/<%=link_id%>/delete/?_method=DELETE" method=POST><button><i class="fas fa-trash"></i></button></form>
 
 
     </div>

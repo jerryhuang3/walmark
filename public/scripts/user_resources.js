@@ -9,8 +9,8 @@ $( document ).ready(function() {
       renderLinks(allLinks);
 
     });
-    $.get('/api/markedlinks', function(savedLinks) {
-      markedLinks(savedLinks);
+    $.get('/api/learnedlinks', function(savedLinks) {
+      learnedLinks(savedLinks);
     });
 
 
@@ -100,8 +100,8 @@ $( document ).ready(function() {
        </div>`;
   };
 
-  // Loads all of a user's marked links
-  function markedLinks(savedLinks) {
+  // Loads all of a user's learned links
+  function learnedLinks(savedLinks) {
     if (savedLinks[0] === undefined) {
       $links = `
         <div class="create">
@@ -112,16 +112,16 @@ $( document ).ready(function() {
 
     $saved = `
         <div class="saved">
-            <h2>Marked Links</h2>
+            <h2>Learned Links</h2>
         </div>`;
     $("#account-nav").prepend($saved);
 
     for (let i = 0; i < savedLinks.length; i++) {
-      $("#markedlinks-container").prepend(createMarked(savedLinks[i], (700 + i)));
+      $("#learnedlinks-container").prepend(createLearned(savedLinks[i], (700 + i)));
     }
-    let $grid = $('#markedlinks-container').imagesLoaded(function() {
+    let $grid = $('#learnedlinks-container').imagesLoaded(function() {
       $grid.masonry({
-        itemSelector: '.marked',
+        itemSelector: '.learned',
         columnWidth: 200,
         horizontalOrder: true,
         percentPosition: true
@@ -129,9 +129,9 @@ $( document ).ready(function() {
     });
   };
 
-  function createMarked(links, count) {
+  function createLearned(links, count) {
     return $links = `
-       <div class="marked">
+       <div class="learned">
         <img src="https://picsum.photos/400/500/?image=${count}">
          <a href="/links/${links.id}/"><div class="overlay-img"></div></a>
          <p>${links.title}</p>
@@ -141,7 +141,7 @@ $( document ).ready(function() {
 
   $( "#click1" ).click(function() {
     $('#userlinks-container').hide();
-    $('#markedlinks-container').hide();
+    $('#learnedlinks-container').hide();
     $('#account-nav .links').hide();
     $('#account-nav .saved').hide();
 
@@ -152,7 +152,7 @@ $( document ).ready(function() {
   // Shows a user's links
   $( "#click2" ).on('click', function() {
     $('#boards-container').hide();
-    $('#markedlinks-container').hide();
+    $('#learnedlinks-container').hide();
     $('#account-nav .boards').hide();
     $('#account-nav .saved').hide();
 
@@ -168,8 +168,8 @@ $( document ).ready(function() {
     $('#account-nav .boards').hide();
     $('#account-nav .links').hide();
 
-    $('#markedlinks-container').css({'visibility': 'visible'});
-    $('#markedlinks-container').show();
+    $('#learnedlinks-container').css({'visibility': 'visible'});
+    $('#learnedlinks-container').show();
     $('#account-nav .saved').show();
   });
 
