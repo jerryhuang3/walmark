@@ -82,9 +82,10 @@ module.exports = (knex) => {
             .where('link_id', linkId)
             .then(function(results) {
               const ratings = Math.round(10 * results[0].avg) / 10;
-              knex.select('full_name').from('users').where({id: req.session.userid})
+              knex.select('full_name', 'username').from('users').where({id: req.session.userid})
                 .then(function(result){
                   const full_name = result[0].full_name;
+                  const currentUser = result[0].username;
                   knex.select('learnt').from('learnt_counters').where({ link_id: linkId, userid: req.session.userid })
                     .then(function(result) {
                       if (!result[0]){
@@ -99,7 +100,7 @@ module.exports = (knex) => {
                           desc: links.description,
                           create_date: links.create_date,
                           link_id: linkId,
-                          username: links.username,
+                          username: currentUser,
                           boards: boards,
                           color: links.color,
                           avg_rating: ratings,
@@ -119,7 +120,7 @@ module.exports = (knex) => {
                           desc: links.description,
                           create_date: links.create_date,
                           link_id: linkId,
-                          username: links.username,
+                          username: currentUser,
                           boards: boards,
                           color: links.color,
                           avg_rating: ratings,
