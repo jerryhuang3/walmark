@@ -46,7 +46,7 @@ module.exports = (knex) => {
       .then(function(result){
         const topic = result[0].id;
         knex.select('id').from('boards').where('title',req.body.link_board)
-          .then(function(result){
+          .then(function(result) {
             const board = result[0].id;
             knex.insert({user_id:userid, topic_id:topic, url:url, title:title,
               description:desc, create_date:knex.fn.now(), color:color}).returning('id')

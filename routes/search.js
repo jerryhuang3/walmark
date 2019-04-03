@@ -5,7 +5,7 @@ const search  = express.Router();
 
 module.exports = (knex) => {
 
-// Route rendering the search page once a search is submitted
+  // Route rendering the search page once a search is submitted
   search.get('/', (req, res) => {
     if (req.session.userid) {
     knex
@@ -25,8 +25,7 @@ module.exports = (knex) => {
 
 // Route returning search results from AJAX request
   search.get('/:searchQuery', (req, res) => {
-    let searches = req.query.search;
-
+    let searches = req.params.searchQuery;
     knex
       .select('links.id', 'title')
       .from('links')

@@ -77,13 +77,13 @@ app.get("/", (req, res) => {
     .from('users')
     .where('id', req.session.userid)
     .then((userInfo) => {
-    let templateVars = userInfo[0];
-  return res.render('index', templateVars);
-});
-} else {
-  let templateVars = { id: req.session.userid };
-  res.render('index', templateVars);
-}
+      let templateVars = userInfo[0];
+      return res.render('index', templateVars);
+    });
+  } else {
+    let templateVars = { id: req.session.userid };
+    return res.render('index', templateVars);
+  }
 });
 
 

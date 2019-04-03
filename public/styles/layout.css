@@ -34,16 +34,12 @@ body h1 {
   text-align: center;
 }
 
-.overlayimage {
-  position: absolute;
-  width: 100%;
-  margin: 0 auto;
-  bottom: 0;
-  top: 6em;
-  right: 0;
-  left: 0;
+#front-page {
+  width: 100vw;
+}
+
+#front-page img {
   opacity: .5;
-  background-color: #454643;
   overflow: hidden;
 }
 

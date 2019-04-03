@@ -1,11 +1,12 @@
 $( document ).ready(function() {
-    function loadHomeLinks()
-  {
+
+console.log("THIS IS A COOKIE", document.session);
+
+  function loadHomeLinks() {
     $.get('/api/links', function(allLinks) {
       renderHomeLinks(allLinks);
     });
-  }
-  ;
+  };
   loadHomeLinks();
 
   function shuffle(a) {
@@ -20,7 +21,8 @@ $( document ).ready(function() {
     let randomLinks = shuffle(allLinks);
 
     for (let i = 0; i < randomLinks.length; i++) {
-        $("#link-container").prepend(createHomeLinks(randomLinks[i], (969 + i)));
+      let count = i + 969;
+      $("#link-container").prepend(createHomeLinks(randomLinks[i], count));
     }
     let $grid = $('#link-container').imagesLoaded(function() {
       $grid.masonry({
@@ -34,12 +36,13 @@ $( document ).ready(function() {
   };
 
   function createHomeLinks(randomLinks, count) {
-    const heightArray = ['400', '450', '500', '550', '600'];
+    const imgNum = count;
+    const heightArray = ['400','450', '500', '600', '700'];
     const randomItem = heightArray[Math.floor(Math.random() * heightArray.length)];
 
     return $randomLinks = `
        <div class="links">
-          <img src="https://picsum.photos/300/${randomItem}/?image=${count}" />
+          <img src="https://picsum.photos/300/${randomItem}/?image=${imgNum}" />
           <a href="/links/${randomLinks.id}/"><div class="overlay-img"></div></a>
           <p><strong>${randomLinks.title}</strong></p>
        </div>`;
