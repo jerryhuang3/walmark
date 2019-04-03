@@ -90,13 +90,14 @@ module.exports = (knex) => {
   knex.select('username', 'full_name', 'id').from('users').where('id', currentUser)
     .then(function(results) {
       const user = results[0];
-      knex.select('*').from('boards_links')
+      knex.select('*', 'boards.title AS boardtitle').from('boards_links')
         .join('boards',{'boards_links.board_id' : 'boards.id'})
         .join('users', {'boards.user_id' : 'users.id'})
         .join('links',{'boards_links.link_id' : 'links.id'})
         .join('topics', {'links.topic_id' : 'topics.id'})
         .where('board_id', boardID)
         .then(function(results) {
+          console.log(results[0]);
           const templateVars = {
             id: req.session.userid,
             boardid: boardID,
@@ -106,7 +107,8 @@ module.exports = (knex) => {
             url: results.url,
             desc: results.description,
             create_date: results.create_date,
-            linkuser: results.username,
+            boarduser: results[0].username,
+            boardtitle: results[0].boardtitle,
             topic: results.name,
             color: results.color,
             links: results,
