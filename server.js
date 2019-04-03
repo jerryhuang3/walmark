@@ -139,12 +139,13 @@ res.render('edit_profile', templateVars);
 
 // User Profile Update
 app.put('/users/:username/profile/update', (req, res) => {
+  const hashedPassword = bcrypt.hashSync(req.body.password, 10);
   knex('users')
-.where({id: req.session.userid})
-  .update({full_name: req.body.fullName, email: req.body.email, password: req.body.password, avatar: req.body.avatar})
-  .then((results)=>{
-  return res.redirect(`/users/${req.body.username}/profile`);
-});
+    .where({id: req.session.userid})
+    .update({full_name: req.body.fullName, email: req.body.email, password: hashedPassword, avatar: req.body.avatar})
+    .then((results)=>{
+      return res.redirect(`/users/${req.body.username}/profile`);
+    });
 });
 
 
