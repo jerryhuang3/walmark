@@ -17,7 +17,7 @@ const knex            = require("knex")(knexConfig[ENV]);
 const morgan          = require('morgan');
 const knexLogger      = require('knex-logger');
 
-// Seperated Routes for each Resource
+// Separated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const linksRoutes = require("./routes/links");
 const homeRoutes = require("./routes/home");
@@ -36,8 +36,6 @@ app.use(cookies({
   keys: ["secretkey"]
 }));
 
-
-// Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
@@ -132,9 +130,9 @@ app.get("/users/:username/profile", (req, res) => {
     .from('users')
     .where('id', req.session.userid)
     .then((userInfo) => {
-    let templateVars = userInfo[0];
-res.render('edit_profile', templateVars);
-});
+      let templateVars = userInfo[0];
+      return res.render('edit_profile', templateVars);
+  });
 });
 
 // User Profile Update
@@ -143,7 +141,7 @@ app.put('/users/:username/profile/update', (req, res) => {
   knex('users')
     .where({id: req.session.userid})
     .update({full_name: req.body.fullName, email: req.body.email, password: hashedPassword, avatar: req.body.avatar})
-    .then((results)=>{
+    .then((results) => {
       return res.redirect(`/users/${req.body.username}/profile`);
     });
 });

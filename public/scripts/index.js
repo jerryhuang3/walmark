@@ -1,7 +1,5 @@
 $( document ).ready(function() {
 
-console.log("THIS IS A COOKIE", document.session);
-
   function loadHomeLinks() {
     $.get('/api/links', function(allLinks) {
       renderHomeLinks(allLinks);
@@ -36,7 +34,10 @@ console.log("THIS IS A COOKIE", document.session);
   };
 
   function createHomeLinks(randomLinks, count) {
-    const imgNum = count;
+    let imgNum = count;
+      if (imgNum === 1007) {
+        imgNum = imgNum + 1;
+      }
     const heightArray = ['400','450', '500', '600', '700'];
     const randomItem = heightArray[Math.floor(Math.random() * heightArray.length)];
 
