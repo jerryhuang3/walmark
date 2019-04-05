@@ -82,40 +82,47 @@ module.exports = (knex) => {
 
   // User boards
   boards.get("/:boardID", (req, res) => {
-    const currentUser = req.session.userid;
   const boardID = req.params.boardID;
-  if (!currentUser) {
+  if (!req.session.userid) {
     res.redirect('/');
   }
-  knex.select('username', 'full_name', 'id').from('users').where('id', currentUser)
+  knex.select('username', 'full_name', 'id').from('users').where('id', req.session.userid)
     .then(function(results) {
       const user = results[0];
-      knex.select('*', 'boards.title AS boardtitle').from('boards_links')
-        .join('boards',{'boards_links.board_id' : 'boards.id'})
-        .join('users', {'boards.user_id' : 'users.id'})
-        .join('links',{'boards_links.link_id' : 'links.id'})
-        .join('topics', {'links.topic_id' : 'topics.id'})
-        .where('board_id', boardID)
+      knex.select('*')
+        .from('boards')
+        .join('users',{'boards.user_id' : 'users.id'})
+        .where('boards.id', boardID)
         .then(function(results) {
-          console.log(results[0]);
-          const templateVars = {
-            id: req.session.userid,
-            boardid: boardID,
-            linktitle: results.title,
-            linkid: results.link_id,
-            user_avatar: results.avatar,
-            url: results.url,
-            desc: results.description,
-            create_date: results.create_date,
-            boarduser: results[0].username,
-            boardtitle: results[0].boardtitle,
-            topic: results.name,
-            color: results.color,
-            links: results,
-            username: user.username,
-            full_name: user.full_name
-          }
-          res.render('user_board', templateVars);
+          const boardInfo = results[0];
+          console.log(boardInfo);
+          knex.select('*').from('boards_links')
+            .join('boards',{'boards_links.board_id' : 'boards.id'})
+            .join('users', {'boards.user_id' : 'users.id'})
+            .join('links',{'boards_links.link_id' : 'links.id'})
+            .join('topics', {'links.topic_id' : 'topics.id'})
+            .where('board_id', boardID)
+            .then(function(results) {
+              const linkInfo = results;
+              const templateVars = {
+                id: req.session.userid,
+                boardid: boardID,
+                linktitle: linkInfo.title,
+                linkid: linkInfo.link_id,
+                user_avatar: linkInfo.avatar,
+                url: linkInfo.url,
+                desc: linkInfo.description,
+                create_date: linkInfo.create_date,
+                boarduser: boardInfo.username,
+                boardtitle: boardInfo.title,
+                topic: linkInfo.name,
+                color: linkInfo.color,
+                links: linkInfo,
+                username: user.username,
+                full_name: user.full_name
+              }
+              res.render('user_board', templateVars);
+            })
         })
     })
 
