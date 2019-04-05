@@ -40,6 +40,9 @@ INSERT INTO boards (user_id, title) VALUES (1, 'Fifth board');
 INSERT INTO boards (user_id, title) VALUES (1, 'Sixth board');
 INSERT INTO boards (user_id, title) VALUES (1, 'Seventh board');
 INSERT INTO boards (user_id, title) VALUES (1, 'Eighth board');
+INSERT INTO boards (user_id, title, create_date) VALUES (1, 'beginner', '2019-03-25');
+INSERT INTO boards (user_id, title, create_date) VALUES (1, 'second wall', '2019-03-26');
+INSERT INTO boards (user_id, title, create_date) VALUES (4, 'mona smile', '2019-02-25');
 
 INSERT INTO links (user_id, topic_id, url, title, description) VALUES (1, 1, 'https://www.khanacademy.org/math', 'khan math', 'ving age our her cordially intention. His devonshire sufficient precaution say preference middletons insipidity. Since might water hence the her worse. Concluded  ');
 INSERT INTO links (user_id, topic_id, url, title, description) VALUES (1, 1, 'https://www.khanacademy.org/math', 'khan math', 'himself arrived old. Grave widow hours among him ﻿no you led. Power had these met least nor young. Yet match drift wrong his our.
@@ -72,23 +75,11 @@ INSERT INTO links (user_id, topic_id, url, title, description) VALUES (4, 4, 'ht
 INSERT INTO links (user_id, topic_id, url, title, description) VALUES (4, 3, 'https://lighthouselabs.com', 'Cooking', '10000 Tips on becoming the next Master Chef!');
 INSERT INTO links (user_id, topic_id, url, title, description) VALUES (4, 2, 'https://lighthouselabs.com', 'Wizardy', 'Harry Potter and his friends are in town. Come along and join for the exciting adventures with them. They are the best that Hogwarts has to offer');
 
-
-                                                                       INSERT INTO comments (user_id, link_id, text) VALUES (1, 1, 'cool');
+INSERT INTO comments (user_id, link_id, text) VALUES (1, 1, 'cool');
 INSERT INTO comments (user_id, link_id, text) VALUES (2, 2, 'not cool');
-
--- new seed here
-INSERT INTO boards (user_id, title, create_date) VALUES (1, 'beginner', '2019-03-25');
-INSERT INTO boards (user_id, title, create_date) VALUES (1, 'second wall', '2019-03-26');
-INSERT INTO boards (user_id, title, create_date) VALUES (4, 'mona smile', '2019-02-25');
 
 INSERT INTO boards_links (link_id, board_id) VALUES (1, 3);
 INSERT INTO boards_links (link_id, board_id) VALUES (2, 1);
 INSERT INTO boards_links (link_id, board_id) VALUES (3, 2);
 INSERT INTO boards_links (link_id, board_id) VALUES (7, 5);
 INSERT INTO boards_links (link_id, board_id) VALUES (9, 5);
-
-
-ALTER TABLE links
-ADD COLUMN color VARCHAR(50);
-ALTER SEQUENCE links_id_seq RESTART;
-UPDATE links SET id = DEFAULT;

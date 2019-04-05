@@ -3,7 +3,7 @@ CREATE TABLE  users (
   username VARCHAR(50) NOT NULL,
   full_name VARCHAR(50) NOT NULL,
   email VARCHAR(255) NOT NULL,
-  password VARCHAR(32) NOT NULL,
+  password VARCHAR(100) NOT NULL,
   avatar VARCHAR(255) NOT NULL,
   create_date TIMESTAMPTZ
 );
@@ -34,6 +34,7 @@ CREATE TABLE links (
   topic_id INTEGER NOT NULL REFERENCES topics(id),
   url VARCHAR(255),
   title VARCHAR(50),
+  color VARCHAR(50),
   description VARCHAR(200),
   create_date TIMESTAMPTZ
 );
