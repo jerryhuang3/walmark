@@ -1,4 +1,4 @@
-// Search button functionality;
+// Search button functionality
 $(() => {
   $('.search').on('click', function() {
     let searchInput = $('input').val();

@@ -4,7 +4,7 @@ const express = require('express');
 const ratings  = express.Router();
 
 module.exports = (knex) => {
-  // Crreate rating API
+  // Create rating API
   ratings.get("/", (req, res) => {
     knex
     .select("*")
@@ -25,7 +25,6 @@ module.exports = (knex) => {
       .from('ratings')
       .where({user_id: userID, link_id: linkID})
       .then((ratings) => {
-        console.log(ratings);
         if (!ratings[0]) {
           knex('ratings')
             .insert({ user_id: userID, link_id: linkID, rating: rating })

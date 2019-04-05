@@ -68,12 +68,12 @@ $('.star').on('mouseover', function(){
     $(stars[i]).addClass('rating');
 
   }
-
-  let linkID = (window.location.pathname);
-  linkID = linkID.replace(/\/links\//, '').replace('/', '');
-  $.post('/api/ratings', {rating:$(this).data('value'), linkID:linkID}, function(){
+    // Add or update your rating
+    let linkID = (window.location.pathname);
+    linkID = linkID.replace(/\/links\//, '').replace('/', '');
+    $.post('/api/ratings', {rating:$(this).data('value'), linkID:linkID}, function(){
     location.reload();
+    });
   });
-});
 
 });

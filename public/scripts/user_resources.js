@@ -112,7 +112,7 @@ $( document ).ready(function() {
 
     $saved = `
         <div class="saved">
-            <h2>Learned Links</h2>
+            <h2>Learned Links <i class="fas fa-trophy"></i></h2>
         </div>`;
     $("#account-nav").prepend($saved);
 
