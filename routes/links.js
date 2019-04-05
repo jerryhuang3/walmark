@@ -230,23 +230,18 @@ module.exports = (knex) => {
   linksRoutes.post("/:linkId/save", (req, res) => {
     const link_id = req.params.linkId;
     const board = req.body.selectme;
-      knex
-        .select('*')
-        .from('boards_links')
-        .join('boards', {'boards_links.board_id' : 'boards.id'})
-        .where('title',board)
-        .then((result) => {
-          knex
-            .insert({link_id: link_id, board_id:result[0].id})
-            .into('boards_links').asCallback(function(err){
-              if (err) {
-                res.status(500).json({ error: err.message });
-              } else {
-                res.redirect(`/links/${link_id}/`);
-              }
-            })
+    knex.select('id').from('boards').where('title',board)
+      .then((result)=> {
+      knex.insert({link_id: link_id, board_id:result[0].id})
+        .into('boards_links').asCallback(function(err){
+          if (err) {
+            res.status(500).json({ error: err.message });
+          } else {
+            res.redirect(`/links/${link_id}/`);
+          }
         })
-  })
+      })
+})
 
   //marking link learnt
   linksRoutes.post("/:linkId/learnt", (req, res) => {

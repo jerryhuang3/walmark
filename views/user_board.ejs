@@ -18,7 +18,7 @@
 <section id="link-container" style="margin-top:20px">
   <h2>Welcome to <%=boarduser%>'s wall: <%=boardtitle%> </h2>
   <form action="/boards/<%=boardid%>/delete/?_method=DELETE" method=POST><button class="alert button">Delete Wall</button></form>
-
+  <%console.log(links);%>
   <%if (links.length !== 0) {%>
     <% for (let i = 0; i < links.length; i++) {%>
     <div class="right-col">
@@ -39,7 +39,7 @@
 <script type="text/javascript" src="/vendor/foundation.js"></script>
 <script type="text/javascript" src="/vendor/masonry.pkgd.js"></script>
 <script type="text/javascript" src="/vendor/imagesloaded.pkgd.js"></script>
-<script type="text/javascript" src="scripts/search.js"></script>
+<script type="text/javascript" src="/scripts/search.js"></script>
 <script>$(document).foundation();</script>
 </body>
 </html>

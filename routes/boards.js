@@ -95,7 +95,6 @@ module.exports = (knex) => {
         .where('boards.id', boardID)
         .then(function(results) {
           const boardInfo = results[0];
-          console.log(boardInfo);
           knex.select('*').from('boards_links')
             .join('boards',{'boards_links.board_id' : 'boards.id'})
             .join('users', {'boards.user_id' : 'users.id'})
