@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Walmark</title>
 
@@ -11,83 +11,114 @@
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/link-layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/foundation.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
-
+    <link rel="stylesheet" href="/styles/foundation.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=PT+Sans:400,700"
+      rel="stylesheet"
+    />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/vendor/masonry.pkgd.js"></script>
     <script type="text/javascript" src="/vendor/imagesloaded.pkgd.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.js"
+    ></script>
     <script type="text/javascript" src="/vendor/foundation.js"></script>
     <script type="text/javascript" src="/scripts/search.js"></script>
-    <script>$(document).foundation();</script>
+    <script>
+      $(document).foundation();
+    </script>
   </head>
 
-
-
   <body>
-  <% include ./partials/_header %>
+    <% include ./partials/_header %>
 
-  <section id="link-box">
-    <div class="link-info">
-      <div class="topbar">
-        <% if (id == link_user){%>
-        <a href="/links/<%=link_id%>/edit"><i class="fas fa-pen"></i></a>
-        <%} else {%>
-
-        <%}%>
-        <form id="learn-link" action="/links/<%=link_id%>/learnt" method="POST">
-          <% if (learnt == 0 || learnt === null){%>
+    <section id="link-box">
+      <div class="link-info">
+        <div class="topbar">
+          <% if (id == link_user){%>
+          <a href="/links/<%=link_id%>/edit"><i class="fas fa-pen"></i></a>
+          <%} else {%> <%}%>
+          <form
+            id="learn-link"
+            action="/links/<%=link_id%>/learnt"
+            method="POST"
+          >
+            <% if (learnt == 0 || learnt === null){%>
             <button><i class="fas fa-trophy"></i></button>
-          <%} else if (learnt == 1 || learnt === null){%>
+            <%} else if (learnt == 1 || learnt === null){%>
             <button><i class="fas fa-trophy" id="learnt"></i></button>
-          <%} else {%>
-
-          <%}%>
+            <%} else {%> <%}%>
+          </form>
+          <div id="saved">Marked!</div>
+          <form id="saveform" action="/links/<%=link_id%>/save" method="POST">
+            <select id="saveto" name="selectme">
+              <option value="">Mark it on your wall</option>
+              <% for (let board = 0; board < boards.length; board++) {%>
+              <option value="<%=boards[board].title%>"
+                ><%=boards[board].title%></option
+              >
+              <%};%>
+            </select>
+          </form>
+        </div>
+        <h3><%=title%></h3>
+        <div class="link-creator">
+          <img class="link-avatar" src="<%=user_avatar%>" />
+          <span class="link-fullname"><%=link_name%></span>
+        </div>
+        <a href="<%=url%>"
+          ><div id="link-color" style="background-color:<%=color%>"></div
+        ></a>
+        <p class="link-desc"><%=desc%></p>
+        <p class="link-date">
+          Created on <%=create_date.toISOString().slice(0,10)%>
+        </p>
+        <div class="link-ratings">
+          <ul id="stars">
+            <li>
+              <h4>Rating<%if (avg_rating > 0) {%>: <%=avg_rating%> <%}%></h4>
+            </li>
+            <li class="star" data-value="1">
+              <i class="fa fa-star fa-fw"></i>
+            </li>
+            <li class="star" data-value="2">
+              <i class="fa fa-star fa-fw"></i>
+            </li>
+            <li class="star" data-value="3">
+              <i class="fa fa-star fa-fw"></i>
+            </li>
+            <li class="star" data-value="4">
+              <i class="fa fa-star fa-fw"></i>
+            </li>
+            <li class="star" data-value="5">
+              <i class="fa fa-star fa-fw"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="link-comments">
+        <h4>Comments</h4>
+        <div id="comments-container">
+          <!-- insert all comments here -->
+        </div>
+        <form
+          action="/links/<%=link_id%>/comment"
+          method="POST"
+          class="comment-submit"
+        >
+          <textarea name="text" placeholder="How do you like this?"></textarea>
+          <input type="submit" value="Done" />
         </form>
-        <div id="saved">Marked!</div>
-        <form id="saveform" action="/links/<%=link_id%>/save" method="POST">
-          <select id="saveto" name="selectme">
-            <option value="" >Mark it on your wall</option>
-            <% for (let board = 0; board < boards.length; board++) {%>
-            <option value="<%=boards[board].title%>"><%=boards[board].title%></option>
-            <%};%>
-          </select>
-        </form>
       </div>
-      <h3><%=title%></h3>
-      <div class="link-creator">
-        <img class="link-avatar" src="<%=user_avatar%>">
-        <span class="link-fullname"><%=link_name%></span>
-      </div>
-      <a href="<%=url%>"><div id="link-color" style="background-color:<%=color%>"></div></a>
-      <p class="link-desc"><%=desc%></p>
-      <p class="link-date">Created on <%=create_date.toISOString().slice(0,10)%></p>
-      <div class='link-ratings'>
-        <ul id='stars'>
-          <li><h4>Rating<%if (avg_rating > 0) {%>: <%=avg_rating%>  <%}%></h4></li>
-          <li class='star' data-value='1'><i class='fa fa-star fa-fw'></i></li>
-          <li class='star' data-value='2'><i class='fa fa-star fa-fw'></i></li>
-          <li class='star' data-value='3'><i class='fa fa-star fa-fw'></i></li>
-          <li class='star' data-value='4'><i class='fa fa-star fa-fw'></i></li>
-          <li class='star' data-value='5'><i class='fa fa-star fa-fw'></i></li>
-        </ul>
-      </div>
-    </div>
-    <div class="link-comments">
-      <h4>Comments</h4>
-      <div id="comments-container">
-        <!-- insert all comments here -->
-      </div>
-      <form action="/links/<%=link_id%>/comment" method="POST" class="comment-submit">
-        <textarea name="text" placeholder="How do you like this?"></textarea>
-        <input type="submit" value="Done">
-      </form>
-    </div>
-  </section>
-
+    </section>
   </body>
 </html>

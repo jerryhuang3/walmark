@@ -2779,16 +2779,16 @@ input[type='search'] {
           box-sizing: border-box; }
 
 ::-webkit-input-placeholder {
-  color: #cacaca; }
+  color: #5d5d5d; }
 
 :-ms-input-placeholder {
-  color: #cacaca; }
+  color: #5d5d5d; }
 
 ::-ms-input-placeholder {
-  color: #cacaca; }
+  color: #5d5d5d; }
 
 ::placeholder {
-  color: #cacaca; }
+  color: #5d5d5d; }
 
 [type='file'],
 [type='checkbox'],

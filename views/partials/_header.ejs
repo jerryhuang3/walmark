@@ -1,35 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<div class="top-bar">
-  <div class="top-bar-left">
-    <ul class="menu">
-      <li id="logo-text" class="menu-text"><a href="/">Walmark</a></li>
-      <li class="walmark"><a href="/"><img src="/images/Walmart_Spark.fw.png" width="25px" height="25px"></a></li>
-      <%if (id) {%>
-      <li class="menu-center">
-        <form id="search" method="GET" action="/results">
-          <input type="text" placeholder="Search" name="search">
-          <img class="search"  src="/images/search.png" width="20px" height="20px">
-          <%}%>
-        </form>
-      </li>
-    </ul>
-  </div>
-  <div class="top-bar-right">
-    <ul class="menu">
-      <%if (!id) {%>
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <ul class="menu">
+        <li id="logo-text" class="menu-text"><a href="/">Walmark</a></li>
+        <li class="walmark">
+          <a href="/"
+            ><img src="/images/Walmart_Spark.fw.png" width="25px" height="25px"
+          /></a>
+        </li>
+        <%if (id) {%>
+        <li class="menu-center">
+          <form id="search" method="GET" action="/results">
+            <input type="text" placeholder="Search" name="search" />
+            <img
+              class="search"
+              src="/images/search.png"
+              width="20px"
+              height="20px"
+            />
+            <%}%>
+          </form>
+        </li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu">
+        <%if (!id) {%>
         <li>
           <button class="button" data-open="login">Login</button>
           <div class="reveal" id="login" data-reveal>
             <form method="POST" action="/login">
               <h4 class="text-center">Login</h4>
-              <label>Username<input type="text" placeholder="Username" name="username"></label>
-              <label>Password<input type="password" placeholder="Password" name="password"></label>
-              <p><input type="submit" class="button expanded" value="Login"></p>
+              <label
+                >Username<input
+                  type="text"
+                  placeholder="Username"
+                  name="username"
+              /></label>
+              <label
+                >Password<input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+              /></label>
+              <p>
+                <input type="submit" class="button expanded" value="Login" />
+              </p>
               <p>New to Walmark? <a data-open="register">Register now</a></p>
             </form>
-            <button class="close-button" data-close aria-label="Close modal" type="button">
+            <button
+              class="close-button"
+              data-close
+              aria-label="Close modal"
+              type="button"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -39,30 +64,174 @@
           <div class="reveal" id="register" data-reveal>
             <form method="POST" action="/register">
               <h4 class="text-center">Register</h4>
-              <label>Full Name<input type="text" placeholder="John Doe" name="fullName"></label>
-              <label>Username<input type="text" placeholder="Username" name="username"></label>
-              <label>Email<input type="email" placeholder="somebody@example.com" name="email"></label>
-              <label>Password<input type="password" placeholder="Password" name="password"></label>
-              <p><input type="submit" class="button expanded" value="Register"></p>
+              <label
+                >Full Name<input
+                  type="text"
+                  placeholder="John Doe"
+                  name="fullName"
+              /></label>
+              <label
+                >Username<input
+                  type="text"
+                  placeholder="Username"
+                  name="username"
+              /></label>
+              <label
+                >Email<input
+                  type="email"
+                  placeholder="somebody@example.com"
+                  name="email"
+              /></label>
+              <label
+                >Password<input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+              /></label>
+              <p>
+                <input type="submit" class="button expanded" value="Register" />
+              </p>
               <p>Already registered? <a data-open="login">Login</a></p>
             </form>
-            <button class="close-button" data-close aria-label="Close modal" type="button">
+            <button
+              class="close-button"
+              data-close
+              aria-label="Close modal"
+              type="button"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
         </li>
-      <%} else {%>
+        <%} else {%>
         <li><a href="/users/<%=username%>">My Walls</a></li>
-        <li><a href="/boards/create">Create Wall <i class="fas fa-plus-circle"></i></a></li>
-        <li><a href="/links/create">Create Link <i class="fas fa-plus-circle"></i></a></li>
-        <li><a href="/users/<%=username%>/profile">Welcome <%=full_name%>!</a></li>
+        <li>
+          <button class="button" type="button" data-toggle="create">
+            <i class="fas fa-plus"></i> Create Wall
+          </button>
+          <div
+            class="dropdown-pane"
+            id="create"
+            data-dropdown
+            data-toggle="create"
+          >
+            <ul
+              class="create"
+              data-dropdown-content
+              class="f-dropdown"
+              aria-hidden="true"
+            >
+              <li>This is a link</li>
+              <li>This is another</li>
+              <li>Yet another</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <button class="button" data-open="create-wall">
+            <i class="fas fa-plus"></i> Create Wall
+          </button>
+          <div class="reveal" id="create-wall" data-reveal>
+            <form method="POST" action="/boards/create">
+              <h4 class="text-center">Create A New Wall</h4>
+              <label
+                >Name<input
+                  placeholder="Wall Name"
+                  type="text"
+                  name="board_title"
+                  required
+              /></label>
+              <p>
+                <input type="submit" class="button expanded" value="Create" />
+              </p>
+            </form>
+            <button
+              class="close-button"
+              data-close
+              aria-label="Close modal"
+              type="button"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </li>
+        <li>
+          <button class="button" data-open="create-link">Create Link</button>
+          <div class="reveal" id="create-link" data-reveal>
+            <form method="POST" action="/links/create">
+              <h4 class="text-center">Create A New Wall</h4>
+              <input
+                placeholder="Add your title"
+                type="text"
+                name="link_title"
+                required
+              />
+              <input
+                placeholder="Insert the link here"
+                type="text"
+                name="link_url"
+                required
+              />
+              <textarea
+                placeholder="Describe your resource"
+                type="text"
+                name="link_desc"
+              ></textarea>
+              <div id="choose_color">
+                <span>Pick a Color</span>
+                <div>
+                  <input
+                    type="text"
+                    id="togglePaletteOnly"
+                    class="awesome"
+                    name="link_color"
+                  />
+                </div>
+              </div>
+              <span>Pick a Topic</span>
+              <div class="dropdown_options">
+                <select name="link_topic">
+                  <option>math</option>
+                  <option>programming</option>
+                  <option>javascript</option>
+                  <option>gaming</option>
+                  <option>english</option>
+                  <option>science</option>
+                  <option>fitness</option>
+                  <option>wizardry</option>
+                  <option>dating</option>
+                  <option>nature</option>
+                  <option>business</option>
+                  <option>python</option>
+                  <option>cooking</option>
+                </select>
+              </div>
+              <div class="dropdown_options">
+                <span>Pick a Wall</span>
+                <select id="usersboards" name="link_board"> </select>
+              </div>
+              <button class="button mark">Mark</button>
+            </form>
+            <button
+              class="close-button"
+              data-close
+              aria-label="Close modal"
+              type="button"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </li>
+        <li>
+          <a href="/users/<%=username%>/profile">Welcome <%=full_name%>!</a>
+        </li>
         <li>
           <form method="POST" action="/logout">
             <button class="button" type="submit">Logout</button>
           </form>
         </li>
         <%}%>
-    </ul>
+      </ul>
+    </div>
   </div>
-</div>
 </html>

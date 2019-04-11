@@ -6,55 +6,60 @@
  * Licensed under MIT Open Source
  */
 @media print, screen and (min-width: 40em) {
-  .reveal, .reveal.tiny, .reveal.small, .reveal.large {
+  .reveal,
+  .reveal.tiny,
+  .reveal.small,
+  .reveal.large {
     right: auto;
     left: auto;
-    margin: 0 auto; } }
+    margin: 0 auto;
+  }
+}
 
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 html {
   line-height: 1.15;
-  -webkit-text-size-adjust: 100%; }
+  -webkit-text-size-adjust: 100%;
+}
 
 #edit-link {
-    max-width: 45vw;
-    margin: 2vw auto;
-    border: 1px solid grey;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    padding: 2vw;
+  max-width: 45vw;
+  margin: 2vw auto;
+  border: 1px solid grey;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  padding: 2vw;
 
-    #form-container {
-        margin: 0 auto;
-    }
+  #form-container {
+    margin: 0 auto;
+  }
 
-    input[name="link_title"] {
-      font-size: 2vw;
-      font-weight: bold;
-    }
+  input[name="link_title"] {
+    font-size: 2vw;
+    font-weight: bold;
+  }
 
-    ::placeholder {
-      opacity: 0.8;
-      color: black;
-    }
-    :placeholder-shown {
-      border-bottom-color: #0072CE;
-      border-left-color: white;
-      border-top-color: white;
-      border-right-color: white;
-    }
+  ::placeholder {
+    opacity: 0.8;
+    color: black;
+  }
+  :placeholder-shown {
+    border-bottom-color: #0072ce;
+    border-left-color: white;
+    border-top-color: white;
+    border-right-color: white;
+  }
 
-    textarea[name="link_desc"] {
-      min-height: 10vw;
-    }
+  textarea[name="link_desc"] {
+    min-height: 10vw;
+  }
 
-    .fa-trash {
-        color: red;
-        display: inline-block;
-        font-size: 1.5vw;
-    }
-
+  .fa-trash {
+    color: red;
+    display: inline-block;
+    font-size: 1.5vw;
+  }
 }
 
 .goback {
