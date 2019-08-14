@@ -2,6 +2,8 @@
 
 Walmark is a user curated, resource wall that can help users organize and bookmark links according to whichever category they are interested in. Save links, learn better. That's Walmark.
 
+Created in collaboration with [Hark Khabra](https://github.com/harkk) and [Karen Lau](https://github.com/karen1au).
+
 ## Getting Started
 
 1. Fork this repository, then clone your fork of this repository.
