@@ -83,3 +83,20 @@ INSERT INTO boards_links (link_id, board_id) VALUES (2, 1);
 INSERT INTO boards_links (link_id, board_id) VALUES (3, 2);
 INSERT INTO boards_links (link_id, board_id) VALUES (7, 5);
 INSERT INTO boards_links (link_id, board_id) VALUES (9, 5);
+
+INSERT INTO goals (google_id, steps_goal, day_rounded) VALUES ('117282898988452158750', '4000', 1555041599999);
+INSERT INTO goals (google_id, steps_goal, day_rounded) VALUES ('117282898988452158750', '4000', 1555559999999);
+INSERT INTO goals (google_id, steps_goal, day_rounded) VALUES ('117282898988452158750', '4000', 1555991999999);
+INSERT INTO goals (google_id, steps_goal, day_rounded) VALUES ('117282898988452158750', '4000', 1556337599999);
+INSERT INTO goals (google_id, steps_goal, day_rounded) VALUES ('117282898988452158750', '4000', 1556596799999);
+INSERT INTO goals (google_id, steps_goal, day_rounded) VALUES ('117282898988452158750', '4000', 1556769599999);
+
+
+
+ 117282898988452158750 |            | 1556337599999 |       1379
+ 117282898988452158750 |            | 1555991999999 |       1155
+ 117282898988452158750 |            | 1555041599999 |       1028
+ 117282898988452158750 |            | 1556855999999 |       3224
+ 117282898988452158750 |            | 1556769599999 |       1159
+ 117282898988452158750 |            | 1556596799999 |       1573
+ 117282898988452158750 |            | 1555559999999 |       2850
